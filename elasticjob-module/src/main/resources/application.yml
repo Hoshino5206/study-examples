@@ -1,0 +1,10 @@
+elasticjob:
+  reg-center:
+    namespace: elasticJob/weixin
+    server-lists: 127.0.0.1:2181
+  jobs:
+    mySimpleJob:
+      elasticJobClass: com.hoshino.study.elasticjob.jobs.MySimpleJob
+      cron: "0/10 * * * * ?"
+      shardingTotalCount: 3
+      overwrite: true
