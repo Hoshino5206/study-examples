@@ -21,15 +21,15 @@ public class MySimpleJob implements SimpleJob {
             switch (shardingContext.getShardingItem()) {
                 case 0:
                     Thread.sleep(2000);
-                    log.info("sharding item 0: {}",  shardingContext.getShardingItem());
+                    log.info("sharding item 0: {}",  System.currentTimeMillis());
                     break;
                 case 1:
                     Thread.sleep(3000);
-                    log.info("sharding item 1: {}",  shardingContext.getShardingItem());
+                    log.info("sharding item 1: {}",  System.currentTimeMillis());
                     break;
                 case 2:
                     Thread.sleep(4000);
-                    log.info("sharding item 2: {}",  shardingContext.getShardingItem());
+                    log.info("sharding item 2: {}",  System.currentTimeMillis());
                     break;
                 default:
                     log.info("default: {}",  shardingContext.getShardingItem());

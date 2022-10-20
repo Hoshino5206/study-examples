@@ -5,6 +5,6 @@ elasticjob:
   jobs:
     mySimpleJob:
       elasticJobClass: com.hoshino.study.elasticjob.jobs.MySimpleJob
-      cron: "0/10 * * * * ?"
+      cron: "*/10 * * * * ?"
       shardingTotalCount: 3
       overwrite: true
