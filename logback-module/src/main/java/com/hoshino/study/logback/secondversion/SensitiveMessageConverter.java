@@ -1,8 +1,7 @@
-package com.hoshino.study.logback.converter;
+package com.hoshino.study.logback.secondversion;
 
 import ch.qos.logback.classic.pattern.MessageConverter;
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import com.hoshino.study.logback.util.PropertiesUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +11,7 @@ import java.util.Set;
 
 /**
  * logback日志脱敏信息转换器
+ * 占位符方式，需要在logback-spring.xml中添加<conversionRule conversionWord="m" converterClass="com.xxx.xxx.ConsoleMessageConverter" />
  * @author huangyuehao
  */
 public class SensitiveMessageConverter extends MessageConverter {

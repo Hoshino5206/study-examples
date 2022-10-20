@@ -54,12 +54,5 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
 
-        <!-- test -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
 </project>

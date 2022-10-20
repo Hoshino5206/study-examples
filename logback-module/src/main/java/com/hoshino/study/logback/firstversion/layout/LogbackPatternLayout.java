@@ -1,9 +1,9 @@
-package com.hoshino.study.logback.layout;
+package com.hoshino.study.logback.firstversion.layout;
 
 import ch.qos.logback.classic.PatternLayout;
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import com.hoshino.study.logback.regex.RegexReplacement;
-import com.hoshino.study.logback.regex.RegexReplacementList;
+import com.hoshino.study.logback.firstversion.regex.RegexReplacement;
+import com.hoshino.study.logback.firstversion.regex.RegexReplacementList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,4 +1,4 @@
-package com.hoshino.study.logback.regex;
+package com.hoshino.study.logback.firstversion.regex;
 
 import java.util.regex.Pattern;
 
