@@ -1,8 +1,8 @@
-package com.hoshino.study.logback.encoder;
+package com.hoshino.study.logback.firstversion.encoder;
 
 import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
-import com.hoshino.study.logback.layout.LogbackPatternLayout;
-import com.hoshino.study.logback.regex.RegexReplacementList;
+import com.hoshino.study.logback.firstversion.layout.LogbackPatternLayout;
+import com.hoshino.study.logback.firstversion.regex.RegexReplacementList;
 
 /**
  * @author huangyuehao

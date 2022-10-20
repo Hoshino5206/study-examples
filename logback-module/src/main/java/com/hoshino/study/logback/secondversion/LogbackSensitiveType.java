@@ -1,4 +1,4 @@
-package com.hoshino.study.logback.converter;
+package com.hoshino.study.logback.secondversion;
 
 /**
  * logback日志脱敏类型

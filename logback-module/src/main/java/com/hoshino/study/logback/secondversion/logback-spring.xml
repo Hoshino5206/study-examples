@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+    <conversionRule conversionWord="m" converterClass="com.hoshino.study.logback.converter.SensitiveMessageConverter" />
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
     <property name="LOG_PATH" value="./logs/logback.log"/>
 
-    <appender name="stdout" class="com.hoshino.study.logback.appender.ConsoleSensitiveAppender">
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>${CONSOLE_LOG_PATTERN}</pattern>
             <charset>UTF-8</charset>

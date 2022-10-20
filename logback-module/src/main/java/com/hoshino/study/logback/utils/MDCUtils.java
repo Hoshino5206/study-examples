@@ -1,4 +1,4 @@
-package com.hoshino.study.logback.util;
+package com.hoshino.study.logback.utils;
 
 import com.hoshino.study.logback.constant.MDCConstant;
 import org.slf4j.MDC;

@@ -1,6 +1,8 @@
-package com.hoshino.study.logback.util;
+package com.hoshino.study.logback.utils;
 
-import com.hoshino.study.logback.converter.LogbackSensitive;
+import com.hoshino.study.logback.constant.SensitiveTypeConstant;
+import com.hoshino.study.logback.sensitive.LogbackSensitive;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,12 +10,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
- * logback日志脱敏工具类
+ * logback配置文件读取工具
  * @author huangyuehao
  */
 public class PropertiesUtil {
@@ -24,44 +24,58 @@ public class PropertiesUtil {
 
     private static final String PROPERTY_SOURCE_PATH = "com/hoshino/study/logback/default.properties";
 
+
     /**
      * 读取logback配置文件default.properties
      * @return
      */
     public static Map<String, LogbackSensitive> getResource() throws Exception {
         Properties properties = new Properties();
+        InputStream inputStream = null;
         try {
-            InputStream inputStream = PropertiesUtil.class.getClassLoader().getResourceAsStream(PROPERTY_SOURCE_PATH);
+            inputStream = PropertiesUtil.class.getClassLoader().getResourceAsStream(PROPERTY_SOURCE_PATH);
             properties.load(inputStream);
-            inputStream.close();
         } catch (IOException e) {
-            LOGGER.warn("load properties error from the path: {}", PROPERTY_SOURCE_PATH);
+            LOGGER.error("load properties error from the path: {}", PROPERTY_SOURCE_PATH);
+        } finally {
+            inputStream.close();
         }
 
         Set<Object> propertiesKeys = properties.keySet();
         for (Object propertyKey : propertiesKeys) {
             String sensitiveValue = properties.getProperty((String) propertyKey);
-            // 配置文件key值以"."分割转换为数组，如logback.replaces.cardNo.replacement
-            // 转换成["kael", "logback", "sensitive", "replaces", "cardNo", replacement]
+            // 配置文件key值以"."分割转换为数组，如logback.replaces.regex.phone.regex
+            // 转换成["如logback", "replaces", "regex", "phone", "regex"]
             String[] propertyKeyToList = propertyKey.toString().split("\\.");
+            boolean isHasPrefix = StringUtils.startsWith((String)propertyKey, "logback.replaces.");
+            if(!isHasPrefix) {
+                LOGGER.error("The key prefix must be starts with [logback.replaces], please check the property:[{}]", propertyKey);
+                break;
+            }
+            // 脱敏类型
+            String sensitiveType = propertyKeyToList[2];
             // 需要脱敏的关键字sensitiveKey
-            String sensitiveKey = propertyKeyToList[2];
+            String sensitiveKey = propertyKeyToList[3];
             // 日志脱敏对象LogbackSensitive属性
-            String sensitiveFiled = propertyKeyToList[3];
+            String sensitiveFiled = propertyKeyToList[4];
 
             LogbackSensitive logbackSensitive = new LogbackSensitive();
             Set<String> fieldNameSet = getFieldNameSet(logbackSensitive);
 
             // 如果sensitiveMap已经存在key，则直接对value进行更新
-            if (fieldNameSet.contains(sensitiveFiled)) {
+            if (fieldNameSet.contains(sensitiveFiled) &&
+                    (SensitiveTypeConstant.REGEX.equals(sensitiveType) || SensitiveTypeConstant.KV.equals(sensitiveType))) {
                 if (sensitiveMap.containsKey(sensitiveKey)) {
                     logbackSensitive = sensitiveMap.get(sensitiveKey);
                     setField(logbackSensitive, sensitiveFiled, sensitiveValue);
                     sensitiveMap.remove(sensitiveKey);
                 } else {
+                    logbackSensitive.setType(sensitiveType);
                     setField(logbackSensitive, sensitiveFiled, sensitiveValue);
                 }
                 sensitiveMap.put(sensitiveKey, logbackSensitive);
+            } else {
+                LOGGER.error("The type of desensitization is not support or The desensitization field is incorrect");
             }
         }
         return sensitiveMap;
@@ -82,36 +96,6 @@ public class PropertiesUtil {
                 declaredField.set(obj, value);
             }
         }
-    }
-
-    /**
-     * 编译正则表达式并实例化Pattern对象
-     * @param regex
-     * @return
-     */
-    public static Pattern regexFormat(String regex) {
-        return Pattern.compile(regex);
-    }
-
-    /**
-     * 匹配字符串，生成匹配对象
-     * @param regex
-     * @param msg
-     * @return
-     */
-    public static Matcher matcher(String regex, String msg) {
-        return regexFormat(regex).matcher(msg);
-    }
-
-    /**
-     * 字符串替换脱敏
-     * @param regex
-     * @param msg
-     * @param replacement
-     * @return
-     */
-    public static String msgSensitive(String regex, String msg, String replacement) {
-        return matcher(regex, msg).replaceAll(replacement);
     }
 
 }
