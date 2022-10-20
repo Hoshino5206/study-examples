@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
-    <property name="LOG_PATH" value="./logs/logback.log"/>
+    <property name="LOG_PATH" value="./logback-module/logs/logback.log"/>
 
     <appender name="stdout" class="com.hoshino.study.logback.appender.ConsoleSensitiveAppender">
         <encoder>
