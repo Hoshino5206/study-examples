@@ -22,12 +22,16 @@ import java.util.Map;
  */
 public class MyGson {
 
+    private static Users users1 = new Users(001, "艾伦", "2000", 18);
+
+    private static Users users2 = new Users(002, "三立", "1000", 16);
+
     public static void gson1() {
-        Users users = new Users(001, "艾伦", "2000", 18);
-        System.out.println("users: " + users);
+//        Users users = new Users(001, "艾伦", "2000", 18);
+        System.out.println("users: " + users1);
 
         Gson gson = new Gson();
-        String json = gson.toJson(users);
+        String json = gson.toJson(users1);
         System.out.println("Gson-toJson: " + json);
 
         Users fromJson = gson.fromJson(json, Users.class);
@@ -35,8 +39,8 @@ public class MyGson {
     }
 
     public static void gson2() {
-        Users users1 = new Users(001, "艾伦", "2000", 18);
-        Users users2 = new Users(002, "三立", "1000", 16);
+//        Users users1 = new Users(001, "艾伦", "2000", 18);
+//        Users users2 = new Users(002, "三立", "1000", 16);
 
         List<Users> usersList = new ArrayList<>();
         usersList.add(users1);
@@ -55,8 +59,6 @@ public class MyGson {
 
     public static void gson3() {
         Map<String, Users> usersMap = new HashMap<>();
-        Users users1 = new Users(001, "艾伦", "2000", 18);
-        Users users2 = new Users(002, "三立", "1000", 16);
         usersMap.put("p1", users1);
         usersMap.put("p2", users2);
         System.out.println("usersMap: " + usersMap);

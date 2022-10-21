@@ -9,12 +9,24 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
-public class Users {
+public class Users extends UserFather {
 
     private Integer id;
     private String username;
     private String password;
     private Integer age;
+
+    public Integer salary;
+
+    public Users(Integer id, String username, String password, Integer age) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.age = age;
+    }
+
+    private void haha(String username) {
+        System.out.println("reflect invoke method haha(), username = " + username);
+    }
 }
