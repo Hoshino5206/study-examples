@@ -1,4 +1,4 @@
-package com.hoshino.study.maven.utils;
+package com.hoshino.study.maven.dataType;
 
 /**
  * @author huangyuehao

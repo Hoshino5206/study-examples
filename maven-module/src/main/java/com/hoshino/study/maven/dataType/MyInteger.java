@@ -1,4 +1,4 @@
-package com.hoshino.study.maven.utils;
+package com.hoshino.study.maven.dataType;
 
 /**
  * @author huangyuehao
@@ -17,6 +17,17 @@ public class MyInteger {
         Integer b2 = 200;
         System.out.println(a2 == b2);//false
 
-        // 装箱和拆箱
+        // 手动装箱
+        int num1 = 100;
+        Integer i1 = new Integer(num1);
+        Integer i2 = Integer.valueOf(num1);
+        // 手动拆箱
+        int i3 = i1.intValue();
+        int i4 = i2.intValue();
+
+        // 自动装箱
+        Integer autoPack = 10;
+        // 自动拆箱
+        int autoUnPack = new Integer(10);
     }
 }
