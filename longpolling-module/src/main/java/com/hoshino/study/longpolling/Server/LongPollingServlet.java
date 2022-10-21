@@ -26,7 +26,7 @@ public class LongPollingServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        System.out.println("第" + (count.incrementAndGet()) + "次 com.hoshino.maven.longpolling");
+        System.out.println("第" + (count.incrementAndGet()) + "次 longpolling");
 
         int sleepSecends = random.nextInt(100);
         //随机获取等待时间，来通过sleep模拟服务端是否准备好数据

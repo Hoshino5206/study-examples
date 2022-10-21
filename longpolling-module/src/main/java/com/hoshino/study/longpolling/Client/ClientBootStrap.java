@@ -18,7 +18,7 @@ public class ClientBootStrap {
     public static void main (String[] args) {
         int i = 0;
         while (true) {
-            System.out.println("第" + (++i) + "次 com.hoshino.maven.longpolling");
+            System.out.println("第" + (++i) + "次 longpolling");
             HttpURLConnection connection = null;
             try {
                 URL getUrl = new URL(HTTP_URL);
