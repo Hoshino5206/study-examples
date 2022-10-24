@@ -16,4 +16,8 @@ public class MyTest {
         System.out.println("-------");
         System.out.println(str[0]);
     }
+
+    public static class A {
+
+    }
 }
