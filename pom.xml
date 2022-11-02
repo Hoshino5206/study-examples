@@ -24,7 +24,7 @@
         <module>example-elasticjob</module>
         <module>example-apollo</module>
         <module>example-redis</module>
-        <module>example-spring-test</module>
+        <module>example-springboot-test</module>
     </modules>
 
     <dependencyManagement>
