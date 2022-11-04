@@ -17,7 +17,7 @@
     </properties>
 
     <modules>
-        <module>example-maven</module>
+        <module>example-basics</module>
         <module>example-springboot</module>
         <module>example-logback</module>
         <module>example-longpolling</module>
@@ -29,6 +29,13 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>5.2.20.RELEASE</version>
+            </dependency>
+
             <!-- spring boot -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>

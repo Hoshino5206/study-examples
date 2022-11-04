@@ -30,6 +30,8 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 /*/logs/
+properties1.txt
+properties2.txt
 
 ### VS Code ###
 .vscode/
