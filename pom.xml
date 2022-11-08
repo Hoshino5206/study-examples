@@ -25,6 +25,7 @@
         <module>example-apollo</module>
         <module>example-redis</module>
         <module>example-springboot-test</module>
+        <module>example-sso</module>
     </modules>
 
     <dependencyManagement>
