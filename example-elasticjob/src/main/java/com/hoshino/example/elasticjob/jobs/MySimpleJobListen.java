@@ -1,4 +1,4 @@
-package com.hoshino.example.elasticjob.listen;
+package com.hoshino.example.elasticjob.jobs;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shardingsphere.elasticjob.infra.listener.ElasticJobListener;

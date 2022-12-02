@@ -1,10 +1,11 @@
 elasticjob:
   reg-center:
+    # 命名空间，必须以elasticJob开头，以应用编码结尾。例: namespace: elasticJob/weixin-out
     namespace: elasticJob/weixin
     server-lists: 127.0.0.1:2181
   jobs:
     mySimpleJob:
-      elasticJobClass: com.hoshino.study.elasticjob.jobs.MySimpleJob
-      cron: "*/10 * * * * ?"
+      elasticJobClass: com.hoshino.example.elasticjob.jobs.MySimpleJob
+      cron: "0/10 * * * * ?"
       shardingTotalCount: 3
-      overwrite: true
+      overwrite: false
