@@ -26,6 +26,8 @@
         <module>example-redis</module>
         <module>example-springboot-test</module>
         <module>example-sso</module>
+        <module>example-properySource</module>
+        <module>example-spring-security</module>
     </modules>
 
     <dependencyManagement>
@@ -87,6 +89,16 @@
                 <groupId>org.apache.shardingsphere.elasticjob</groupId>
                 <artifactId>elasticjob-lite-spring-boot-starter</artifactId>
                 <version>3.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-security</artifactId>
+                <version>2.2.8.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring-boot-web-starter</artifactId>
+                <version>1.8.0</version>
             </dependency>
 
             <!-- utils -->
