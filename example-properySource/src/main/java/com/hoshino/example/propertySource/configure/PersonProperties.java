@@ -1,9 +1,8 @@
-package com.hoshino.example.properties;
+package com.hoshino.example.propertySource.configure;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 
 import java.util.Date;
 import java.util.List;
@@ -15,9 +14,12 @@ import java.util.Map;
  */
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "person")
-@PropertySource(value = "classpath:person.properties",encoding = "UTF-8")
-public class Person {
+@ConfigurationProperties(PersonProperties.PREFIX)
+public class PersonProperties {
+
+    public final static String PREFIX = "com.hoshino.example";
+
+    private Boolean enable;
 
     private String id;
 
@@ -34,6 +36,15 @@ public class Person {
     private List<String> list;
 
     private Address address;
+
+    @Data
+    public static class Address {
+        private String province;
+
+        private String distinct;
+
+        private String county;
+    }
 
 }
 

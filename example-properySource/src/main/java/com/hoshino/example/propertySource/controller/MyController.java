@@ -1,6 +1,6 @@
-package com.hoshino.example.controller;
+package com.hoshino.example.propertySource.controller;
 
-import com.hoshino.example.properties.Person;
+import com.hoshino.example.propertySource.configure.PersonProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class MyController {
 
     @Autowired
-    private Person person;
+    private PersonProperties personProperties;
 
     @RequestMapping("/test")
     public String test() {
-        System.out.println(person.toString());
-        return person.toString();
+        System.out.println(personProperties.toString());
+        return personProperties.toString();
     }
 }

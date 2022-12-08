@@ -1,4 +1,4 @@
-package com.hoshino.example;
+package com.hoshino.example.propertySource;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
