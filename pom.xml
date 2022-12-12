@@ -18,16 +18,15 @@
 
     <modules>
         <module>example-basics</module>
-        <module>example-springboot</module>
         <module>example-logback</module>
         <module>example-longpolling</module>
         <module>example-elasticjob</module>
-        <module>example-apollo</module>
         <module>example-redis</module>
-        <module>example-springboot-test</module>
         <module>example-sso</module>
-        <module>example-properySource</module>
         <module>example-spring-security</module>
+        <module>example-springboot</module>
+        <module>example-springboot-autoconfiguration</module>
+        <module>example-springboot-test</module>
     </modules>
 
     <dependencyManagement>
