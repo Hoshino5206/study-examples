@@ -26,7 +26,6 @@
         <module>example-spring-security</module>
         <module>example-springboot</module>
         <module>example-springboot-autoconfiguration</module>
-        <module>example-springboot-test</module>
     </modules>
 
     <dependencyManagement>
