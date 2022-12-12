@@ -15,8 +15,8 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @EnableConfigurationProperties(PersonProperties.class)
 @ConditionalOnClass(PersonConfiguration.class)
-@ConditionalOnProperty(value = PersonProperties.PREFIX, name = "enable", havingValue = "true")
-@PropertySource(value = "classpath:com/hoshino/example/propertySource/person.properties",encoding = "UTF-8")
+@ConditionalOnProperty(prefix = PersonProperties.PREFIX, name = "enable", havingValue = "true")
+@PropertySource(value = "classpath:com/hoshino/example/property/person.properties", encoding = "UTF-8")
 public class PersonAutoConfiguration {
 
     private final PersonProperties personProperties;

@@ -1,0 +1,60 @@
+server:
+  port: 8090
+
+com:
+  hoshino:
+    example:
+      enable: true
+      id: 100002
+      name: tom
+      age: 18
+      birthday: 2010/1/1
+
+      # Address
+      address: &defaults
+        province: 广东省
+        county: 深圳市
+        distinct: O区
+
+      #List<String>
+      list: SpringBoot,SpringCloud
+#      another way
+#      list:
+#        - SpringBoot
+#        - SpringCloud
+
+      #Map<String, String>
+      map:
+        name: jack
+        age: 18
+        birth: 2010/12/12
+
+      #List<Address>
+      list-add:
+        # & 用来建立锚点（defaults），<< 表示合并到当前数据，* 用来引用锚点
+        -
+          <<: *defaults
+        #相当于
+#        -
+#          province: 广东省
+#          county: 深圳市
+#          distinct: O区
+        -
+          province: 广东省
+          county: 深圳市
+          distinct: 10区
+        -
+          province: 广东省
+          county: 深圳市
+          distinct: 20区
+
+      #Map<String ,Address>
+      address-map:
+        tom:
+          province: 广东省
+          county: 深圳市
+          distinct: 30区
+        jack:
+          province: 广东省
+          county: 深圳市
+          distinct: 40区

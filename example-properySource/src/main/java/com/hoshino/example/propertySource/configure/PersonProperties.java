@@ -2,7 +2,6 @@ package com.hoshino.example.propertySource.configure;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 
 import java.util.Date;
 import java.util.List;
@@ -13,13 +12,12 @@ import java.util.Map;
  * @date 2022-11-29
  */
 @Data
-@Configuration
 @ConfigurationProperties(PersonProperties.PREFIX)
 public class PersonProperties {
 
     public final static String PREFIX = "com.hoshino.example";
 
-    private Boolean enable;
+    private boolean enable;
 
     private String id;
 
@@ -27,23 +25,25 @@ public class PersonProperties {
 
     private int age;
 
-    private boolean isManager;
-
     private Date birthday;
 
-    private Map<String, Object> map;
+    private Address address;
 
     private List<String> list;
 
-    private Address address;
+    private Map<String, String> map;
+
+    private List<Address> listAdd;
+
+    private Map<String, Address> addressMap;
 
     @Data
     public static class Address {
         private String province;
 
-        private String distinct;
-
         private String county;
+
+        private String distinct;
     }
 
 }
