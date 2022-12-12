@@ -18,9 +18,10 @@
 
     <modules>
         <module>example-basics</module>
-        <module>example-logback</module>
-        <module>example-longpolling</module>
         <module>example-elasticjob</module>
+        <module>example-logback</module>
+        <module>example-springboot-starter-logback</module>
+        <module>example-longpolling</module>
         <module>example-redis</module>
         <module>example-sso</module>
         <module>example-spring-security</module>
@@ -211,6 +212,11 @@
                 <groupId>net.logstash.logback</groupId>
                 <artifactId>logstash-logback-encoder</artifactId>
                 <version>5.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.skywalking</groupId>
+                <artifactId>apm-toolkit-logback-1.x</artifactId>
+                <version>8.8.0</version>
             </dependency>
 
             <!-- log4j -->

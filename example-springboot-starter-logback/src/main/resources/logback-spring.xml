@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+    <include resource="com/hoshino/example/logback/defaults.xml" />
+    <include resource="com/hoshino/example/logback/logback-json-appender.xml" />
+
+    <logger name="org.activiti" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="ACTIVITI-ERROR-FILE"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="FILE" />
+        <appender-ref ref="ERROR-FILE" />
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+</configuration>

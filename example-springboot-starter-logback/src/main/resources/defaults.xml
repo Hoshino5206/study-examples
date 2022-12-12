@@ -1,0 +1,10 @@
+<included>
+
+    <property name="LOG_PATH" value="${LOG_PATH:-${loggingRoot:-${java.io.tmpdir:-/tmp}}/${AppLogDir:-${kael.application.name:-project}}}"/>
+
+    <property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/app-default.log.json}"/>
+    <property name="LOG_ERROR_FILE" value="${LOG_ERROR_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/common-error.log.json}"/>
+    <property name="LOG_ACTIVITI_ERROR_FILE" value="${LOG_ACTIVITI_ERROR_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/activiti-error.log.json}"/>
+    <property name="LOG_DUBBO_FILE" value="${LOG_DUBBO_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/dubbo-profile.log.json}"/>
+
+</included>
