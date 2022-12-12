@@ -29,7 +29,7 @@ public class MyInputStream {
         Properties properties = new Properties();
         InputStream in = null;
         try {
-            in = MyInputStream.class.getClassLoader().getResourceAsStream("default1.properties");
+            in = MyInputStream.class.getClassLoader().getResourceAsStream("io/default1.properties");
             properties.load(in);
 
             // 1.单字节读，一个字节一个字节的读出数据
@@ -82,7 +82,11 @@ public class MyInputStream {
         sw.start();
 
         try {
-            in = new FileInputStream("/Users/huangyuehao/Documents/IdeaProjects/study-examples/properties1.txt");
+            //绝对路径
+            //in = new FileInputStream("/Users/huangyuehao/Desktop/IdeaProjects/study-examples/properties1.txt");
+            //相对路径
+            //in = new FileInputStream("properties1.txt");
+            in = new FileInputStream("example-basics/src/main/resources/io/properties1.txt");
             properties.load(in);
         } catch (IOException e) {
             e.printStackTrace();
@@ -112,7 +116,11 @@ public class MyInputStream {
         sw.start();
 
         try {
-            fis = new FileInputStream("/Users/huangyuehao/Documents/IdeaProjects/study-examples/properties2.txt");
+            // 绝对路径
+            //in = new FileInputStream("/Users/huangyuehao/Desktop/IdeaProjects/study-examples/properties1.txt");
+            // 相对路径
+            //in = new FileInputStream("properties2.txt");
+            fis = new FileInputStream("example-basics/src/main/resources/io/properties2.txt");
             bis = new BufferedInputStream(fis);
             properties.load(bis);
         } catch (IOException e) {

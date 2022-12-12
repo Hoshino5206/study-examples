@@ -29,7 +29,7 @@ public class MyWriter {
         sw.start();
 
         try {
-            fos = new FileOutputStream("/Users/huangyuehao/Documents/IdeaProjects/study-examples/properties1.txt");
+            fos = new FileOutputStream("example-basics/src/main/resources/io/properties1.txt");
             w = new OutputStreamWriter(fos);
             for (int i = 0; i < 10000; i++) {
                 // username1 = 1000以内的随机数
@@ -65,8 +65,7 @@ public class MyWriter {
         sw.start();
 
         try {
-//            fr = new FileWriter(new File("/Users/huangyuehao/Documents/IdeaProjects/study-examples/properties1.txt"));
-            fr = new FileWriter("/Users/huangyuehao/Documents/IdeaProjects/study-examples/properties1.txt", false);
+            fr = new FileWriter("example-basics/src/main/resources/io/properties1.txt", false);
             for (int i = 0; i < 10000; i++) {
                 // username1 = 1000以内的随机数
                 String str = "username_num" + i + "=" + new Random().nextInt(10000);
@@ -95,7 +94,7 @@ public class MyWriter {
         sw.start();
 
         try {
-            fr = new FileWriter("/Users/huangyuehao/Documents/IdeaProjects/study-examples/properties2.txt", false);
+            fr = new FileWriter("example-basics/src/main/resources/io/properties2.txt", false);
             bfr = new BufferedWriter(fr);
             for (int i = 0; i < 10000; i++) {
                 // username1 = 1000以内的随机数

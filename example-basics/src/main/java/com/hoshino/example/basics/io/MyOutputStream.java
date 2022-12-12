@@ -2,10 +2,7 @@ package com.hoshino.example.basics.io;
 
 import org.springframework.util.StopWatch;
 
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.Objects;
 import java.util.Random;
 
@@ -31,7 +28,11 @@ public class MyOutputStream {
 
         try {
             // 第二个参数表示文件是否支持追加，false表示重置文件内容，true表示文件内容追加
-            fos = new FileOutputStream("/Users/huangyuehao/Documents/IdeaProjects/study-examples/properties1.txt", false);
+            // 绝对路径
+            //fos = new FileOutputStream("/Users/huangyuehao/Desktop/IdeaProjects/study-examples/properties1.txt", false);
+            // 相对路径
+            //fos = new FileOutputStream("properties2.txt");
+            fos = new FileOutputStream("example-basics/src/main/resources/io/properties1.txt");
             for (int i = 0; i < 10000; i++) {
                 // username1 = 1000以内的随机数
                 String str = "username_num" + i + "=" + new Random().nextInt(10000);
@@ -63,7 +64,11 @@ public class MyOutputStream {
 
         try {
             // 第二个参数表示文件是否支持追加，false表示重置文件内容，true表示文件内容追加
-            fos = new FileOutputStream("/Users/huangyuehao/Documents/IdeaProjects/study-examples/properties2.txt", false);
+            // 绝对路径
+            //fos = new FileOutputStream("/Users/huangyuehao/Desktop/IdeaProjects/study-examples/properties2.txt", false);
+            // 相对路径
+            //fos = new FileOutputStream("properties2.txt");
+            fos = new FileOutputStream("example-basics/src/main/resources/io/properties2.txt");
             bos = new BufferedOutputStream(fos);
             for (int i = 0; i < 10000; i++) {
                 // username1 = 1000以内的随机数

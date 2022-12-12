@@ -28,7 +28,7 @@ public class MyReader {
         Reader r = null;
 
         try {
-            in = MyReader.class.getClassLoader().getResourceAsStream("default2.properties");
+            in = MyReader.class.getClassLoader().getResourceAsStream("io/default1.properties");
             r = new InputStreamReader(in);
             properties.load(r);
         } catch (IOException e) {
@@ -60,8 +60,7 @@ public class MyReader {
         sw.start();
 
         try {
-//            reader = new FileReader(new File("/Users/huangyuehao/Documents/IdeaProjects/study-examples/properties1.txt"));
-            reader = new FileReader("/Users/huangyuehao/Documents/IdeaProjects/study-examples/properties1.txt");
+            reader = new FileReader("example-basics/src/main/resources/io/properties1.txt");
             properties.load(reader);
         } catch (IOException e) {
             e.printStackTrace();
@@ -90,7 +89,7 @@ public class MyReader {
         sw.start();
 
         try {
-            reader = new FileReader("/Users/huangyuehao/Documents/IdeaProjects/study-examples/properties1.txt");
+            reader = new FileReader("example-basics/src/main/resources/io/properties2.txt");
             br = new BufferedReader(reader);
             properties.load(reader);
         } catch (IOException e) {
