@@ -1,4 +1,4 @@
-package com.hoshino.example.propertySource.configure;
+package com.hoshino.example.autoconfigure.Person;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.PropertySource;
 @EnableConfigurationProperties(PersonProperties.class)
 @ConditionalOnClass(PersonConfiguration.class)
 @ConditionalOnProperty(prefix = PersonProperties.PREFIX, name = "enable", havingValue = "true")
-@PropertySource(value = "classpath:com/hoshino/example/property/person.properties", encoding = "UTF-8")
+@PropertySource(value = "classpath:com/hoshino/example/autoconfigure/person.properties", encoding = "UTF-8")
 public class PersonAutoConfiguration {
 
     private final PersonProperties personProperties;

@@ -1,7 +1,7 @@
-package com.hoshino.example.propertySource;
+package com.hoshino.example.autoconfigure;
 
-import com.hoshino.example.propertySource.configure.PersonConfiguration;
-import com.hoshino.example.propertySource.configure.PersonProperties;
+import com.hoshino.example.autoconfigure.Person.PersonConfiguration;
+import com.hoshino.example.autoconfigure.Person.PersonProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,6 +20,7 @@ public class Application {
         PersonProperties properties = bean.getProperties();
         log.info("id:{} ", properties.getId());
         log.info("name:{} ", properties.getName());
+        log.info("password:{} ", properties.getName());
         log.info("age:{} ", properties.getAge());
         log.info("birthday:{} ", properties.getBirthday());
         log.info("address:{} ", properties.getAddress());

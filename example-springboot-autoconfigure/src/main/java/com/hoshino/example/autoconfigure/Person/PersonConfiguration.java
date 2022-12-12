@@ -1,4 +1,4 @@
-package com.hoshino.example.propertySource.configure;
+package com.hoshino.example.autoconfigure.Person;
 
 import lombok.Data;
 

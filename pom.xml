@@ -26,7 +26,7 @@
         <module>example-sso</module>
         <module>example-spring-security</module>
         <module>example-springboot</module>
-        <module>example-springboot-autoconfiguration</module>
+        <module>example-springboot-autoconfigure</module>
     </modules>
 
     <dependencyManagement>
