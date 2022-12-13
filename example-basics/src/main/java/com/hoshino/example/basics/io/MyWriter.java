@@ -1,10 +1,11 @@
 package com.hoshino.example.basics.io;
 
-import org.springframework.util.StopWatch;
+import org.apache.commons.lang3.time.StopWatch;
 
 import java.io.*;
 import java.util.Objects;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author huangyuehao
@@ -51,7 +52,7 @@ public class MyWriter {
         }
 
         sw.stop();
-        System.out.println("sw.getTotalTimeMillis() = " + sw.getTotalTimeMillis());
+        System.out.println("sw.getTotalTimeMillis() = " + sw.getTime(TimeUnit.MILLISECONDS));
         System.out.println("==============================");
     }
 
@@ -83,7 +84,7 @@ public class MyWriter {
         }
 
         sw.stop();
-        System.out.println("sw.getTotalTimeMillis() = " + sw.getTotalTimeMillis());
+        System.out.println("sw.getTotalTimeMillis() = " + sw.getTime(TimeUnit.MILLISECONDS));
         System.out.println("==============================");
     }
 
@@ -116,7 +117,7 @@ public class MyWriter {
         }
 
         sw.stop();
-        System.out.println("sw.getTotalTimeMillis() = " + sw.getTotalTimeMillis());
+        System.out.println("sw.getTotalTimeMillis() = " + sw.getTime(TimeUnit.MILLISECONDS));
         System.out.println("==============================");
     }
 

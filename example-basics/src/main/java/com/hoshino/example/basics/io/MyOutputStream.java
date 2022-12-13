@@ -1,10 +1,14 @@
 package com.hoshino.example.basics.io;
 
-import org.springframework.util.StopWatch;
+import org.apache.commons.lang3.time.StopWatch;
 
-import java.io.*;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Objects;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author huangyuehao
@@ -49,7 +53,7 @@ public class MyOutputStream {
             }
         }
         sw.stop();
-        System.out.println("sw.getTotalTimeMillis() = " + sw.getTotalTimeMillis());
+        System.out.println("sw.getTotalTimeMillis() = " + sw.getTime(TimeUnit.MILLISECONDS));
     }
 
     /**
@@ -90,7 +94,7 @@ public class MyOutputStream {
         }
 
         sw.stop();
-        System.out.println("sw.getTotalTimeMillis() = " + sw.getTotalTimeMillis());
+        System.out.println("sw.getTotalTimeMillis() = " + sw.getTime(TimeUnit.MILLISECONDS));
         System.out.println("==============================");
     }
 
