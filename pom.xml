@@ -23,14 +23,66 @@
         <module>example-springboot-starter-logback</module>
         <module>example-longpolling</module>
         <module>example-redis</module>
-        <module>example-sso</module>
-        <module>example-spring-security</module>
         <module>example-springboot</module>
         <module>example-springboot-autoconfigure</module>
+        <module>example-spring-security</module>
+        <module>example-sso</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
+            <!-- module -->
+            <dependency>
+                <groupId>com.hoshino.example</groupId>
+                <artifactId>example-basics</artifactId>
+                <version>${dependencies.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hoshino.example</groupId>
+                <artifactId>example-elasticjob</artifactId>
+                <version>${dependencies.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hoshino.example</groupId>
+                <artifactId>example-logback</artifactId>
+                <version>${dependencies.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hoshino.example</groupId>
+                <artifactId>example-springboot-starter-logback</artifactId>
+                <version>${dependencies.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hoshino.example</groupId>
+                <artifactId>example-longpolling</artifactId>
+                <version>${dependencies.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hoshino.example</groupId>
+                <artifactId>example-redis</artifactId>
+                <version>${dependencies.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hoshino.example</groupId>
+                <artifactId>example-springboot</artifactId>
+                <version>${dependencies.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hoshino.example</groupId>
+                <artifactId>example-springboot-autoconfiguration</artifactId>
+                <version>${dependencies.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hoshino.example</groupId>
+                <artifactId>example-spring-security</artifactId>
+                <version>${dependencies.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hoshino.example</groupId>
+                <artifactId>example-sso</artifactId>
+                <version>${dependencies.version}</version>
+            </dependency>
+
             <!-- spring -->
             <dependency>
                 <groupId>org.springframework</groupId>
