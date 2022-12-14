@@ -13,9 +13,9 @@ import org.springframework.context.ConfigurableApplicationContext;
  */
 @SpringBootApplication
 @Slf4j
-public class Application {
+public class AutoConfigureApplication {
     public static void main(String[] args) {
-        ConfigurableApplicationContext run = SpringApplication.run(Application.class, args);
+        ConfigurableApplicationContext run = SpringApplication.run(AutoConfigureApplication.class, args);
         PersonConfiguration bean = run.getBean(PersonConfiguration.class);
         PersonProperties properties = bean.getProperties();
         log.info("id:{} ", properties.getId());

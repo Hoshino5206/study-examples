@@ -10,9 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 @Slf4j
-public class Application {
+public class StarterLogbackApplication {
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(StarterLogbackApplication.class, args);
         log.info("password:{}", "dqui&2bnijS%89BS61.sq8&s");
     }
 }
