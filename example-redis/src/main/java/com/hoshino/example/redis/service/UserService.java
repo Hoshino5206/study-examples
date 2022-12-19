@@ -41,7 +41,7 @@ public class UserService {
      * @param key
      * @param time
      */
-    public void expire(String key,long time){
+    public void expire(String key, long time){
         redisTemplate.expire(key, time, TimeUnit.SECONDS);
     }
 
@@ -70,37 +70,51 @@ public class UserService {
         redisTemplate.opsForValue().set("StringKey1", "StringValue", 60, TimeUnit.SECONDS);
 
         //2、通过BoundValueOperations设置值和过期时间
-        redisTemplate.boundValueOps("StringKey2").set(100,1, TimeUnit.MINUTES);
+        redisTemplate.boundValueOps("StringKey2").set(100L,1, TimeUnit.MINUTES);
 
         //3、通过key获取value
-        String str = (String)redisTemplate.opsForValue().get("StringKey2");
+        Long str2 = (Long) redisTemplate.opsForValue().get("StringKey2");
+        System.out.println("StringKey2 = " + str2);
+        // boundValueOps实际调用的方法 -> 仍然是ValueOperations接口的get方法
+        // Object stringKey2 = redisTemplate.boundValueOps("StringKey2").get();
+        // System.out.println("stringKey2 = " + stringKey2);
 
-        //4、通过key自增/自减value,value必须是整形
+        // 4、通过key自增/自减value，value必须是整形
         redisTemplate.opsForValue().increment("StringKey2", 10);
         redisTemplate.opsForValue().decrement("StringKey2", 10);
     }
 
     public void list() {
         //1、通过ValueOperations设置值
-        redisTemplate.opsForList().set("ListKey2", 0, "ListValue2");
+        redisTemplate.opsForList().set("ListKey1", 0, "ListValue2");
         redisTemplate.opsForList().leftPush("ListKey1", "ListValue1");
+        redisTemplate.opsForList().rightPush("ListKey1", "ListValue3");
 
         //2、通过BoundValueOperations设置值
+        redisTemplate.boundListOps("ListKey2").set(0, "ListValue2");
+        redisTemplate.boundListOps("ListKey2").leftPush("ListValue1");
+        redisTemplate.boundListOps("ListKey2").rightPush("ListValue3");
     }
 
-    public void hash(String key, String hashKey, String value) {
+    public void set() {
+
+    }
+
+    public void zSet() {
+
+    }
+
+    public void hash() {
         //1、通过ValueOperations设置值和过期时间
-        redisTemplate.opsForHash().put(key, hashKey, value);
-        redisTemplate.expire(key, 60, TimeUnit.SECONDS);
+        redisTemplate.opsForHash().put("Key1", "HashKey", "HashValue");
+        redisTemplate.expire("Key1", 60, TimeUnit.SECONDS);
 
         //2、通过BoundValueOperations设置值和过期时间
-        redisTemplate.boundHashOps(key).put(hashKey, value);
-        redisTemplate.expire(key, 60, TimeUnit.SECONDS);
+        redisTemplate.boundHashOps("Key1").put("HashKey", "HashValue");
+        redisTemplate.expire("Key1", 60, TimeUnit.SECONDS);
 
         //3、通过ValueOperations批量设置map
-        redisTemplate.boundHashOps(key).putAll(new HashMap<>(8));
+        redisTemplate.boundHashOps("Key1").putAll(new HashMap<>(8));
     }
-
-
 
 }
