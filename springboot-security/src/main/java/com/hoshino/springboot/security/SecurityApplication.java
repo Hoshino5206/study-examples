@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2022-11-30
  */
 @SpringBootApplication
-public class SpringSecurityApplication {
+public class SecurityApplication {
     public static void main (String[] args) {
-        SpringApplication.run(SpringSecurityApplication.class, args);
+        SpringApplication.run(SecurityApplication.class, args);
     }
 }

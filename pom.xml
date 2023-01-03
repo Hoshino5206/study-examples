@@ -21,6 +21,7 @@
         <module>springboot-security</module>
         <module>springboot-starter-logback</module>
         <module>sso</module>
+        <module>springboot-rabbitmq</module>
     </modules>
 
     <properties>
@@ -32,6 +33,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- spring -->
         <spring.version>5.2.20.RELEASE</spring.version>
+        <spring-amqp.version>2.4.6</spring-amqp.version>
         <springboot.version>2.3.12.RELEASE</springboot.version>
         <!-- Third party spring boot starter -->
         <shiro.version>1.8.0</shiro.version>
@@ -51,6 +53,7 @@
         <jedis.version>3.3.0</jedis.version>
         <lettuce.version>5.3.7.RELEASE</lettuce.version>
         <redisson.version>3.15.5</redisson.version>
+        <rabbitmq.version>5.16.0</rabbitmq.version>
         <apollo-client.version>1.7.0</apollo-client.version>
         <!-- utils -->
         <lombok.version>1.18.24</lombok.version>
@@ -101,7 +104,11 @@
                 <artifactId>spring-beans</artifactId>
                 <version>${spring.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.springframework.amqp</groupId>
+                <artifactId>spring-amqp</artifactId>
+                <version>${spring-amqp.version}</version>
+            </dependency>
 
             <!-- ==================================================================== -->
             <!-- ============================ spring boot =========================== -->
@@ -165,6 +172,11 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-amqp</artifactId>
                 <version>${springboot.version}</version>
             </dependency>
             <dependency>
@@ -276,6 +288,11 @@
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson</artifactId>
                 <version>${redisson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.rabbitmq</groupId>
+                <artifactId>amqp-client</artifactId>
+                <version>${rabbitmq.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.ctrip.framework.apollo</groupId>
