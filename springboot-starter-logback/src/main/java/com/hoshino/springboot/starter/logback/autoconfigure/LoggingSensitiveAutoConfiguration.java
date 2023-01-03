@@ -17,7 +17,7 @@ import org.springframework.context.annotation.PropertySource;
 @EnableConfigurationProperties({LoggingSensitiveProperties.class, LogbackContextProperties.class})
 @ConditionalOnClass({LoggingDesensitization.class, LogbackConfiguration.class})
 @ConditionalOnProperty(prefix = LoggingSensitiveProperties.PREFIX, name = "enable", havingValue = "true")
-@PropertySource(value = "classpath:com/hoshino/logback/default.properties", encoding = "UTF-8")
+@PropertySource(value = "classpath:com/hoshino/springboot/starter/logback/default.properties", encoding = "UTF-8")
 public class LoggingSensitiveAutoConfiguration {
 
     private final LoggingSensitiveProperties sensitiveProperties;

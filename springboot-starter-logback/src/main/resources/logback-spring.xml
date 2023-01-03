@@ -2,8 +2,8 @@
 <configuration>
     <include resource="org/springframework/boot/logging/logback/defaults.xml" />
     <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
-    <include resource="com/hoshino/example/logback/defaults.xml" />
-    <include resource="com/hoshino/example/logback/logback-json-appender.xml" />
+    <include resource="com/hoshino/springboot/starter/logback/defaults.xml" />
+    <include resource="com/hoshino/springboot/starter/logback/logback-json-appender.xml" />
 
     <logger name="org.activiti" additivity="false">
         <level value="INFO"/>

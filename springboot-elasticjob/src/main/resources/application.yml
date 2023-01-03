@@ -1,5 +1,5 @@
 server:
-  port: 8010
+  port: 8083
 
 elasticjob:
   reg-center:
@@ -8,7 +8,7 @@ elasticjob:
     server-lists: 127.0.0.1:2181
   jobs:
     mySimpleJob:
-      elasticJobClass: com.hoshino.example.elasticjob.jobs.MySimpleJob
+      elasticJobClass: com.hoshino.springboot.elasticjob.jobs.MySimpleJob
       cron: "0/10 * * * * ?"
       shardingTotalCount: 3
       overwrite: false
