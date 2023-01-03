@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.hoshino.example.springboot.starter.logback.autoconfigure.LoggingSensitiveAutoConfiguration
+com.hoshino.springboot.starter.logback.autoconfigure.LoggingSensitiveAutoConfiguration

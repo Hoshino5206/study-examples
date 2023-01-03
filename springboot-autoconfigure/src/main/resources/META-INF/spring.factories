@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.hoshino.example.autoconfigure.Person.PersonAutoConfiguration
+com.hoshino.springboot.autoconfigure.Person.PersonAutoConfiguration
