@@ -17,11 +17,11 @@
         <module>springboot-aop</module>
         <module>springboot-autoconfigure</module>
         <module>springboot-elasticjob</module>
+        <module>springboot-rabbitmq</module>
         <module>springboot-redis</module>
         <module>springboot-security</module>
         <module>springboot-starter-logback</module>
         <module>sso</module>
-        <module>springboot-rabbitmq</module>
     </modules>
 
     <properties>
