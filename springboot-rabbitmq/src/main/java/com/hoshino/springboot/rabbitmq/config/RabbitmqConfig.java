@@ -162,33 +162,33 @@ public class RabbitmqConfig {
     /**
      * 扇形交换机.
      */
-//    @Bean
-//    public FanoutExchange fanoutExchange() {
-//        return new FanoutExchange(DIRECT_EXCHANGE, false, false, null);
-//    }
+    @Bean
+    public FanoutExchange fanoutExchange() {
+        return new FanoutExchange(FANOUT_EXCHANGE, false, false, null);
+    }
 
     /**
      * 扇形交换机和队列A绑定.
      */
-//    @Bean
-//    public Binding bindingFanoutA() {
-//        return BindingBuilder.bind(fanoutQueueA()).to(fanoutExchange());
-//    }
+    @Bean
+    public Binding bindingFanoutA() {
+        return BindingBuilder.bind(fanoutQueueA()).to(fanoutExchange());
+    }
 
     /**
      * 扇形交换机和队列B绑定.
      */
-//    @Bean
-//    public Binding bindingFanoutB() {
-//        return BindingBuilder.bind(fanoutQueueB()).to(fanoutExchange());
-//    }
+    @Bean
+    public Binding bindingFanoutB() {
+        return BindingBuilder.bind(fanoutQueueB()).to(fanoutExchange());
+    }
 
     /**
      * 扇形交换机和队列C绑定.
      */
-//    @Bean
-//    public Binding bindingFanoutC() {
-//        return BindingBuilder.bind(fanoutQueueC()).to(fanoutExchange());
-//    }
+    @Bean
+    public Binding bindingFanoutC() {
+        return BindingBuilder.bind(fanoutQueueC()).to(fanoutExchange());
+    }
 
 }

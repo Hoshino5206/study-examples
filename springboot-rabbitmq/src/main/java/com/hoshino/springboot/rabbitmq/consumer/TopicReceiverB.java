@@ -26,5 +26,4 @@ public class TopicReceiverB {
         System.out.println("消费者1接收 TopicQueue_B Message content : " + message.toString());
     }
 
-
 }

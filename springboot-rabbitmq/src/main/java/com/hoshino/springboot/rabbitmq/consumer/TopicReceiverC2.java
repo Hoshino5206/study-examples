@@ -14,17 +14,16 @@ import java.util.Map;
  */
 @Component
 @RabbitListener(queues = RabbitmqConfig.TOPIC_QUEUE_C)
-public class TopicReceiverC {
+public class TopicReceiverC2 {
 
     @RabbitHandler
     public void onMessage(@Payload String message){
-        System.out.println("消费者1接收 TopicQueue_C Message content : " + message);
+        System.out.println("消费者2接收 TopicQueue_C Message content : " + message);
     }
 
     @RabbitHandler
     public void process(@Payload Map<Object, Object> message) {
-        System.out.println("消费者1接收 TopicQueue_C Message content : " + message.toString());
+        System.out.println("消费者2接收 TopicQueue_C Message content : " + message.toString());
     }
-
 
 }

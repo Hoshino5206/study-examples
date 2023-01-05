@@ -3,6 +3,7 @@ package com.hoshino.springboot.rabbitmq.consumer;
 import com.hoshino.springboot.rabbitmq.config.RabbitmqConfig;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -13,11 +14,16 @@ import java.util.Map;
  */
 @Component
 @RabbitListener(queues = RabbitmqConfig.FANOUT_QUEUE_C)
-public class FanoutReceiverC {
+public class FanoutReceiverC2 {
 
     @RabbitHandler
-    public void process(Map testMessage) {
-        System.out.println("FanoutReceiver消费者C收到消息  : " + testMessage.toString());
+    public void onMessage(@Payload String message){
+        System.out.println("消费者2接收 FanoutQueue_C Message content : " + message);
     }
 
+    @RabbitHandler
+    public void process(@Payload Map<Object, Object> message) {
+        System.out.println("消费者2接收 FanoutQueue_C Message content : " + message.toString());
+    }
+    
 }
