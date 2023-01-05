@@ -14,17 +14,17 @@ import java.util.Map;
  * @date 2023-01-04
  */
 @Component
-@RabbitListener(queues = RabbitMQConfig.DIRECT_QUEUE_A)
-public class DirectReceiverA2 {
+@RabbitListener(queues = RabbitMQConfig.TOPIC_QUEUE_A)
+public class TopicQueueConsumerA2 {
 
     @RabbitHandler
     public void onMessage(@Payload String message){
-        System.out.println("消费者2接收 DirectQueue_A Message content : " + message);
+        System.out.println("消费者2接收 TopicQueue_A 队列, Message content : " + message);
     }
 
     @RabbitHandler
     public void process(@Payload Map<Object, Object> message) {
-        System.out.println("消费者2接收 DirectQueue_A Message content : " + message.toString());
+        System.out.println("消费者2接收 TopicQueue_A 队列, Message content : " + message.toString());
     }
 
 }

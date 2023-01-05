@@ -13,17 +13,17 @@ import java.util.Map;
  * @date 2023-01-04
  */
 @Component
-@RabbitListener(queues = RabbitMQConfig.FANOUT_QUEUE_C)
-public class FanoutReceiverC1 {
+@RabbitListener(queues = RabbitMQConfig.DIRECT_QUEUE_B)
+public class DirectQueueConsumerB {
 
     @RabbitHandler
     public void onMessage(@Payload String message){
-        System.out.println("消费者1接收 FanoutQueue_C Message content : " + message);
+        System.out.println("消费者接收 DirectQueue_B 队列, Message content : " + message);
     }
 
     @RabbitHandler
     public void process(@Payload Map<Object, Object> message) {
-        System.out.println("消费者1接收 FanoutQueue_C Message content : " + message.toString());
+        System.out.println("消费者接收 DirectQueue_B 队列, Message content : " + message.toString());
     }
-    
+
 }

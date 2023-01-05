@@ -1,11 +1,14 @@
 package com.hoshino.springboot.rabbitmq.provider;
 
 import com.hoshino.springboot.rabbitmq.config.RabbitMQConfig;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -23,7 +26,7 @@ import java.util.UUID;
  * @date 2023-01-05
  */
 @RestController
-public class ProviderMessageAckController {
+public class MessageProviderAckController {
 
     @Resource
     private RabbitTemplate rabbitTemplate;
@@ -64,11 +67,15 @@ public class ProviderMessageAckController {
      */
     @GetMapping("/sendDirectMessageAck4")
     public String sendDirectMessageAck4() {
-        rabbitTemplate.convertAndSend(RabbitMQConfig.DIRECT_EXCHANGE, RabbitMQConfig.DIRECT_ROUTING_KEY_A, getMessage("direct queue A"));
+        CorrelationData correlationData = new CorrelationData();
+        correlationData.setId(UUID.randomUUID().toString());
+        Message message = new Message("hello, first message".getBytes(StandardCharsets.UTF_8));
+        correlationData.setReturnedMessage(message);
+        rabbitTemplate.convertAndSend(RabbitMQConfig.DIRECT_EXCHANGE, RabbitMQConfig.DIRECT_ROUTING_KEY_A, getMessage("direct queue A"), correlationData);
         return "ok";
     }
 
-    public Map<String, String> getMessage(String message) {
+    private Map<String, String> getMessage(String message) {
         String messageId = String.valueOf(UUID.randomUUID());
         String messageData = message + " !";
         String createTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));

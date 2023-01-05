@@ -11,12 +11,27 @@ spring:
     template:
       mandatory: true
     # 确认消息已发送到交换机(Exchange)，新版本 publisher-confirms: true 已过时
-    # none：表示禁用发布确认模式，默认值，使用此模式之后，不管消息有没有发送到 Broker 都不会触发 ConfirmCallback 回调。
-    # correlated：表示消息成功到达 Broker 后触发 ConfirmCallBack 回调。
-    # simple：simple 模式下如果消息成功到达Broker后一样会触发 ConfirmCallBack 回调
+    # none: 表示禁用发布确认模式，默认值，使用此模式之后，不管消息有没有发送到 Broker 都不会触发 ConfirmCallback 回调。
+    # correlated: 表示消息成功到达 Broker 后触发 ConfirmCallBack 回调。
+    # simple: simple 模式下如果消息成功到达Broker后一样会触发 ConfirmCallBack 回调
     # 发布消息成功后使用 rabbitTemplate 调用 waitForConfirms 或 waitForConfirmsOrDie 方法等待 Broker 节点返回发送结果，根据返回结果来判定下一步的逻辑
     # 注意：waitForConfirmsOrDie 方法如果返回 false 则会关闭 channel 信道，则接下来无法发送消息到 Broker。
     publisher-confirm-type: correlated
     # 确认消息已发送到队列(Queue)，true 表示开启失败回调，开启后当消息无法路由到指定队列时会触发 ReturnCallback 回调。
     publisher-returns: true
+
+    # 消息确认机制，消息接收的确认机制主要存在三种模式：none, auto, manual
+    # 1、AcknowledgeMode.NONE: 自动确认，这也是默认的消息确认情况
+    # 2、AcknowledgeMode.AUTO: 根据情况确认
+    # 2.1、如果消费者在消费的过程中没有抛出异常，则自动确认
+    # 2.2、如果消费者消费的过程中抛出AmqpRejectAndDontRequeueException异常的时候，则消息会被拒绝，且该消息不会重回队列
+    # 2.3、如果抛出ImmediateAcknowledgeAmqpException异常，消息会被确认
+    # 2.4、如果抛出其他的异常，则消息会被拒绝，但是与前两个不同的是，该消息会重回队列，如果此时只有一个消费者监听该队列，那么该消息重回队列后又会推送给该消费者，会造成死循环的情况
+    # 3、AcknowledgeMode.MANUAL: 手动确认，消费者消费消息后需要根据消费情况给Broker返回一个回执，
+    # 是确认ack使Broker删除该条已消费的消息，还是失败确认返回nack，还是拒绝该消息。
+    # 开启手动确认后，如果消费者接收到消息后还没有返回ack就宕机了，这种情况下消息也不会丢失，只有RabbitMQ接收到返回ack后，消息才会从队列中被删除
+    listener:
+      simple:
+        acknowledge-mode: manual
+
 

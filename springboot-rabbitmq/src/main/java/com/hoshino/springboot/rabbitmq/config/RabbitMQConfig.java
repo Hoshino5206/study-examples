@@ -188,4 +188,36 @@ public class RabbitMQConfig {
         return BindingBuilder.bind(fanoutQueueC()).to(fanoutExchange());
     }
 
+
+    // ================================手动确认消费=================================== //
+    public static final String MANUAL_ACK_QUEUE1 = "manual_ack_queue1";
+    public static final String MANUAL_ACK_QUEUE2 = "manual_ack_queue2";
+    public static final String MANUAL_ACK_EXCHANGE = "manual_ack_exchange";
+    public static final String MANUAL_ACK_ROUTING_KEY1 = "manual_ack_routing_key1";
+    public static final String MANUAL_ACK_ROUTING_KEY2 = "manual_ack_routing_key2";
+    @Bean
+    public Queue manualAckQueue1() {
+        return new Queue(MANUAL_ACK_QUEUE1, true, false, false, null) ;
+    }
+
+    @Bean
+    public Queue manualAckQueue2() {
+        return new Queue(MANUAL_ACK_QUEUE2, true, false, false, null) ;
+    }
+
+    @Bean
+    public DirectExchange manualAckExchange() {
+        return new DirectExchange(MANUAL_ACK_EXCHANGE, true, false, null);
+    }
+
+    @Bean
+    public Binding manualAckBinding1() {
+        return BindingBuilder.bind(manualAckQueue1()).to(manualAckExchange()).with(MANUAL_ACK_ROUTING_KEY1);
+    }
+
+    @Bean
+    public Binding manualAckBinding2() {
+        return BindingBuilder.bind(manualAckQueue2()).to(manualAckExchange()).with(MANUAL_ACK_ROUTING_KEY2);
+    }
+
 }
