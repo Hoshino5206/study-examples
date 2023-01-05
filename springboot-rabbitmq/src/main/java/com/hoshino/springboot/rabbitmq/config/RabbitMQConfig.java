@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2023-01-04
  */
 @Configuration
-public class RabbitmqConfig {
+public class RabbitMQConfig {
 
     // ================================直连模式=================================== //
     public static final String DIRECT_QUEUE_A = "DirectQueue_A";
@@ -41,7 +41,7 @@ public class RabbitmqConfig {
      */
     @Bean
     public DirectExchange directExchange() {
-        return new DirectExchange(DIRECT_EXCHANGE, false, false, null);
+        return new DirectExchange(DIRECT_EXCHANGE, true, false, null);
     }
 
     /**
@@ -164,7 +164,7 @@ public class RabbitmqConfig {
      */
     @Bean
     public FanoutExchange fanoutExchange() {
-        return new FanoutExchange(FANOUT_EXCHANGE, false, false, null);
+        return new FanoutExchange(FANOUT_EXCHANGE, true, false, null);
     }
 
     /**

@@ -1,6 +1,6 @@
 package com.hoshino.springboot.rabbitmq.consumer;
 
-import com.hoshino.springboot.rabbitmq.config.RabbitmqConfig;
+import com.hoshino.springboot.rabbitmq.config.RabbitMQConfig;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -13,7 +13,7 @@ import java.util.Map;
  * @date 2023-01-04
  */
 @Component
-@RabbitListener(queues = RabbitmqConfig.FANOUT_QUEUE_A)
+@RabbitListener(queues = RabbitMQConfig.FANOUT_QUEUE_A)
 public class FanoutReceiverA {
 
     @RabbitHandler
