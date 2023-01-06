@@ -21,6 +21,7 @@ public class ConsumerManualAckListener2 {
         long deliveryTag = message.getMessageProperties().getDeliveryTag();
         System.out.println("消费者2接收 manual_ack_queue1 队列, Message content : " + message);
         channel.basicAck(deliveryTag, true);
+        System.out.println("手动确认消费 manual_ack_queue1 队列 的消息");
     }
 
     @RabbitListener(queues = RabbitMQConfig.MANUAL_ACK_QUEUE2)
@@ -28,6 +29,7 @@ public class ConsumerManualAckListener2 {
         long deliveryTag = message.getMessageProperties().getDeliveryTag();
         System.out.println("消费者2接收 manual_ack_queue1 队列, Message content : " + message.toString());
         channel.basicAck(deliveryTag, true);
+        System.out.println("手动确认消费 manual_ack_queue1 队列 的消息");
     }
 
 }

@@ -24,13 +24,13 @@ public class MessageConsumerAckController {
 
     @GetMapping("/sendManualAckMessage1")
     public String sendManualAckMessage1() {
-        rabbitTemplate.convertAndSend(RabbitMQConfig.MANUAL_ACK_QUEUE1, RabbitMQConfig.MANUAL_ACK_ROUTING_KEY1, getMessage("manual_ack_queue1"));
+        rabbitTemplate.convertAndSend(RabbitMQConfig.MANUAL_ACK_EXCHANGE, RabbitMQConfig.MANUAL_ACK_ROUTING_KEY1, getMessage("manual_ack_queue1"));
         return "ok";
     }
 
     @GetMapping("/sendManualAckMessage2")
     public String sendManualAckMessage2() {
-        rabbitTemplate.convertAndSend(RabbitMQConfig.MANUAL_ACK_QUEUE2, RabbitMQConfig.MANUAL_ACK_ROUTING_KEY2, getMessage("manual_ack_queue2"));
+        rabbitTemplate.convertAndSend(RabbitMQConfig.MANUAL_ACK_EXCHANGE, RabbitMQConfig.MANUAL_ACK_ROUTING_KEY2, getMessage("manual_ack_queue2"));
         return "ok";
     }
 
