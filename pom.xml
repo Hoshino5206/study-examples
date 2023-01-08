@@ -6,7 +6,7 @@
     <packaging>pom</packaging>
 
     <groupId>com.hoshino.example</groupId>
-    <artifactId>example-dependencies</artifactId>
+    <artifactId>study-examples</artifactId>
     <version>${dependencies.version}</version>
 
     <modules>
@@ -502,7 +502,7 @@
             </dependency>
             <dependency>
                 <groupId>com.hoshino.example</groupId>
-                <artifactId>sprinboot-elasticjob</artifactId>
+                <artifactId>springboot-elasticjob</artifactId>
                 <version>${dependencies.version}</version>
             </dependency>
             <dependency>
