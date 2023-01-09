@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * RabbitMQ在保证消息可靠投递.
+ * RabbitMQ 保证消息可靠投递.
  * 从总体的情况分析，生产者推送消息的消息确认，推送消息存在四种情况：
  * ①消息推送到server，但是在server里找不到交换机
  * ②消息推送到server，找到交换机了，但是没找到队列
@@ -62,7 +62,7 @@ public class MessageProviderAckController {
     }
 
     /**
-     * ④消息推送成功
+     * ④消息推送成功.
      * 这种情况触发的是 ConfirmCallback 回调函数.
      */
     @GetMapping("/sendDirectMessageAck4")

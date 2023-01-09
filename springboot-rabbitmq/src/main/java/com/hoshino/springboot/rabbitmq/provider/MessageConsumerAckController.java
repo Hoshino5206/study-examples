@@ -13,6 +13,8 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
+ * RabbitMQ 保证消息可靠性, 手动确认消费.
+ *
  * @author huangyuehao
  * @date 2023-01-05
  */

@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * RabbitMQ 队列、交换机配置.
  * @author huangyuehao
  * @date 2023-01-04
  */

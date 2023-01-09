@@ -9,12 +9,12 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 /**
- * 手动确认模式需要实现 ChannelAwareMessageListener.
+ * 手动确认消费方式二：使用 @RabbitListener 直接监听指定队列.
  * @author huangyuehao
  * @date 2023-01-05
  */
 @Component
-public class ConsumerManualAckListener2 {
+public class ManualAckConsumeListener2 {
 
     @RabbitListener(queues = RabbitMQConfig.MANUAL_ACK_QUEUE1)
     public void onMessage(Message message, Channel channel) throws IOException {
@@ -27,9 +27,9 @@ public class ConsumerManualAckListener2 {
     @RabbitListener(queues = RabbitMQConfig.MANUAL_ACK_QUEUE2)
     public void process(Message message, Channel channel) throws IOException {
         long deliveryTag = message.getMessageProperties().getDeliveryTag();
-        System.out.println("消费者2接收 manual_ack_queue1 队列, Message content : " + message.toString());
+        System.out.println("消费者2接收 manual_ack_queue2 队列, Message content : " + message.toString());
         channel.basicAck(deliveryTag, true);
-        System.out.println("手动确认消费 manual_ack_queue1 队列 的消息");
+        System.out.println("手动确认消费 manual_ack_queue2 队列 的消息");
     }
 
 }
