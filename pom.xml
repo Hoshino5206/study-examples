@@ -24,6 +24,7 @@
         <module>springboot-security</module>
         <module>springboot-starter-logback</module>
         <module>sso</module>
+        <module>rabbitmq</module>
     </modules>
 
     <properties>
@@ -480,6 +481,11 @@
             <dependency>
                 <groupId>com.hoshino.example</groupId>
                 <artifactId>longpolling</artifactId>
+                <version>${dependencies.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hoshino.example</groupId>
+                <artifactId>rabbitmq</artifactId>
                 <version>${dependencies.version}</version>
             </dependency>
             <dependency>
