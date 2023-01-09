@@ -7,6 +7,7 @@ spring:
     port: 5672
     username: guest
     password: guest
+
     # 指定消息在没有被队列接收时是否强行退回还是直接丢弃
     template:
       mandatory: true
@@ -29,8 +30,7 @@ spring:
     # 2.2、如果消费者消费的过程中抛出AmqpRejectAndDontRequeueException异常的时候，则消息会被拒绝，且该消息不会重回队列
     # 2.3、如果抛出ImmediateAcknowledgeAmqpException异常，消息会被确认
     # 2.4、如果抛出其他的异常，则消息会被拒绝，但是与前两个不同的是，该消息会重回队列，如果此时只有一个消费者监听该队列，那么该消息重回队列后又会推送给该消费者，会造成死循环的情况
-    # 3、AcknowledgeMode.MANUAL: 手动确认，消费者消费消息后需要根据消费情况给Broker返回一个回执，
-    # 是确认ack使Broker删除该条已消费的消息，还是失败确认返回nack，还是拒绝该消息。
+    # 3、AcknowledgeMode.MANUAL: 手动确认，消费者消费消息后需要根据消费情况给Broker返回一个回执，是确认ack使Broker删除该条已消费的消息，还是失败确认返回nack，还是拒绝该消息。
     # 开启手动确认后，如果消费者接收到消息后还没有返回ack就宕机了，这种情况下消息也不会丢失，只有RabbitMQ接收到返回ack后，消息才会从队列中被删除
     listener:
       simple:
@@ -39,5 +39,13 @@ spring:
         prefetch: 1
       direct:
         retry:
+          # 是否开启消费者重试
           enabled: true
-          max-attempts:
+          # 最大重试次数
+          max-attempts: 5
+          # 重试间隔时间（单位毫秒）
+          initial-interval: 2000ms
+          # 重试最大时间间隔（单位毫秒）
+          max-interval: 5000ms
+          # 间隔时间乘子，间隔时间*乘子=下一次的间隔时间，最大不能超过设置的最大间隔时间
+          multiplier: 2

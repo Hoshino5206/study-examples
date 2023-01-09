@@ -6,12 +6,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 消息确认机制: 消息发送确认.
+ * 消息确认机制: 消息发布确认.
  * @author huangyuehao
  * @date 2023-01-05
  */
 @Configuration
-public class PushConfirmConfig {
+public class PublishConfirmConfig {
 
     @Bean
     public RabbitTemplate createRabbitTemplate(ConnectionFactory connectionFactory) {
