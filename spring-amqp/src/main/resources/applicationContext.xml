@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+
+    <!-- 加载配置文件 -->
+    <context:property-placeholder location="rabbitmq.properties"/>
+    <!-- 定义 rabbitmq connectionFactory -->
+    <rabbit:connection-factory id="connectionFactory" host="${rabbitmq.host}" port="${rabbitmq.port}" username="${rabbitmq.username}" password="${rabbitmq.password}" virtual-host="${rabbitmq.virtual-host}"/>
+    <!-- 定义管理交换机、队列 -->
+    <rabbit:admin connection-factory="connectionFactory"/>
+
+
+    <!-- direct交换机类型, 默认交换机类型, 名字为: "", 路由键为队列名称 -->
+    <!-- 定义交换机的持久化队列, 不存在则自动创建;   -->
+    <rabbit:queue id="spring_direct_queue1" name="spring_direct_queue1" auto-declare="true"/>
+    <rabbit:queue id="spring_direct_queue2" name="spring_direct_queue2" auto-declare="true"/>
+    <rabbit:direct-exchange id="spring_direct_exchange" name="spring_direct_exchange" auto-declare="true">
+        <rabbit:bindings>
+            <rabbit:binding queue="spring_direct_queue1" key="error"/>
+            <rabbit:binding queue="spring_direct_queue2" key="error"/>
+            <rabbit:binding queue="spring_direct_queue2" key="info"/>
+            <rabbit:binding queue="spring_direct_queue2" key="warning"/>
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
+
+
+    <!-- fanout交换机类型: 所有队列都能收到消息-->
+    <!-- 定义广播交换机中的持久化队列，不存在则自动创建 -->
+    <rabbit:queue id="spring_fanout_queue1" name="spring_fanout_queue1" auto-declare="true"/>
+    <!-- 定义广播交换机中的持久化队列，不存在则自动创建 -->
+    <rabbit:queue id="spring_fanout_queue2" name="spring_fanout_queue2" auto-declare="true"/>
+    <!-- 定义广播类型交换机; 绑定上述两个队列-->
+    <rabbit:fanout-exchange id="spring_fanout_exchange" name="spring_fanout_exchange" auto-declare="true">
+        <rabbit:bindings>
+            <rabbit:binding queue="spring_fanout_queue1"/>
+            <rabbit:binding queue="spring_fanout_queue2"/>
+        </rabbit:bindings>
+    </rabbit:fanout-exchange>
+
+
+    <!-- topic交换机类型，通配符; *匹配一个单词, #匹配多个单词 -->
+    <!-- 定义广播交换机中的持久化机制，不存在则自动创建 -->
+    <rabbit:queue id="spring_topic_queue1" name="spring_topic_queue1" auto-declare="true"/>
+    <!-- 定义广播交换机中的持久化队列，不存在则自动创建 -->
+    <rabbit:queue id="spring_topic_queue2" name="spring_topic_queue2" auto-declare="true"/>
+    <rabbit:topic-exchange id="spring_topic_exchange" name="spring_topic_exchange" auto-declare="true">
+        <rabbit:bindings>
+            <rabbit:binding pattern="*.error" queue="spring_topic_queue1"/>
+            <rabbit:binding pattern="order.#" queue="spring_topic_queue1"/>
+            <rabbit:binding pattern="*.*" queue="spring_topic_queue2"/>
+        </rabbit:bindings>
+    </rabbit:topic-exchange>
+
+
+    <!-- 定义 rabbitTemplate 对象操作 -->
+    <rabbit:template id="rabbitTemplate" connection-factory="connectionFactory"/>
+
+    <!-- 队列监听 -->
+    <bean id="queueListenerDirect1" class="com.hoshino.spring.amqp.QueueListenerDirect1"/>
+    <bean id="queueListenerDirect2" class="com.hoshino.spring.amqp.QueueListenerDirect2"/>
+    <bean id="queueListenerFanout1" class="com.hoshino.spring.amqp.QueueListenerFanout1"/>
+    <bean id="queueListenerFanout2" class="com.hoshino.spring.amqp.QueueListenerFanout2"/>
+    <bean id="queueListenerTopic1" class="com.hoshino.spring.amqp.QueueListenerTopic1"/>
+    <bean id="queueListenerTopic2" class="com.hoshino.spring.amqp.QueueListenerTopic2"/>
+    <rabbit:listener-container connection-factory="connectionFactory" auto-declare="true">
+        <rabbit:listener ref="queueListenerDirect1" queue-names="spring_direct_queue1"/>
+        <rabbit:listener ref="queueListenerDirect2" queue-names="spring_direct_queue2"/>
+        <rabbit:listener ref="queueListenerFanout1" queue-names="spring_fanout_queue1"/>
+        <rabbit:listener ref="queueListenerFanout2" queue-names="spring_fanout_queue2"/>
+        <rabbit:listener ref="queueListenerTopic1" queue-names="spring_topic_queue1"/>
+        <rabbit:listener ref="queueListenerTopic2" queue-names="spring_topic_queue2"/>
+    </rabbit:listener-container>
+
+</beans>

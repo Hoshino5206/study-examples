@@ -13,6 +13,7 @@
         <module>java-basics</module>
         <module>logback-desensitization</module>
         <module>longpolling</module>
+        <module>spring-amqp</module>
         <module>springboot</module>
         <module>springboot-aop</module>
         <module>springboot-autoconfigure</module>
@@ -479,6 +480,11 @@
             <dependency>
                 <groupId>com.hoshino.example</groupId>
                 <artifactId>longpolling</artifactId>
+                <version>${dependencies.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hoshino.example</groupId>
+                <artifactId>spring-amqp</artifactId>
                 <version>${dependencies.version}</version>
             </dependency>
             <dependency>
