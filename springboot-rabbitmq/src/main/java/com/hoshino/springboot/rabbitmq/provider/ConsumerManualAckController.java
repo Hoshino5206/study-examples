@@ -19,7 +19,7 @@ import java.util.UUID;
  * @date 2023-01-05
  */
 @RestController
-public class MessageConsumerAckController {
+public class ConsumerManualAckController {
 
     @Resource
     private RabbitTemplate rabbitTemplate;

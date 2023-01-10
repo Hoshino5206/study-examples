@@ -12,9 +12,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class Consumer1 {
 
-    public static final String EXCHANGENAME = "test_direct";
-    public static final String QUEUE1NAME = "test_direct_queue1";
-    public static final String QUEUE2NAME = "test_direct_queue2";
+    public static final String QUEUE1_NAME = "test_direct_queue1";
 
     public static void main(String[] args) throws Exception {
         Connection connection = ConnectionUtil.getConnection();
@@ -45,6 +43,6 @@ public class Consumer1 {
          * 2. autoAck:是否自动确认
          * 3. callback:回调对象
          */
-        channel.basicConsume(QUEUE1NAME, true, consumer);
+        channel.basicConsume(QUEUE1_NAME, true, consumer);
     }
 }

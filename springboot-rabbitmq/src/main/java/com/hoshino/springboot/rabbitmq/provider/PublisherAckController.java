@@ -26,7 +26,7 @@ import java.util.UUID;
  * @date 2023-01-05
  */
 @RestController
-public class MessageProviderAckController {
+public class PublisherAckController {
 
     @Resource
     private RabbitTemplate rabbitTemplate;

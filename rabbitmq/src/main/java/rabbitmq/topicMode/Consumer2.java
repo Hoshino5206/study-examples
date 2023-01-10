@@ -12,9 +12,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class Consumer2 {
 
-    public static final String EXCHANGENAME = "test_topic";
-    public static final String QUEUE1NAME = "test_topic_queue1";
-    public static final String QUEUE2NAME = "test_topic_queue2";
+    public static final String QUEUE2_NAME = "test_topic_queue2";
 
     public static void main(String[] args) throws Exception {
         // 获取到连接以及mq通道
@@ -46,6 +44,6 @@ public class Consumer2 {
          * 2. autoAck:是否自动确认
          * 3. callback:回调对象
          */
-        channel.basicConsume(QUEUE2NAME, true, consumer);
+        channel.basicConsume(QUEUE2_NAME, true, consumer);
     }
 }

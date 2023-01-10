@@ -500,11 +500,6 @@
             </dependency>
             <dependency>
                 <groupId>com.hoshino.example</groupId>
-                <artifactId>springboot</artifactId>
-                <version>${dependencies.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hoshino.example</groupId>
                 <artifactId>springboot-aop</artifactId>
                 <version>${dependencies.version}</version>
             </dependency>
@@ -515,7 +510,17 @@
             </dependency>
             <dependency>
                 <groupId>com.hoshino.example</groupId>
+                <artifactId>springboot-interceptor</artifactId>
+                <version>${dependencies.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hoshino.example</groupId>
                 <artifactId>springboot-elasticjob</artifactId>
+                <version>${dependencies.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hoshino.example</groupId>
+                <artifactId>springboot-rabbitmq</artifactId>
                 <version>${dependencies.version}</version>
             </dependency>
             <dependency>

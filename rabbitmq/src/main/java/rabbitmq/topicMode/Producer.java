@@ -12,9 +12,9 @@ import rabbitmq.utils.ConnectionUtil;
 
 public class Producer {
 
-    public static final String EXCHANGENAME = "test_topic";
-    public static final String QUEUE1NAME = "test_topic_queue1";
-    public static final String QUEUE2NAME = "test_topic_queue2";
+    public static final String EXCHANGE_NAME = "test_topic";
+    public static final String QUEUE1_NAME = "test_topic_queue1";
+    public static final String QUEUE2_NAME = "test_topic_queue2";
 
     public static void main(String[] args) throws Exception {
         // 获取到连接以及mq通道
@@ -36,7 +36,7 @@ public class Producer {
          * 5. internal: 内部使用,一般为false
          * 6. arguments: 参数
          */
-        channel.exchangeDeclare(EXCHANGENAME, BuiltinExchangeType.TOPIC, true, false, false, null);
+        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC, true, false, false, null);
 
         /*
          * 创建队列
@@ -49,8 +49,8 @@ public class Producer {
          * 4. autoDelete: 是否自动删除,当没有consumer时，是否自动删除
          * 5. arguments: 参数
          */
-        channel.queueDeclare(QUEUE1NAME, true, false, false, null);
-        channel.queueDeclare(QUEUE2NAME, true, false, false, null);
+        channel.queueDeclare(QUEUE1_NAME, true, false, false, null);
+        channel.queueDeclare(QUEUE2_NAME, true, false, false, null);
 
         /*
          * 队列绑定交换机
@@ -64,15 +64,15 @@ public class Producer {
          *          * 符号：有且只匹配一个词。比如 a.*可以匹配到"a.b"、"a.c"，但是匹配不了"a.b.c"。
          *          # 符号：匹配一个或多个词。比如"rabbit.#"既可以匹配到"rabbit.a.b"、"rabbit.a"，也可以匹配到"rabbit.a.b.c"。
          */
-        channel.queueBind(QUEUE1NAME, EXCHANGENAME, "#.error");
-        channel.queueBind(QUEUE1NAME, EXCHANGENAME, "order.*");
-        channel.queueBind(QUEUE2NAME, EXCHANGENAME, "*.*");
+        channel.queueBind(QUEUE1_NAME, EXCHANGE_NAME, "#.error");
+        channel.queueBind(QUEUE1_NAME, EXCHANGE_NAME, "order.*");
+        channel.queueBind(QUEUE2_NAME, EXCHANGE_NAME, "*.*");
 
         String message1 = "主题模式, #.error or order.*  ......";
         String message2 = "主题模式, *.*  ......";
-        channel.basicPublish(EXCHANGENAME, "aaa.error", null, message1.getBytes());
-        channel.basicPublish(EXCHANGENAME, "order.bbb", null, message1.getBytes());
-        channel.basicPublish(EXCHANGENAME, "log.info", null, message2.getBytes());
+        channel.basicPublish(EXCHANGE_NAME, "aaa.error", null, message1.getBytes());
+        channel.basicPublish(EXCHANGE_NAME, "order.bbb", null, message1.getBytes());
+        channel.basicPublish(EXCHANGE_NAME, "log.info", null, message2.getBytes());
         System.out.println("发送消息: " + message1);
         System.out.println("发送消息: " + message2);
     }

@@ -10,12 +10,12 @@ import org.springframework.context.annotation.Configuration;
 import javax.annotation.Resource;
 
 /**
- * 消息确认机制: 消息接受确认.
+ * 消息确认机制: 消费确认.
  * @author huangyuehao
  * @date 2023-01-09
  */
 @Configuration
-public class ReceiveConfirmConfig {
+public class ConsumerConfirmConfig {
 
     /**
      * 消费者数量

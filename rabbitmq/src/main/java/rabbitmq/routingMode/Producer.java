@@ -12,9 +12,9 @@ import rabbitmq.utils.ConnectionUtil;
 
 public class Producer {
 
-    public static final String EXCHANGENAME = "test_direct";
-    public static final String QUEUE1NAME = "test_direct_queue1";
-    public static final String QUEUE2NAME = "test_direct_queue2";
+    public static final String EXCHANGE_NAME = "test_direct";
+    public static final String QUEUE1_NAME = "test_direct_queue1";
+    public static final String QUEUE2_NAME = "test_direct_queue2";
 
     public static void main(String[] args) throws Exception {
         Connection connection = ConnectionUtil.getConnection();
@@ -34,7 +34,7 @@ public class Producer {
          * 5. internal: 内部使用,一般为false
          * 6. arguments: 参数
          */
-        channel.exchangeDeclare(EXCHANGENAME, BuiltinExchangeType.DIRECT, true, false, false, null);
+        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.DIRECT, true, false, false, null);
 
         /*
          * 创建队列
@@ -47,8 +47,8 @@ public class Producer {
          * 4. autoDelete: 是否自动删除,当没有consumer时，是否自动删除
          * 5. arguments: 参数
          */
-        channel.queueDeclare(QUEUE1NAME, true, false, false, null);
-        channel.queueDeclare(QUEUE2NAME, true, false, false, null);
+        channel.queueDeclare(QUEUE1_NAME, true, false, false, null);
+        channel.queueDeclare(QUEUE2_NAME, true, false, false, null);
 
         /*
          * 队列绑定交换机
@@ -62,15 +62,15 @@ public class Producer {
          *          * 符号：有且只匹配一个词。比如 a.*可以匹配到"a.b"、"a.c"，但是匹配不了"a.b.c"。
          *          # 符号：匹配一个或多个词。比如"rabbit.#"既可以匹配到"rabbit.a.b"、"rabbit.a"，也可以匹配到"rabbit.a.b.c"。
          */
-        channel.queueBind(QUEUE1NAME, EXCHANGENAME, "error");
-        channel.queueBind(QUEUE2NAME, EXCHANGENAME, "info");
-        channel.queueBind(QUEUE2NAME, EXCHANGENAME, "warning");
-        channel.queueBind(QUEUE2NAME, EXCHANGENAME, "error");
+        channel.queueBind(QUEUE1_NAME, EXCHANGE_NAME, "error");
+        channel.queueBind(QUEUE2_NAME, EXCHANGE_NAME, "info");
+        channel.queueBind(QUEUE2_NAME, EXCHANGE_NAME, "warning");
+        channel.queueBind(QUEUE2_NAME, EXCHANGE_NAME, "error");
 
         String message1 = "路由模式, info信息......";
         String message2 = "路由模式, error信息......";
-        channel.basicPublish(EXCHANGENAME, "info", null, message1.getBytes());
-        channel.basicPublish(EXCHANGENAME, "error", null, message2.getBytes());
+        channel.basicPublish(EXCHANGE_NAME, "info", null, message1.getBytes());
+        channel.basicPublish(EXCHANGE_NAME, "error", null, message2.getBytes());
         System.out.println("发送消息: " + message1);
         System.out.println("发送消息: " + message2);
     }

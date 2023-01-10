@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class Consumer2 {
 
-    public static final String QUEUE2NAME = "test_fanout_queue2";
+    public static final String QUEUE2_NAME = "test_fanout_queue2";
 
     public static void main(String[] args) throws Exception {
         Connection connection = ConnectionUtil.getConnection();
@@ -43,6 +43,6 @@ public class Consumer2 {
          * 2. autoAck:是否自动确认
          * 3. callback:回调对象
          */
-        channel.basicConsume(QUEUE2NAME, true, consumer);
+        channel.basicConsume(QUEUE2_NAME, true, consumer);
     }
 }

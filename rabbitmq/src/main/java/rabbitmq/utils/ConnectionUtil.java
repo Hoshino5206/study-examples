@@ -12,7 +12,7 @@ public class ConnectionUtil {
         //定义连接工厂
         ConnectionFactory factory = new ConnectionFactory();
         //设置服务地址和RabbitMQ账号密码
-        factory.setHost("127.0.0.7");
+        factory.setHost("127.0.0.1");
         factory.setPort(5672);
         // Virtual host
         factory.setVirtualHost("/");
