@@ -1,4 +1,4 @@
-package com.hoshino.springboot.rabbitmq.provider;
+package com.hoshino.springboot.rabbitmq.publisher;
 
 import com.hoshino.springboot.rabbitmq.config.RabbitMQConfig;
 import org.springframework.amqp.core.Message;

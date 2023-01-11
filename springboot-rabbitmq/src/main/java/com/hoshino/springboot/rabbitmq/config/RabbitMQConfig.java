@@ -221,4 +221,7 @@ public class RabbitMQConfig {
         return BindingBuilder.bind(manualAckQueue2()).to(manualAckExchange()).with(MANUAL_ACK_ROUTING_KEY2);
     }
 
+
+    // ================================死信队列=================================== //
+
 }
