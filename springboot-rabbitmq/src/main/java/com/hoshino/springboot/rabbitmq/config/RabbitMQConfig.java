@@ -4,6 +4,9 @@ import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * RabbitMQ 队列、交换机配置.
  * @author huangyuehao
@@ -13,11 +16,11 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMQConfig {
 
     // ================================直连模式=================================== //
-    public static final String DIRECT_QUEUE_A = "DirectQueue_A";
-    public static final String DIRECT_QUEUE_B = "DirectQueue_B";
+    public static final String DIRECT_QUEUE_A = "DirectQueueA";
+    public static final String DIRECT_QUEUE_B = "DirectQueueB";
     public static final String DIRECT_EXCHANGE = "DirectExchange";
-    public static final String DIRECT_ROUTING_KEY_A = "DirectRoutingKey_A";
-    public static final String DIRECT_ROUTING_KEY_B = "DirectRoutingKey_B";
+    public static final String DIRECT_ROUTING_KEY_A = "DirectRoutingKeyA";
+    public static final String DIRECT_ROUTING_KEY_B = "DirectRoutingKeyB";
     /**
      * 与直连交换机绑定的队列A.
      */
@@ -191,11 +194,11 @@ public class RabbitMQConfig {
 
 
     // ================================手动确认消费=================================== //
-    public static final String MANUAL_ACK_QUEUE1 = "manual_ack_queue1";
-    public static final String MANUAL_ACK_QUEUE2 = "manual_ack_queue2";
-    public static final String MANUAL_ACK_EXCHANGE = "manual_ack_exchange";
-    public static final String MANUAL_ACK_ROUTING_KEY1 = "manual_ack_routing_key1";
-    public static final String MANUAL_ACK_ROUTING_KEY2 = "manual_ack_routing_key2";
+    public static final String MANUAL_ACK_QUEUE1 = "ManualAckQueue1";
+    public static final String MANUAL_ACK_QUEUE2 = "ManualAckQueue2";
+    public static final String MANUAL_ACK_EXCHANGE = "ManualAckExchange";
+    public static final String MANUAL_ACK_ROUTING_KEY1 = "ManualAckRoutingKey1";
+    public static final String MANUAL_ACK_ROUTING_KEY2 = "ManualAckRoutingKey2";
     @Bean
     public Queue manualAckQueue1() {
         return new Queue(MANUAL_ACK_QUEUE1, true, false, false, null) ;
@@ -223,5 +226,64 @@ public class RabbitMQConfig {
 
 
     // ================================死信队列=================================== //
+    public static final String LENGTH_QUEUE = "LengthQueue";
+    public static final String TTL_QUEUE = "TTLQueue";
+    public static final String NORMAL_EXCHANGE = "NormalExchange";
+    public static final String LENGTH_ROUTING_KEY = "LengthRoutingKey";
+    public static final String TTL_ROUTING_KEY  = "TTLRoutingKey";
 
+    public static final String DLX_QUEUE = "DLXQueue";
+    public static final String DLX_EXCHANGE = "DLXExchange";
+    public static final String DLX_ROUTING_KEY = "DLXRoutingKey";
+    @Bean
+    public Queue lengthQueue() {
+        Map<String, Object> args = new HashMap<>(8);
+        // 队列设置最大长度
+        args.put("x-max-length", 5);
+        // 绑定该队列到死信交换机
+        args.put("x-dead-letter-exchange", DLX_EXCHANGE);
+        args.put("x-dead-letter-routing-key", DLX_ROUTING_KEY);
+        return new Queue(LENGTH_QUEUE, true, false, false, args);
+    }
+
+    @Bean
+    public Queue ttlQueue() {
+        Map<String, Object> args = new HashMap<>(8);
+        // 队列设置消息过期时间10秒
+        args.put("x-message-ttl", 10 * 1000);
+        // 绑定该队列到死信交换机
+        args.put("x-dead-letter-exchange", DLX_EXCHANGE);
+        args.put("x-dead-letter-routing-key", DLX_ROUTING_KEY);
+        return new Queue(TTL_QUEUE, true, false, false, args);
+    }
+
+    @Bean
+    public DirectExchange normalExchange() {
+        return new DirectExchange(NORMAL_EXCHANGE, true, false, null);
+    }
+
+    @Bean
+    public Binding normalBinding() {
+        return BindingBuilder.bind(lengthQueue()).to(normalExchange()).with(LENGTH_ROUTING_KEY);
+    }
+
+    @Bean
+    public Binding ttlBinding() {
+        return BindingBuilder.bind(ttlQueue()).to(normalExchange()).with(TTL_ROUTING_KEY);
+    }
+
+    @Bean
+    public Queue dlxQueue() {
+        return new Queue(DLX_QUEUE, true, false, false, null);
+    }
+
+    @Bean
+    public DirectExchange dlxExchange() {
+        return new DirectExchange(DLX_EXCHANGE, true, false, null);
+    }
+
+    @Bean
+    public Binding dlxBinding() {
+        return BindingBuilder.bind(dlxQueue()).to(dlxExchange()).with(DLX_ROUTING_KEY);
+    }
 }
