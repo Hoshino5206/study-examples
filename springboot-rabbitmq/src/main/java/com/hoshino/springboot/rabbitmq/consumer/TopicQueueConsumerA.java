@@ -15,13 +15,13 @@ import java.util.Map;
  */
 @Component
 @Slf4j
-public class FanoutQueueConsumerB {
+public class TopicQueueConsumerA {
 
-    @RabbitListener(queues = RabbitMQConfig.FANOUT_QUEUE_B)
+    @RabbitListener(queues = RabbitMQConfig.TOPIC_QUEUE_A)
     public void process(@Payload Map<Object, Object> message, @Headers Map<String, Object> heads) {
-        log.info("消费者B接收到 FanoutQueueB 队列消息");
+        log.info("消费者A接收到 TopicQueueA 队列消息");
         log.info("message: {}", message);
         log.info("heads: {}", heads);
     }
-    
+
 }

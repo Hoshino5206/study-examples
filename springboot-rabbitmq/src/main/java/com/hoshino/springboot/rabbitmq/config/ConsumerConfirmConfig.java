@@ -1,6 +1,6 @@
 package com.hoshino.springboot.rabbitmq.config;
 
-import com.hoshino.springboot.rabbitmq.consumer.ManualAckConsumeListener;
+import com.hoshino.springboot.rabbitmq.consumer.ManualAckConsumeListener2;
 import org.springframework.amqp.core.AcknowledgeMode;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
@@ -31,7 +31,7 @@ public class ConsumerConfirmConfig {
     private CachingConnectionFactory connectionFactory;
 
     @Resource
-    private ManualAckConsumeListener manualAckConsumeListener;
+    private ManualAckConsumeListener2 manualAckConsumeListener2;
 
     @Bean
     public SimpleMessageListenerContainer simpleMessageListenerContainer() {
@@ -48,7 +48,7 @@ public class ConsumerConfirmConfig {
         // 如果同时设置多个如下：前提是队列都是必须已经创建存在的
         container.setQueueNames(RabbitMQConfig.MANUAL_ACK_QUEUE1, RabbitMQConfig.MANUAL_ACK_QUEUE2);
 
-        container.setMessageListener(manualAckConsumeListener);
+        container.setMessageListener(manualAckConsumeListener2);
         return container;
     }
 

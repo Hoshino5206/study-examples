@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
+ * 消息发布，使用默认ack方式(自动确认消费).
  * @author huangyuehao
  * @date 2023-01-04
  */
