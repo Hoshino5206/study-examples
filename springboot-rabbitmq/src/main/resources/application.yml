@@ -33,11 +33,14 @@ spring:
     # 3、AcknowledgeMode.MANUAL: 手动确认，消费者消费消息后需要根据消费情况给Broker返回一个回执，是确认ack使Broker删除该条已消费的消息，还是失败确认返回nack，还是拒绝该消息。
     # 开启手动确认后，如果消费者接收到消息后还没有返回ack就宕机了，这种情况下消息也不会丢失，只有RabbitMQ接收到返回ack后，消息才会从队列中被删除
     listener:
+      # simple简单理解为一对一；direct理解为一对多个消费者
+      type: simple
       simple:
         acknowledge-mode: manual
         # 每个使用者可以未完成的未确认消息的最大数量。
         prefetch: 1
-      direct:
+        concurrency: 10
+        max-concurrency: 50
         retry:
           # 是否开启消费者重试
           enabled: true
