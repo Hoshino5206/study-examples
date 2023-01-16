@@ -22,7 +22,7 @@ import java.util.Arrays;
 @Slf4j
 public class ControllerLogAspect {
 
-    @Pointcut("execution(public * com.hoshino.example.springboot.aop.controller.*.*(..))")
+    @Pointcut("execution(public * com.hoshino.springboot.aop.controller.*.*(..))")
     public void pointCut() {}
 
     // 前置通知，在目标方法之前执行
