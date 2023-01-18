@@ -33,8 +33,8 @@ public class RedisConfig {
      * @return RedisTemplate
      */
     @Bean
-    public RedisTemplate<?, ?> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        RedisTemplate<?, ?> redisTemplate = new RedisTemplate<>();
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
 
         // 使用Jackson2JsonRedisSerializer来序列化和反序列化redis的value值
