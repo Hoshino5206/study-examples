@@ -14,6 +14,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 @Slf4j
 public class AutoConfigureApplication {
+
     public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(AutoConfigureApplication.class, args);
         PersonConfiguration bean = run.getBean(PersonConfiguration.class);
@@ -29,4 +30,5 @@ public class AutoConfigureApplication {
         log.info("ListAddress:{} ", properties.getListAdd());
         log.info("MapAddress:{} ", properties.getAddressMap());
     }
+
 }
