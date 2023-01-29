@@ -10,6 +10,7 @@
     <version>${dependencies.version}</version>
 
     <modules>
+        <module>design-pattern</module>
         <module>java-basics</module>
         <module>logback-desensitization</module>
         <module>longpolling</module>
