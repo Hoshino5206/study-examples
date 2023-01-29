@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.TimeoutException;
 
 /**
  * RabbitMQ消费消息的两种模式: 推和拉.
@@ -33,15 +35,35 @@ public class ConsumerMode {
     @Resource
     private RabbitTemplate rabbitTemplate;
 
-    public void pull() throws IOException {
+    // 消费者主动从MQ拉取消息,自动确认消费
+    public String autoPullFromMQ() {
+        Object obj = rabbitTemplate.receiveAndConvert(RabbitMQConfig.DIRECT_QUEUE_A);
+        System.out.println("obj = " + new String(((byte[]) obj), StandardCharsets.UTF_8));
+        return "pull from springboot rabbitmq";
+    }
+
+    // 消费者主动从MQ拉取消息,手动确认消费
+    public void manualPullFromMQ() throws IOException, TimeoutException {
         ConnectionFactory connectionFactory = rabbitTemplate.getConnectionFactory();
         Connection connection = connectionFactory.createConnection();
         Channel channel = connection.createChannel(false);
-        GetResponse getResponse = channel.basicGet(RabbitMQConfig.DIRECT_QUEUE_B, true);
-        byte[] body = getResponse.getBody();
+        GetResponse getResponse = channel.basicGet(RabbitMQConfig.DIRECT_QUEUE_A, true);
+        byte[] body = new byte[0];
+        long deliveryTag = 0L;
+        try {
+            body = getResponse.getBody();
+            deliveryTag = getResponse.getEnvelope().getDeliveryTag();
+            channel.basicAck(deliveryTag, false);
+        } catch (IOException e) {
+            channel.basicNack(deliveryTag, false, true);
+        } finally {
+            channel.close();
+        }
         log.info("body:{}", body);
+        log.info("deliveryTag:{}", deliveryTag);
     }
 
+    // MQ主动向消费者发送消息, 自动确认消费
     public void push() throws IOException {
         ConnectionFactory connectionFactory = rabbitTemplate.getConnectionFactory();
         Connection connection = connectionFactory.createConnection();
@@ -54,7 +76,7 @@ public class ConsumerMode {
         CancelCallback cancelCallback = consumerTag -> {
             System.out.println(consumerTag + "消息消费被中断");
         };
-        channel.basicConsume(RabbitMQConfig.DIRECT_QUEUE_B, true, deliverCallback, cancelCallback);
+        channel.basicConsume(RabbitMQConfig.DIRECT_QUEUE_A, true, deliverCallback, cancelCallback);
     }
 
 }
