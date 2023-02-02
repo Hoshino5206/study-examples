@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <context:property-placeholder/>
+
+    <!-- 当前应用名称，用于注册中心计算应用间依赖关系 -->
+    <dubbo:application name="demo-provider"/>
+    <!-- 注册中心服务器地址，如果地址没有端口缺省为9090 -->
+    <dubbo:registry address="zookeeper://${zookeeper.address:127.0.0.1}:${zookeeper.port:2181}"/>
+
+    <!-- 令牌验证，为空表示不开启，如果为true，表示随机生成动态令牌 -->
+    <dubbo:provider token="true"/>
+
+    <bean id="demoService" class="com.hoshino.dubbo.xml.impl.DemoServiceImpl"/>
+    <!-- 服务提供者暴露服务配置，服务接口名和服务对象实现引用 -->
+    <dubbo:service interface="com.hoshino.dubbo.xml.api.DemoService" ref="demoService"/>
+
+    <!-- 监控中心配置，监控中心协议，如果为protocol=“registry”，表示从注册中心发现监控中心地址，否则直连监控中心 -->
+<!--    <dubbo:monitor protocol="registry"/>-->
+
+</beans>
