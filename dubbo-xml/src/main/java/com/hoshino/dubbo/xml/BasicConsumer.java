@@ -17,7 +17,7 @@ public class BasicConsumer {
         context.start();
 
         DemoService demoService = (DemoService) context.getBean("demoService");
-        String hello = demoService.sayHello("world");
+        String hello = demoService.sayHello("World");
         System.out.println(hello);
         System.in.read();
     }
