@@ -12,6 +12,7 @@
     <modules>
         <module>dubbo-annotation</module>
         <module>dubbo-api</module>
+        <module>dubbo-springboot</module>
         <module>dubbo-xml</module>
         <module>java-basics</module>
         <module>logback-desensitization</module>
@@ -30,6 +31,7 @@
         <module>springboot-security</module>
         <module>springboot-starter-logback</module>
         <module>sso</module>
+        <module>dubbo-springboot-interface</module>
     </modules>
 
     <properties>
