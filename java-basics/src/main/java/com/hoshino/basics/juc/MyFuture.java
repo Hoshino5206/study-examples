@@ -34,6 +34,8 @@ public class MyFuture {
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
+
+        threadPoolExecutor.shutdown();
     }
 
 }
