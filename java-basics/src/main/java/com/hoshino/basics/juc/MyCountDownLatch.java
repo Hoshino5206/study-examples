@@ -21,6 +21,8 @@ public class MyCountDownLatch {
 
     private static final ThreadFactory THREAD_FACTORY = new ThreadFactoryBuilder().build();
 
+    private static final ThreadPoolExecutor.AbortPolicy ABORT_POLICY = new ThreadPoolExecutor.AbortPolicy();
+
     private static final Integer COUNT_DOWN_LATCH = 6;
 
     private static CountDownLatch countDownLatch = new CountDownLatch(COUNT_DOWN_LATCH);
@@ -28,7 +30,7 @@ public class MyCountDownLatch {
     public static void main(String[] args) throws InterruptedException {
         ThreadPoolExecutor executorService = new ThreadPoolExecutor(
                 CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.MINUTES,
-                ARRAY_BLOCKING_QUEUE, THREAD_FACTORY);
+                ARRAY_BLOCKING_QUEUE, THREAD_FACTORY, ABORT_POLICY);
 
         for (int i = 0; i < COUNT_DOWN_LATCH; i++) {
             executorService.submit(() -> {

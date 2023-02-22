@@ -22,6 +22,8 @@ public class MyCyclicBarrier {
 
     private static final ThreadFactory THREAD_FACTORY = new ThreadFactoryBuilder().build();
 
+    private static final ThreadPoolExecutor.AbortPolicy ABORT_POLICY = new ThreadPoolExecutor.AbortPolicy();
+
     private static final Integer CYCLIC_BARRIER = 6;
 
     private static CyclicBarrier cyclicBarrier = new CyclicBarrier(CYCLIC_BARRIER);
@@ -31,7 +33,7 @@ public class MyCyclicBarrier {
     public static void main(String[] args) {
         ThreadPoolExecutor executorService = new ThreadPoolExecutor(
                 CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.MINUTES,
-                ARRAY_BLOCKING_QUEUE, THREAD_FACTORY);
+                ARRAY_BLOCKING_QUEUE, THREAD_FACTORY, ABORT_POLICY);
 
         for (int i = 0; i < CYCLIC_BARRIER; i++) {
             executorService.submit(() -> {

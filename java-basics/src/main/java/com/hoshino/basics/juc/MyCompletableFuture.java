@@ -20,10 +20,12 @@ public class MyCompletableFuture {
 
     private static final ThreadFactory THREAD_FACTORY = new ThreadFactoryBuilder().build();
 
+    private static final ThreadPoolExecutor.AbortPolicy ABORT_POLICY = new ThreadPoolExecutor.AbortPolicy();
+
     public static void main(String[] args) {
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
                 CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.MINUTES,
-                ARRAY_BLOCKING_QUEUE, THREAD_FACTORY);
+                ARRAY_BLOCKING_QUEUE, THREAD_FACTORY, ABORT_POLICY);
 
         // 创建无返回值的异步任务，runAsync()
         for (int i = 0; i < 6; i++) {
