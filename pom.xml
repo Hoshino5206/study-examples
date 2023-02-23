@@ -29,10 +29,10 @@
         <module>springboot-interceptor</module>
         <module>springboot-rabbitmq</module>
         <module>springboot-redis</module>
+        <module>springboot-rocketmq</module>
         <module>springboot-security</module>
         <module>springboot-starter-logback</module>
         <module>sso</module>
-        <module>springboot-rocketmq</module>
     </modules>
 
     <properties>
