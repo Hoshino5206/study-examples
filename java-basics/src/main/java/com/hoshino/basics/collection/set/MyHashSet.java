@@ -1,4 +1,4 @@
-package com.hoshino.basics.collection;
+package com.hoshino.basics.collection.set;
 
 import java.util.HashSet;
 
@@ -8,7 +8,7 @@ import java.util.HashSet;
  */
 public class MyHashSet {
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         HashSet<Integer> set = new HashSet<>();
         set.add(1111);
         set.add(2222);

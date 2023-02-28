@@ -1,4 +1,4 @@
-package com.hoshino.basics.collection;
+package com.hoshino.basics.collection.set;
 
 import java.util.TreeSet;
 
@@ -8,7 +8,7 @@ import java.util.TreeSet;
  */
 public class MyTreeSet {
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         TreeSet<Integer> set = new TreeSet<>();
         set.add(23);
         set.add(221);

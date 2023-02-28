@@ -1,4 +1,4 @@
-package com.hoshino.basics.collection;
+package com.hoshino.basics.collection.set;
 
 import java.util.LinkedHashSet;
 
@@ -8,7 +8,7 @@ import java.util.LinkedHashSet;
  */
 public class MyLinkedHashSet {
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         LinkedHashSet<Integer> set = new LinkedHashSet<>();
         set.add(123);
         set.add(456);

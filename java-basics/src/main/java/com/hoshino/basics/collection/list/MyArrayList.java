@@ -1,4 +1,4 @@
-package com.hoshino.basics.collection;
+package com.hoshino.basics.collection.list;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class MyArrayList {
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         ArrayList<String> list = new ArrayList<>();
         list.add("hello, ");
         list.add("world !");

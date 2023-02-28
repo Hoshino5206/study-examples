@@ -1,21 +1,19 @@
-package com.hoshino.basics.collection;
+package com.hoshino.basics.collection.map;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author huangyuehao
  * @date 2023-01-29
  */
-public class MyHashMap {
+public class MyTreeMap {
 
-    public static void main (String[] args) {
-        HashMap<Integer, String> map = new HashMap<>();
-        map.put(1, "Java");
+    public static void main(String[] args) {
+        TreeMap<Integer, String> map = new TreeMap<>();
+        map.put(3, "Java");
         map.put(2, "Spring");
-        map.put(3, "SpringBoot");
+        map.put(1, "SpringBoot");
+        map.put(4, "SpringCloud");
 
         Set<Integer> keys = map.keySet();
         System.out.println("keys = " + keys);
@@ -31,4 +29,5 @@ public class MyHashMap {
             System.out.println("key = " + key + ", value = " + value);
         }
     }
+
 }

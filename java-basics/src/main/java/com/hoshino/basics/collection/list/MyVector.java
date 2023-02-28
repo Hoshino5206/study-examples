@@ -1,4 +1,4 @@
-package com.hoshino.basics.collection;
+package com.hoshino.basics.collection.list;
 
 import java.util.Vector;
 
@@ -8,7 +8,7 @@ import java.util.Vector;
  */
 public class MyVector {
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         Vector<String> vector = new Vector<>();
         vector.add("hello, ");
         vector.add("world ");

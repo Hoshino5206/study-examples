@@ -1,4 +1,4 @@
-package com.hoshino.basics.collection;
+package com.hoshino.basics.collection.list;
 
 import java.util.LinkedList;
 
@@ -8,7 +8,7 @@ import java.util.LinkedList;
  */
 public class MyLinkedList {
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         LinkedList<String> list = new LinkedList<>();
         list.add(", ");
         list.add("world ");

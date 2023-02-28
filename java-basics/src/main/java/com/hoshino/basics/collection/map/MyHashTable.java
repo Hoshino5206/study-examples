@@ -1,19 +1,21 @@
-package com.hoshino.basics.collection;
+package com.hoshino.basics.collection.map;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author huangyuehao
  * @date 2023-01-29
  */
-public class MyTreeMap {
+public class MyHashTable {
 
-    public static void main (String[] args) {
-        TreeMap<Integer, String> map = new TreeMap<>();
-        map.put(3, "Java");
-        map.put(2, "Spring");
-        map.put(1, "SpringBoot");
-        map.put(4, "SpringCloud");
+    public static void main(String[] args) {
+        Hashtable<Integer, String> map = new Hashtable<>();
+        map.put(1, "C++");
+        map.put(2, "Java");
+        map.put(3, "Python");
 
         Set<Integer> keys = map.keySet();
         System.out.println("keys = " + keys);
