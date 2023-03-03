@@ -4,8 +4,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.env.Environment;
 
-import java.util.Arrays;
-
 /**
  * @author huangyuehao
  * @date 2023-02-06
@@ -18,10 +16,9 @@ public class SpringApplication {
         System.out.println("environment = " + environment);
 
         String[] beanDefinitionNames = context.getBeanDefinitionNames();
-        System.out.println("beanDefinitionNames = " + Arrays.toString(beanDefinitionNames));
-
-        String applicationName = context.getApplicationName();
-        System.out.println("applicationName = " + applicationName);
+        for (String beanDefinitionName : beanDefinitionNames) {
+            System.out.println(beanDefinitionName);
+        }
 
     }
 
