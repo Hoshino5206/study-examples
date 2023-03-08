@@ -554,85 +554,10 @@
 
 
             <!-- ==================================================================== -->
-            <!-- ============================= module =============================== -->
-            <dependency>
-                <groupId>com.hoshino.example</groupId>
-                <artifactId>java-basics</artifactId>
-                <version>${dependencies.version}</version>
-            </dependency>
+            <!-- ========================= reference module ========================= -->
             <dependency>
                 <groupId>com.hoshino.example</groupId>
                 <artifactId>logback-desensitization</artifactId>
-                <version>${dependencies.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hoshino.example</groupId>
-                <artifactId>longpolling</artifactId>
-                <version>${dependencies.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hoshino.example</groupId>
-                <artifactId>rabbitmq</artifactId>
-                <version>${dependencies.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hoshino.example</groupId>
-                <artifactId>spring-amqp</artifactId>
-                <version>${dependencies.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hoshino.example</groupId>
-                <artifactId>springboot</artifactId>
-                <version>${dependencies.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hoshino.example</groupId>
-                <artifactId>springboot-aop</artifactId>
-                <version>${dependencies.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hoshino.example</groupId>
-                <artifactId>springboot-autoconfigure</artifactId>
-                <version>${dependencies.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hoshino.example</groupId>
-                <artifactId>springboot-cache</artifactId>
-                <version>${dependencies.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hoshino.example</groupId>
-                <artifactId>springboot-elasticjob</artifactId>
-                <version>${dependencies.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hoshino.example</groupId>
-                <artifactId>springboot-interceptor</artifactId>
-                <version>${dependencies.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hoshino.example</groupId>
-                <artifactId>springboot-rabbitmq</artifactId>
-                <version>${dependencies.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hoshino.example</groupId>
-                <artifactId>springboot-redis</artifactId>
-                <version>${dependencies.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hoshino.example</groupId>
-                <artifactId>springboot-security</artifactId>
-                <version>${dependencies.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hoshino.example</groupId>
-                <artifactId>springboot-starter-logback</artifactId>
-                <version>${dependencies.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.hoshino.example</groupId>
-                <artifactId>sso</artifactId>
                 <version>${dependencies.version}</version>
             </dependency>
 
