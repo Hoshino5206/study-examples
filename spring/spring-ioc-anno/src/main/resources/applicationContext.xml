@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Spring配置c3p0的数据源 -->
+    <!--<bean id="c3p0DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/example"/>
+        <property name="user" value="root"/>
+        <property name="password" value="123456"/>
+    </bean>-->
+
+    <!-- Spring配置Druid的数据源 -->
+    <!--<bean id="DruidDataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/example"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456"/>
+    </bean>-->
+
+    <!-- 配置c3p0的数据源：通过Spring容器加载外部properties文件-->
+    <!--<context:property-placeholder location="classpath:jdbc.properties"/>
+    <bean id="c3p0DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>-->
+
+    <!-- 配置Druid的数据源：通过Spring容器加载外部properties文件 -->
+    <!--<context:property-placeholder location="classpath:jdbc.properties"/>
+    <bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>-->
+
+    <!-- 使用注解进行开发时，需要在applicationContext.xml中配置组件扫描，作用是指定哪个包及其子包下的Bean需要进行扫描以便识别使用注解配置的类、字段和方法。 -->
+    <context:component-scan base-package="com.hoshino.spring.ioc.anno.dao.impl,
+    com.hoshino.spring.ioc.anno.service.impl, com.hoshino.spring.ioc.anno.util"/>
+
+    <!-- 使用autowrie自动装配 -->
+    <bean id="userDao" class="com.hoshino.spring.ioc.anno.dao.impl.UserDaoImpl"/>
+    <bean id="userService" class="com.hoshino.spring.ioc.anno.service.impl.UserServiceImpl" autowire="byName"/>
+</beans>

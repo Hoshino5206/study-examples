@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- 加载外部配置文件jdbc.properties -->
+    <properties resource="jdbc.properties"/>
+
+    <!-- MyBatis中极为重要的调整设置，会改变MyBatis的运行时行为 -->
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="multipleResultSetsEnabled" value="true"/>
+        <setting name="useColumnLabel" value="true"/>
+    </settings>
+
+    <!-- 类型别名，也可以指定一个包名 -->
+    <typeAliases>
+        <typeAlias type="com.hoshino.mybatis.xml.entity.User"/>
+        <typeAlias alias="Author" type="domain.blog.Author"/>
+        <typeAlias alias="Blog" type="domain.blog.Blog"/>
+        <typeAlias alias="Comment" type="domain.blog.Comment"/>
+        <typeAlias alias="Post" type="domain.blog.Post"/>
+        <typeAlias alias="Section" type="domain.blog.Section"/>
+        <typeAlias alias="Tag" type="domain.blog.Tag"/>
+        <package name="domain.blog"/>
+    </typeAliases>
+
+    <!-- 类型处理器，可以重写已有的类型处理器或创建你自己的类型处理器来处理不支持的或非标准的类型 -->
+    <typeHandlers>
+        <!-- 注册一个类的类型处理器 -->
+        <typeHandler handler="com.hoshino.mybatis.xml.typeHandlers.ExampleTypeHandler"/>
+        <!-- 注册一个包中所有的类型处理器 -->
+        <package name="org.mybatis.example"/>
+    </typeHandlers>
+
+    <objectFactory type="com.hoshino.mybatis.xml.objectFactory.ExampleObjectFactory">
+        <property name="someProperty" value="100"/>
+    </objectFactory>
+
+    <!-- 插件，MyBatis允许你在映射语句执行过程中的某一点进行拦截调用 -->
+    <plugins>
+        <plugin interceptor="com.hoshino.mybatis.xml.plugins.ExamplePlugin">
+            <property name="someProperty" value="100"/>
+        </plugin>
+    </plugins>
+
+    <!-- 数据源环境配置 -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 映射器，指定Mybatis映射文件的位置 -->
+    <mappers>
+        <!-- 使用相对于类路径的资源引用 -->
+        <mapper resource="com/hoshino/mybatis/xml/mapper/UserMapper.xml"/>
+
+        <!-- 使用映射器接口实现类的完全限定类名 -->
+        <mapper class="com.hoshino.mybatis.xml.dao.UserMapper"/>
+
+        <!-- 使用完全限定资源定位符（URL）,一般不推荐使用 -->
+        <mapper url="file:///mappers/UserMapper.xml"/>
+
+        <!-- 将包内的映射器接口实现全部注册为映射器 -->
+        <package name="com.hoshino.mybatis.xml.mapper"/>
+    </mappers>
+
+</configuration>

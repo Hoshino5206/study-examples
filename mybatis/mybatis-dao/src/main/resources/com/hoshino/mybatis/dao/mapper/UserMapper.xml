@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userMapper">
+    <!-- 查询所有数据 -->
+    <select id="findAll" parameterType="Integer" resultType="com.hoshino.mybatis.dao.entity.User">
+        select *
+        from user
+    </select>
+
+    <!-- 查询单条数据 -->
+    <select id="findById" parameterType="Integer" resultType="com.hoshino.mybatis.dao.entity.User">
+        select *
+        from user
+        where id = #{id}
+    </select>
+
+    <!-- 添加数据 -->
+    <insert id="add" parameterType="com.hoshino.mybatis.dao.entity.User">
+        insert into user value (#{id}, #{name}, #{password}, #{phone})
+    </insert>
+
+    <!-- 更新数据 -->
+    <update id="updateById" parameterType="com.hoshino.mybatis.dao.entity.User">
+        update user
+        set name     = #{name},
+            password = #{password},
+            phone    = #{phone}
+        where id = #{id}
+    </update>
+
+    <!-- 删除数据 -->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete
+        from user
+        where id = #{id}
+    </delete>
+</mapper>

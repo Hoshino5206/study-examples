@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 构造器实例化 -->
+    <!--<bean id="userDao" class="com.hoshino.spring.ioc.dao.impl.UserDaoImpl"/>-->
+
+    <!-- 静态工厂方式实例化 -->
+    <!--<bean id="userDao" class="com.hoshino.spring.ioc.util.MyBeanFactory" factory-method="createStaticUserDao"/>-->
+
+    <!-- 动态工厂方式实例化 -->
+    <!--<bean id="beanFactory" class="com.hoshino.spring.ioc.util.MyBeanFactory"/>
+    <bean id="userDao" factory-bean="beanFactory" factory-method="createUserDao"/>-->
+
+    <!-- 构造器注入 -->
+    <!--<bean id="userDao" class="com.hoshino.spring.ioc.dao.impl.UserDaoImpl"/>
+    <bean id="userService" class="com.hoshino.spring.ioc.service.impl.UserServiceImpl">
+        <constructor-arg index="0" ref="userDao"/>
+    </bean>-->
+
+    <!-- setter方法注入 -->
+    <!--<bean id="userDao" class="com.hoshino.spring.ioc.dao.impl.UserDaoImpl"/>
+    <bean id="userService" class="com.hoshino.spring.ioc.service.impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
+    </bean>-->
+
+    <!-- p命名空间，通过setter方法注入 -->
+    <!--<bean id="userDao" class="com.hoshino.spring.ioc.dao.impl.UserDaoImpl"/>
+    <bean id="userService" class="com.hoshino.spring.ioc.service.impl.UserServiceImpl" p:userDao-ref="userDao"/>-->
+
+    <!-- c命名空间，通过构造器注入，即在实体类中需有有参构造和无参构造 -->
+    <!--<bean id="userDao" class="com.hoshino.spring.ioc.dao.impl.UserDaoImpl"/>
+    <bean id="userService" class="com.hoshino.spring.ioc.service.impl.UserServiceImpl" c:userDao-ref="userDao"/>-->
+
+    <!-- A bean definition with singleton scope 单例  -->
+    <!--<bean id="userDao" class="com.hoshino.spring.ioc.dao.impl.UserDaoImpl" scope="singleton"/>-->
+
+    <!-- A bean definition with prototype scope 原型 -->
+    <!--<bean id="userDao" class="com.hoshino.spring.ioc.dao.impl.UserDaoImpl" scope="prototype"/>-->
+
+    <!-- 扫描MySpring.com.hoshino.spring.ioc.dao.Impl.UserDaoImpl包中的所有类的注解。 -->
+    <!--<context:component-scan base-package="com.hoshino.spring.ioc"/>-->
+
+    <!-- 普通数据类型注入，通过构造器 -->
+    <!--<bean id="user1" class="com.hoshino.spring.ioc.model.User">
+        <constructor-arg index="0" value="zhangsan"/>
+        <constructor-arg index="1" value="18"/>
+    </bean>-->
+    <!-- 普通数据类型注入，通过setter方法 -->
+    <!--<bean id="user2" class="com.hoshino.spring.ioc.model.User">
+        <property name="name" value="lisi"/>
+        <property name="age" value="20"/>
+    </bean>-->
+
+    <!-- 引用数据类型注入，通过构造器 -->
+    <!--<bean id="userDao" class="com.hoshino.spring.ioc.dao.impl.UserDaoImpl"/>
+    <bean id="userService" class="com.hoshino.spring.ioc.service.impl.UserServiceImpl">
+        <constructor-arg index="0" ref="userDao"/>
+    </bean>-->
+    <!-- 引用数据类型注入，通过setter方法 -->
+    <!--<bean id="userDao" class="com.hoshino.spring.ioc.dao.impl.UserDaoImpl" />
+    <bean id="userService" class="com.hoshino.spring.ioc.service.impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
+    </bean>-->
+
+    <!-- 集合数据类型注入 -->
+    <bean id="user1" class="com.hoshino.spring.ioc.model.User">
+        <property name="name" value="zhangsan"/>
+        <property name="age" value="18"/>
+    </bean>
+    <bean id="user2" class="com.hoshino.spring.ioc.model.User">
+        <property name="name" value="lisi"/>
+        <property name="age" value="20"/>
+    </bean>
+    <bean id="userDao" class="com.hoshino.spring.ioc.dao.impl.UserDaoImpl">
+        <property name="list">
+            <list>
+                <value>aaa</value>
+                <value>bbb</value>
+                <value>ccc</value>
+            </list>
+            <!-- 另一种方法，需要添加第三方约束 -->
+            <!-- xmlns:com.hoshino.spring.ioc.util="http://www.springframework.org/schema/com.hoshino.spring.ioc.util" -->
+            <!-- http://www.springframework.org/schema/com.hoshino.spring.ioc.util -->
+            <!-- http://www.springframework.org/schema/com.hoshino.spring.ioc.util/spring-com.hoshino.spring.ioc.util.xsd -->
+            <!--<com.hoshino.spring.ioc.util:list list-class="java.com.hoshino.spring.ioc.util.ArrayList">
+                <value>aaa</value>
+                <value>bbb</value>
+                <value>ccc</value>
+            </com.hoshino.spring.ioc.util:list>-->
+        </property>
+        <property name="set">
+            <list>
+                <value>ddd</value>
+                <value>eee</value>
+                <value>fff</value>
+            </list>
+        </property>
+        <property name="userList">
+            <list>
+                <ref bean="user1"/>
+                <ref bean="user2"/>
+            </list>
+        </property>
+        <property name="userMap">
+            <map>
+                <entry key="k_user1" value-ref="user1"/>
+                <entry key="k_user2" value-ref="user2"/>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="properties_name">wangwu</prop>
+                <prop key="properties_age">25</prop>
+            </props>
+        </property>
+    </bean>
+</beans>
