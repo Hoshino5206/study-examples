@@ -24,6 +24,7 @@
         <module>spring</module>
         <module>spring-amqp</module>
         <module>springboot</module>
+        <module>springboot-annotation</module>
         <module>springboot-aop</module>
         <module>springboot-autoconfigure</module>
         <module>springboot-cache</module>

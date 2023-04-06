@@ -1,0 +1,6 @@
+server:
+  port: 8089
+spring:
+  aop:
+    auto: true
+    proxy-target-class: true
