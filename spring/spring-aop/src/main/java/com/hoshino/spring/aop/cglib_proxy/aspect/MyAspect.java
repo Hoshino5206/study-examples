@@ -7,7 +7,7 @@ package com.hoshino.spring.aop.cglib_proxy.aspect;
  */
 public class MyAspect {
 
-    public void check_Permissions() {
+    public void checkPermissions() {
         System.out.println("模拟检查权限...");
     }
 

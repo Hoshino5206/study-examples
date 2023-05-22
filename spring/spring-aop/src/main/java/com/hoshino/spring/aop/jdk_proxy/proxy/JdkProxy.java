@@ -28,8 +28,8 @@ public class JdkProxy implements InvocationHandler {
         return Proxy.newProxyInstance(classLoader,classes,this);
     }
 
-    /*
-     *所有动态代理类的方法调用，都会交由 invoke ()方法去处理
+    /**
+     * 所有动态代理类的方法调用，都会交由 invoke ()方法去处理
      * proxy 被代理后的对象
      * method 将要被执行的方法信息(反射)
      * args 执行方法时需要的参数

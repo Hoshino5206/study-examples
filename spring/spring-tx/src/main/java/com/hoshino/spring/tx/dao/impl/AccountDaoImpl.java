@@ -15,11 +15,13 @@ public class AccountDaoImpl implements AccountDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @Override
     public void out(String outMan, double money) {
         String sql = "update account set money = money - ? where name = ?";
         jdbcTemplate.update(sql, money, outMan);
     }
 
+    @Override
     public void in(String inMan, double money) {
         String sql = "update account set money = money + ? where name = ?";
         jdbcTemplate.update(sql, money, inMan);

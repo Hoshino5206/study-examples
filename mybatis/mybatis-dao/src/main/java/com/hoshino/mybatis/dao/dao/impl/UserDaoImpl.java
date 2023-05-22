@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class UserDaoImpl implements UserDao {
 
+    @Override
     public List<User> findAll() {
         SqlSession sqlSession = MybatisUtils.getSession();
         List<User> userList = sqlSession.selectList("userMapper.findAll");
@@ -20,6 +21,7 @@ public class UserDaoImpl implements UserDao {
         return userList;
     }
 
+    @Override
     public User findById(int id) {
         SqlSession sqlSession = MybatisUtils.getSession();
         User user = sqlSession.selectOne("userMapper.findById", id);
@@ -27,6 +29,7 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
+    @Override
     public User add() {
         SqlSession sqlSession = MybatisUtils.getSession();
         User user = new User();
@@ -41,6 +44,7 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
+    @Override
     public User updateById(int id) {
         SqlSession sqlSession = MybatisUtils.getSession();
         User user = new User();
@@ -53,6 +57,7 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
+    @Override
     public int deleteById(int id) {
         SqlSession sqlSession = MybatisUtils.getSession();
         int delete = sqlSession.delete("userMapper.deleteById", id);

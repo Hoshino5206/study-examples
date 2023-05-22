@@ -9,7 +9,7 @@ import org.aopalliance.intercept.MethodInvocation;
  */
 public class MyAspect implements MethodInterceptor {
 
-    public void check_Permissions() {
+    public void checkPermissions() {
         System.out.println("模拟检查权限...");
     }
 
@@ -17,8 +17,9 @@ public class MyAspect implements MethodInterceptor {
         System.out.println("模拟记录日志...");
     }
 
+    @Override
     public Object invoke(MethodInvocation methodInvocation) throws Throwable {
-        check_Permissions();
+        checkPermissions();
         // 执行目标方法
         Object obj = methodInvocation.proceed();
         log();

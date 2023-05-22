@@ -8,18 +8,22 @@ import com.hoshino.spring.aop.aspectJ_xml.dao.UserDao;
  */
 public class UserDaoImpl implements UserDao {
 
+    @Override
     public void save() {
         System.out.println("save running...");
     }
 
+    @Override
     public void delete() {
         System.out.println("delete running...");
     }
 
+    @Override
     public void update() {
         System.out.println("update running...");
     }
 
+    @Override
     public void find() {
         int i = 1/0;
         System.out.println("find running...");

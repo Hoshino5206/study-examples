@@ -32,12 +32,13 @@ public class CglibProxy implements MethodInterceptor {
      * args 拦截方法参数数组
      * methodProxy 方法的代理对象，用于执行父类的方法
      */
+    @Override
     public Object intercept(Object proxy, Method method, Object[] args,
                             MethodProxy methodProxy) throws Throwable {
         // 创建切面类对象
         MyAspect myAspect = new MyAspect();
         // 前增强
-        myAspect.check_Permissions();
+        myAspect.checkPermissions();
         // 目标方法执行
         Object obj = methodProxy.invokeSuper(proxy, args);
         // 后增强

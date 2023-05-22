@@ -72,6 +72,7 @@ public class UserDaoImpl implements UserDao {
         this.properties = properties;
     }
 
+    @Override
     public void save() {
         System.out.println("save running...");
         System.out.println(list);

@@ -53,6 +53,7 @@ public class UserServiceImpl implements UserService {
         System.out.println("Bean的销毁成功...");
     }
 
+    @Override
     public void save() {
         userDao.save();
         System.out.println("save runned...");

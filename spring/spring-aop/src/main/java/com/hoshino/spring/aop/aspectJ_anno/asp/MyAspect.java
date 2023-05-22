@@ -10,12 +10,13 @@ import org.springframework.stereotype.Component;
  * @date 2021-04-10 14:03
  */
 @Component("myAspect")
-@Aspect //标注当前myAspect是一个切面类
+@Aspect
 public class MyAspect {
 
-    // 定义切入点表达式
+    /**
+     * 定义切入点表达式，使用一个返回值为 void 方法体为空的方法来命名切入点
+     */
     @Pointcut("execution(* com.hoshino.spring.aop.aspectJ_anno.dao.impl.*.*(..))")
-    // 使用一个返回值为 void 、方法体为空的方法来命名切入点
     private void myPointCut(){}
 
     @Before("execution(* com.hoshino.spring.aop.aspectJ_anno.dao.impl.UserDaoImpl.save())")
