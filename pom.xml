@@ -31,6 +31,7 @@
         <module>springboot-cache</module>
         <module>springboot-elasticjob</module>
         <module>springboot-interceptor</module>
+        <module>springboot-multisource</module>
         <module>springboot-rabbitmq</module>
         <module>springboot-redis</module>
         <module>springboot-rocketmq</module>
