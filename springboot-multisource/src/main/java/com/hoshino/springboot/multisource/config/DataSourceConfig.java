@@ -1,7 +1,8 @@
-package com.hoshino.springboot.multisource.datasource;
+package com.hoshino.springboot.multisource.config;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import com.hoshino.springboot.multisource.constant.DataSourceType;
+import com.hoshino.springboot.multisource.datasource.DynamicDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,13 +13,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * druid 配置多数据源
+ * 动态数据源配置
  *
  * @author huangyuehao
  * @date 2023-04-23
  */
 @Configuration
-public class DynamicDataSourceConfig {
+public class DataSourceConfig {
 
     @Bean
     @ConfigurationProperties("spring.datasource.druid.master")
@@ -35,7 +36,7 @@ public class DynamicDataSourceConfig {
     @Bean(name = "dynamicDataSource")
     @Primary
     public DynamicDataSource dataSource(DataSource masterDataSource, DataSource slaveDataSource) {
-        Map<Object, Object> targetDataSources = new HashMap<>();
+        Map<Object, Object> targetDataSources = new HashMap<>(2);
         targetDataSources.put(DataSourceType.MASTER, masterDataSource);
         targetDataSources.put(DataSourceType.SLAVE, slaveDataSource);
         return new DynamicDataSource(masterDataSource, targetDataSources);

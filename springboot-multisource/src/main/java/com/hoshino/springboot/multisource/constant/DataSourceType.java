@@ -1,18 +1,20 @@
 package com.hoshino.springboot.multisource.constant;
 
 /**
+ * 数据源类型
+ *
  * @author huangyuehao
  * @date 2023-04-23
  */
 public class DataSourceType {
 
     /**
-     * 核心数据源
+     * 主数据源
      */
     public static final String MASTER = "master";
 
     /**
-     * 其他业务的数据源
+     * 从数据源
      */
     public static final String SLAVE = "slave";
 
