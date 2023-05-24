@@ -11,11 +11,11 @@ public class DataSourceType {
     /**
      * 主数据源
      */
-    public static final String MASTER = "master";
+    public static final String MASTER = "dynamic1";
 
     /**
      * 从数据源
      */
-    public static final String SLAVE = "slave";
+    public static final String SLAVE = "dynamic2";
 
 }
