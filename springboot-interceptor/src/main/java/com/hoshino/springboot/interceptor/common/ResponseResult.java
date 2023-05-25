@@ -1,4 +1,4 @@
-package com.hoshino.springmvc.interceptor.common;
+package com.hoshino.springboot.interceptor.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

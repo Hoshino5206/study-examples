@@ -1,7 +1,7 @@
-package com.hoshino.springmvc.interceptor.advice;
+package com.hoshino.springboot.interceptor.advice;
 
-import com.hoshino.springmvc.interceptor.common.ResponseResult;
-import com.hoshino.springmvc.interceptor.exception.MyRuntimeException;
+import com.hoshino.springboot.interceptor.common.ResponseResult;
+import com.hoshino.springboot.interceptor.exception.MyRuntimeException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

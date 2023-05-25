@@ -1,4 +1,4 @@
-package com.hoshino.springmvc.interceptor.exception;
+package com.hoshino.springboot.interceptor.exception;
 
 /**
  * @author huangyuehao
