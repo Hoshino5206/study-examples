@@ -1,56 +1,55 @@
 package com.hoshino.springboot.cache;
 
-import com.hoshino.springboot.cache.model.User;
+import com.hoshino.springboot.cache.entity.User;
 import com.hoshino.springboot.cache.service.CacheService;
-import lombok.extern.slf4j.Slf4j;
+import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
+
+import javax.annotation.Resource;
 
 /**
  * @author huangyuehao
  * @date 2023-01-18
  */
-@SpringBootTest(classes = CacheApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
-@AutoConfigureMockMvc
-@Slf4j
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CacheServiceTest {
-
-    @Autowired
-    private MockMvc mockMvc;
-    @Autowired
+    @Resource
     private CacheService cacheService;
 
+    @Test
     public void getById() {
-        cacheService.getById(5);
+        cacheService.getUser(2);
     }
 
+    @Test
     public void getAllUsers() {
-        cacheService.getAllUsers();
+        cacheService.getUserList();
     }
 
+    @Test
     public void createUser() {
         User user = new User();
-        user.setId(1);
-        user.setUsername("test");
-        user.setPassword("test");
-        cacheService.createUser(user);
+        user.setId(2);
+        user.setUsername("Tom");
+        user.setPassword("667788");
+        cacheService.create(user);
     }
 
+    @Test
     public void updateUser() {
         User user = new User();
-        user.setId(1);
+        user.setId(2);
         user.setUsername("test");
         user.setPassword("123456");
-        cacheService.updateUser(user);
+        cacheService.updateById(user);
     }
 
+    @Test
     public void deleteById() {
-        cacheService.deleteById(5);
+        cacheService.deleteById(2);
     }
 
 }
