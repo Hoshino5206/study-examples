@@ -8,7 +8,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import javax.annotation.PostConstruct;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,7 +20,12 @@ import java.util.List;
 @Slf4j
 public class CacheServiceImpl implements CacheService {
 
-    private final List<User> userList = Collections.singletonList(new User(1, "John", "password666"));
+    private static List<User> userList = Arrays.asList(new User(1, "John", "000111"));
+
+    @PostConstruct
+    public void init() {
+        userList.add(new User(1, "John", "000111"));
+    }
 
     /**
      * 1.注解@Cacheable属性
@@ -65,14 +71,13 @@ public class CacheServiceImpl implements CacheService {
      * 创建用户，同时使用新的返回值的替换缓存中的值
      * 创建用户后会将allUsersCache缓存全部清空
      */
-    @Caching(
-            put = {@CachePut(value = "userCache", key = "#user.id")},
-            evict = {@CacheEvict(value = "allUsersCache", allEntries = true)}
-    )
+    @CachePut(value = "userCache", key = "#user.id", unless="#result == null")
+    @CacheEvict(value = "allUsersCache", allEntries = true)
     @Override
-    public void create(User user) {
+    public User create(User user) {
         log.info("创建用户id ................, user.id=" + user.getId());
         userList.add(user);
+        return user;
     }
 
     /**
@@ -84,7 +89,7 @@ public class CacheServiceImpl implements CacheService {
             evict = {@CacheEvict(value = "allUsersCache", allEntries = true)}
     )
     @Override
-    public void updateById(User user) {
+    public User updateById(User user) {
         log.info("更新用户id ................");
         for (User result : userList) {
             if (user.getId().equals(result.getId())) {
@@ -92,6 +97,7 @@ public class CacheServiceImpl implements CacheService {
                 userList.add(user);
             }
         }
+        return user;
     }
 
     /**

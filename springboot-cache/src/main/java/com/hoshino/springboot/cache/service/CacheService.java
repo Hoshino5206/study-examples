@@ -14,9 +14,9 @@ public interface CacheService {
 
     List<User> getUserList();
 
-    void create(User user);
+    User create(User user);
 
-    void updateById(User user);
+    User updateById(User user);
 
     void deleteById(Integer id);
 

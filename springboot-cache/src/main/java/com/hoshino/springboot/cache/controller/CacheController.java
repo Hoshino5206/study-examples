@@ -3,7 +3,6 @@ package com.hoshino.springboot.cache.controller;
 import com.hoshino.springboot.cache.entity.User;
 import com.hoshino.springboot.cache.service.CacheService;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -30,5 +29,19 @@ public class CacheController {
         return cacheService.getUser(id);
     }
 
+    @RequestMapping("/create")
+    public User create(Integer id, String username, String password) {
+        return cacheService.create(new User(id, username, password));
+    }
 
+    @RequestMapping("/update")
+    public User update(Integer id, String username, String password) {
+        return cacheService.updateById(new User(id, username, password));
+    }
+
+    @RequestMapping("/delete")
+    public Integer delete(Integer id) {
+        cacheService.deleteById(id);
+        return id;
+    }
 }

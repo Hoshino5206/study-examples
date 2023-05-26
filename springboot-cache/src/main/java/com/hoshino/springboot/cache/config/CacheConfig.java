@@ -19,7 +19,7 @@ public class CacheConfig {
 
     /**
      * 缓存管理器
-     * 默认缓存过期时间：150分钟
+     * 默认缓存过期时间：20秒
      */
     @Bean
     public CacheManager cacheManager(){
@@ -27,7 +27,7 @@ public class CacheConfig {
         //Caffeine配置
         Caffeine<Object, Object> caffeine = Caffeine.newBuilder()
                 //最后一次写入后经过固定时间过期
-                .expireAfterWrite(1, TimeUnit.MINUTES)
+                .expireAfterWrite(20, TimeUnit.SECONDS)
                 //maximumSize=[long]: 缓存的最大条数
                 .maximumSize(1000);
         cacheManager.setCaffeine(caffeine);
