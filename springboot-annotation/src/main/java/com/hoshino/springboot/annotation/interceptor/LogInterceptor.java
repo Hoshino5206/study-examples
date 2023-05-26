@@ -1,6 +1,7 @@
 package com.hoshino.springboot.annotation.interceptor;
 
-import com.hoshino.springboot.annotation.anno.Log;
+import com.hoshino.springboot.annotation.annotation.Logging;
+import com.hoshino.springboot.annotation.util.LogUtil;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -8,7 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
-import java.util.Arrays;
 
 /**
  * 拦截器获取注解
@@ -22,15 +22,8 @@ public class LogInterceptor implements HandlerInterceptor {
         if (handler instanceof HandlerMethod) {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
             Method method = handlerMethod.getMethod();
-            Log log = method.getAnnotation(Log.class);
-
-            if (log != null) {
-                System.out.println("log.title() = " + log.title());
-                System.out.println("log.isSaveRequestData() = " + log.isSaveRequestData());
-                System.out.println("log.isSaveResponseData() = " + log.isSaveResponseData());
-                System.out.println("log.includeParamNames() = " + Arrays.toString(log.includeParamNames()));
-                System.out.println("log.excludeParamNames() = " + Arrays.toString(log.excludeParamNames()));
-            }
+            Logging logging = method.getAnnotation(Logging.class);
+            LogUtil.logPrintOut(logging);
             return true;
         }
         return false;

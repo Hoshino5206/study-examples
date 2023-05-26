@@ -1,4 +1,4 @@
-package com.hoshino.springboot.annotation.anno;
+package com.hoshino.springboot.annotation.annotation;
 
 import java.lang.annotation.*;
 
@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.PARAMETER, ElementType.METHOD })
 @Documented
-public @interface Log {
+public @interface Logging {
 
     /**
      * 模块
