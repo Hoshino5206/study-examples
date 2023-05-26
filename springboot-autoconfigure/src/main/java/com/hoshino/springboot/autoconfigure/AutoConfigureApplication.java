@@ -1,7 +1,7 @@
 package com.hoshino.springboot.autoconfigure;
 
-import com.hoshino.springboot.autoconfigure.Person.PersonConfiguration;
-import com.hoshino.springboot.autoconfigure.Person.PersonProperties;
+import com.hoshino.springboot.autoconfigure.person.PersonConfiguration;
+import com.hoshino.springboot.autoconfigure.person.PersonProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

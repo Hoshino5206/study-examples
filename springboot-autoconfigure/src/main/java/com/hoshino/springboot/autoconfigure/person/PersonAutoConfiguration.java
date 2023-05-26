@@ -1,4 +1,4 @@
-package com.hoshino.springboot.autoconfigure.Person;
+package com.hoshino.springboot.autoconfigure.person;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

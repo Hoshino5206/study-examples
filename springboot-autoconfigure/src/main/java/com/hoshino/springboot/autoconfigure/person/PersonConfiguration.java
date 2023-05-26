@@ -1,4 +1,4 @@
-package com.hoshino.springboot.autoconfigure.Person;
+package com.hoshino.springboot.autoconfigure.person;
 
 import lombok.Data;
 

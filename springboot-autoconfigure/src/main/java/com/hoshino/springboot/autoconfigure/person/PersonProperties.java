@@ -1,4 +1,4 @@
-package com.hoshino.springboot.autoconfigure.Person;
+package com.hoshino.springboot.autoconfigure.person;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -15,7 +15,7 @@ import java.util.Map;
 @ConfigurationProperties(PersonProperties.PREFIX)
 public class PersonProperties {
 
-    public final static String PREFIX = "com.hoshino.example";
+    public static final String PREFIX = "com.hoshino.example";
 
     private boolean enable;
 

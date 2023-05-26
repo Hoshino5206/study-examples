@@ -1,5 +1,5 @@
 server:
-  port: 8082
+  port: 8081
 
 com:
   hoshino:
@@ -14,7 +14,7 @@ com:
       address: &defaults
         province: 广东省
         county: 深圳市
-        distinct: O区
+        distinct: 1O区
 
       #List<String>
       list: SpringBoot,SpringCloud
