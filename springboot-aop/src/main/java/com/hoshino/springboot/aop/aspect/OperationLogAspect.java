@@ -4,10 +4,7 @@ import com.hoshino.springboot.aop.annotation.OperationLog;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -39,44 +36,92 @@ public class OperationLogAspect {
      * bean：当调用的方法是指定的bean的方法时生效。
      */
     @Pointcut("@annotation(com.hoshino.springboot.aop.annotation.OperationLog)")
-    public void pointCut() {}
+    public void annotationCut() {}
+
+    @Pointcut("execution(public * com.hoshino.springboot.aop.controller.*.*(..))")
+    public void executionCut() {}
+
 
     // 前置通知，在目标方法之前执行
-    @Before("pointCut()")
+    @Before("annotationCut()")
     public void deBefore(JoinPoint joinPoint){
         // 接收到请求，记录请求内容
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
+
         // 记录下请求内容
-        System.out.println("URL : " + request.getRequestURL().toString());
-        System.out.println("HTTP_METHOD : " + request.getMethod());
-        System.out.println("IP : " + request.getRemoteAddr());
-        System.out.println("CLASS_METHOD : " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
-        System.out.println("ARGS : " + Arrays.toString(joinPoint.getArgs()));
+        log.info("前置通知。");
+        log.info("ARGS: {}", Arrays.toString(joinPoint.getArgs()));
+        log.info("CLASS_METHOD: {}", joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
+
+        log.info("Ip: {}", request.getRemoteAddr());
+        log.info("Url: {}", request.getRequestURL());
+        log.info("Uri: {}", request.getRequestURI());
+        log.info("HttpMethod: {}", request.getMethod());
+        log.info("ServletPath: {}", request.getServletPath());
 
     }
 
-    // 环绕通知，环绕增强，相当于MethodInterceptor
+    /**
+     * 环绕通知，环绕增强，相当于MethodInterceptor
+     *
+     * @param joinPoint
+     * @param operationLog
+     * @return
+     * @throws Throwable
+     */
     @Around("@annotation(operationLog)")
     public Object around(ProceedingJoinPoint joinPoint, OperationLog operationLog) throws Throwable {
-//        如果不在注解的value上绑定@annotation，则通过一下方式获取注解
+//        如果不在注解的value上绑定@annotation，则通过方法签名方式获取注解
 //        Signature signature = joinPoint.getSignature();
 //        MethodSignature methodSignature = (MethodSignature) signature;
 //        Method method = methodSignature.getMethod();
 //        OperationLog operationLog = method.getAnnotation(OperationLog.class);
 
-        System.out.println("operationLog.description() = " + operationLog.description());
-        System.out.println("operationLog.type() = " + operationLog.type());
+        log.info("operationLog.description: {}", operationLog.description());
+        log.info("operationLog.type: {}", operationLog.type());
+
         Object obj = null;
         try {
+            log.info("环绕通知。方法执行前......");
             obj = joinPoint.proceed();
+            log.info("环绕通知。方法执行后......");
         } catch (Exception e) {
             e.printStackTrace();
         }
         return obj;
     }
 
+    /**
+     * 后置通知
+     *
+     * @param ret
+     * @throws Throwable
+     */
+    @AfterReturning(returning = "ret", pointcut = "executionCut()")
+    public void doAfterReturning(Object ret) throws Throwable {
+        // 处理完请求，返回内容
+        log.info("后置通知。方法的返回值: {}" , ret);
+    }
 
+    /**
+     * 后置异常通知
+     *
+     * @param joinPoint
+     */
+    @AfterThrowing("executionCut()")
+    public void afterThrowing(JoinPoint joinPoint){
+        log.info("后置异常通知。方法异常时执行.....");
+    }
 
+    /**
+     * 后置最终通知，final增强，不管是抛出异常或者正常退出都会执行
+     *
+     * @param joinPoint
+     */
+    @After("executionCut()")
+    public void after(JoinPoint joinPoint){
+        log.info("后置最终通知。方法最后执行.....");
+    }
 
 }
