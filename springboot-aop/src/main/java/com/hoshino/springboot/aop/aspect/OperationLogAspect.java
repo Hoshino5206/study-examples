@@ -78,8 +78,10 @@ public class OperationLogAspect {
 //        Method method = methodSignature.getMethod();
 //        OperationLog operationLog = method.getAnnotation(OperationLog.class);
 
-        log.info("operationLog.description: {}", operationLog.description());
-        log.info("operationLog.type: {}", operationLog.type());
+        if (operationLog != null) {
+            log.info("operationLog.description: {}", operationLog.description());
+            log.info("operationLog.type: {}", operationLog.type());
+        }
 
         Object obj = null;
         try {
