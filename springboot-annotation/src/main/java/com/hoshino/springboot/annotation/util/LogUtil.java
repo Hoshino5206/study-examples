@@ -1,6 +1,6 @@
 package com.hoshino.springboot.annotation.util;
 
-import com.hoshino.springboot.annotation.annotation.Logging;
+import com.hoshino.springboot.annotation.annotation.OperationLog;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
@@ -12,14 +12,18 @@ import java.util.Arrays;
 @Slf4j
 public class LogUtil {
 
-    public static void logPrintOut(Logging logging) {
-        if (logging != null) {
-            log.info("log.title: {}", logging.title());
-            log.info("log.isSaveRequestData: {}", logging.isSaveRequestData());
-            log.info("log.isSaveResponseData: {}", logging.isSaveResponseData());
-            log.info("log.includeParamNames: {}", Arrays.toString(logging.includeParamNames()));
-            log.info("log.excludeParamNames: {}", Arrays.toString(logging.excludeParamNames()));
+    public static void logPrintOut(OperationLog operationLog) {
+        if (operationLog != null) {
+            log.info("log.title: {}", operationLog.title());
+            log.info("log.isSaveRequestData: {}", operationLog.isSaveRequestData());
+            log.info("log.isSaveResponseData: {}", operationLog.isSaveResponseData());
+            log.info("log.includeParamNames: {}", Arrays.toString(operationLog.includeParamNames()));
+            log.info("log.excludeParamNames: {}", Arrays.toString(operationLog.excludeParamNames()));
         }
+    }
+
+    private LogUtil(){
+
     }
 
 }

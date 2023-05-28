@@ -1,11 +1,12 @@
 package com.hoshino.springboot.annotation.config;
 
-import com.hoshino.springboot.annotation.annotation.Logging;
+import com.hoshino.springboot.annotation.annotation.OperationLog;
 import com.hoshino.springboot.annotation.util.LogUtil;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
@@ -14,10 +15,12 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import java.util.Map;
 
 /**
+ * 获取注解方式3
  * @author huangyuehao
  * @date 2023-04-06
  */
-public class LogProperties implements ApplicationContextAware, InitializingBean {
+@Configuration
+public class OperationLogProperties implements ApplicationContextAware, InitializingBean {
 
     private ApplicationContext applicationContext;
 
@@ -33,8 +36,8 @@ public class LogProperties implements ApplicationContextAware, InitializingBean 
 
         map.keySet().forEach(info -> {
             HandlerMethod handlerMethod = map.get(info);
-            Logging logging = AnnotationUtils.findAnnotation(handlerMethod.getMethod(), Logging.class);
-            LogUtil.logPrintOut(logging);
+            OperationLog operationLog = AnnotationUtils.findAnnotation(handlerMethod.getMethod(), OperationLog.class);
+            LogUtil.logPrintOut(operationLog);
         });
     }
 

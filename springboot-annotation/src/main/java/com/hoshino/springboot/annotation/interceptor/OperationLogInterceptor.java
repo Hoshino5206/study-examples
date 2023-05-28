@@ -1,6 +1,6 @@
 package com.hoshino.springboot.annotation.interceptor;
 
-import com.hoshino.springboot.annotation.annotation.Logging;
+import com.hoshino.springboot.annotation.annotation.OperationLog;
 import com.hoshino.springboot.annotation.util.LogUtil;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -15,15 +15,15 @@ import java.lang.reflect.Method;
  * @author huangyuehao
  * @date 2023-04-06
  */
-public class LogInterceptor implements HandlerInterceptor {
+public class OperationLogInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (handler instanceof HandlerMethod) {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
             Method method = handlerMethod.getMethod();
-            Logging logging = method.getAnnotation(Logging.class);
-            LogUtil.logPrintOut(logging);
+            OperationLog operationLog = method.getAnnotation(OperationLog.class);
+            LogUtil.logPrintOut(operationLog);
             return true;
         }
         return false;
