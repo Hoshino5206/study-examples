@@ -86,6 +86,7 @@ public class MultiDataSourceConfig {
      */
     @Configuration
     @MapperScan(basePackages = "com.hoshino.springboot.multisource.dao.slave", sqlSessionTemplateRef = "slaveSqlSessionTemplate")
+    @EnableConfigurationProperties({MybatisProperties.class})
     public class SlaveDataSourceConfiguration {
 
         @Bean
@@ -126,11 +127,12 @@ public class MultiDataSourceConfig {
      */
     @Configuration
     @MapperScan("com.hoshino.springboot.multisource.dao.dynamic")
+    @EnableConfigurationProperties({MybatisProperties.class})
     public class DynamicDataSourceConfiguration {
 
         @Bean
         @ConfigurationProperties(prefix = "mybatis-config.dynamic")
-        public MybatisProperties commonMybatisProperties() {
+        public MybatisProperties dynamicMybatisProperties() {
             return new MybatisProperties();
         }
 

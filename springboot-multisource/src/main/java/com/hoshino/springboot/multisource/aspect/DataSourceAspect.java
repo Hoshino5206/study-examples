@@ -31,7 +31,7 @@ public class DataSourceAspect {
     /**
      * 所有配置DataSource注解的Service实现类。
      */
-    @Pointcut("@target(com.hoshino.springboot.multisource.annotation.DataSource)")
+    @Pointcut("@annotation(com.hoshino.springboot.multisource.annotation.DataSource)")
     public void dataSourcePointCut() {
     }
 
