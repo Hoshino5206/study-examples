@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.transaction.TransactionManagerCustomizers;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -24,7 +23,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.util.StringUtils;
 
 import javax.sql.DataSource;
 import java.util.*;
@@ -74,7 +72,7 @@ public class MultiDataSourceConfig {
         }
 
         @Bean
-        DataSourceTransactionManager masterTransactionManager(@Qualifier("masterDataSource") DataSource dataSource, ObjectProvider<TransactionManagerCustomizers> transactionManagerCustomizers) {
+        public DataSourceTransactionManager masterTransactionManager(@Qualifier("masterDataSource") DataSource dataSource, ObjectProvider<TransactionManagerCustomizers> transactionManagerCustomizers) {
             DataSourceTransactionManager transactionManager = new DataSourceTransactionManager(dataSource);
             transactionManagerCustomizers.ifAvailable((customizers) -> {
                 customizers.customize(transactionManager);
@@ -84,37 +82,37 @@ public class MultiDataSourceConfig {
     }
 
     /**
-     * 公共数据源
+     * 从数据源
      */
     @Configuration
-    @MapperScan(basePackages = "com.hoshino.springboot.multisource.dao.common", sqlSessionTemplateRef = "commonSqlSessionTemplate")
-    public class CommonDataSourceConfiguration {
+    @MapperScan(basePackages = "com.hoshino.springboot.multisource.dao.slave", sqlSessionTemplateRef = "slaveSqlSessionTemplate")
+    public class SlaveDataSourceConfiguration {
 
         @Bean
-        @ConfigurationProperties(prefix = "mybatis-config.common")
-        public MybatisProperties commonMybatisProperties() {
+        @ConfigurationProperties(prefix = "mybatis-config.slave")
+        public MybatisProperties slaveMybatisProperties() {
             return new MybatisProperties();
         }
 
         @Bean
-        @ConfigurationProperties(prefix = "spring.datasource.druid.common")
-        public DataSource commonDataSource() {
-            return DataSourceBuilder.create().build();
+        @ConfigurationProperties(prefix = "spring.datasource.druid.slave")
+        public DruidDataSource slaveDataSource() {
+            return DruidDataSourceBuilder.create().build();
         }
 
         @Bean
-        public SqlSessionFactory commonSqlSessionFactory(@Qualifier("commonDataSource") DataSource dataSource,
-                                                         @Qualifier("commonMybatisProperties") MybatisProperties mybatisProperties) throws Exception {
+        public SqlSessionFactory slaveSqlSessionFactory(@Qualifier("slaveDataSource") DruidDataSource dataSource,
+                                                         @Qualifier("slaveMybatisProperties") MybatisProperties mybatisProperties) throws Exception {
             return createSqlSessionFactory(dataSource, mybatisProperties);
         }
 
         @Bean
-        public SqlSessionTemplate commonSqlSessionTemplate(@Qualifier("commonSqlSessionFactory") SqlSessionFactory sqlSessionFactory) {
+        public SqlSessionTemplate slaveSqlSessionTemplate(@Qualifier("slaveSqlSessionFactory") SqlSessionFactory sqlSessionFactory) {
             return new SqlSessionTemplate(sqlSessionFactory);
         }
 
         @Bean
-        DataSourceTransactionManager commonTransactionManager(@Qualifier("commonDataSource") DataSource dataSource, ObjectProvider<TransactionManagerCustomizers> transactionManagerCustomizers) {
+        public DataSourceTransactionManager slaveTransactionManager(@Qualifier("slaveDataSource") DataSource dataSource, ObjectProvider<TransactionManagerCustomizers> transactionManagerCustomizers) {
             DataSourceTransactionManager transactionManager = new DataSourceTransactionManager(dataSource);
             transactionManagerCustomizers.ifAvailable((customizers) -> {
                 customizers.customize(transactionManager);
@@ -128,7 +126,7 @@ public class MultiDataSourceConfig {
      */
     @Configuration
     @MapperScan("com.hoshino.springboot.multisource.dao.dynamic")
-    public class CommonDataSource {
+    public class DynamicDataSourceConfiguration {
 
         @Bean
         @ConfigurationProperties(prefix = "mybatis-config.dynamic")
@@ -151,7 +149,7 @@ public class MultiDataSourceConfig {
         @Bean
         @Primary
         public DynamicDataSource dynamicDataSource(@Qualifier("dynamic1DataSource") DataSource dynamic1DataSource,
-                                            @Qualifier("dynamic2DataSource") DataSource dynamic2DataSource) {
+                                                   @Qualifier("dynamic2DataSource") DataSource dynamic2DataSource) {
             Map<Object, Object> targetDataSources = new HashMap<>(2);
             targetDataSources.put(DataSourceType.MASTER, dynamic1DataSource);
             targetDataSources.put(DataSourceType.SLAVE, dynamic2DataSource);
@@ -170,7 +168,7 @@ public class MultiDataSourceConfig {
         }
 
         @Bean
-        DataSourceTransactionManager dynamicTransactionManager(@Qualifier("dynamicDataSource") DataSource dataSource, ObjectProvider<TransactionManagerCustomizers> transactionManagerCustomizers) {
+        public DataSourceTransactionManager dynamicTransactionManager(@Qualifier("dynamicDataSource") DataSource dataSource, ObjectProvider<TransactionManagerCustomizers> transactionManagerCustomizers) {
             DataSourceTransactionManager transactionManager = new DataSourceTransactionManager(dataSource);
             transactionManagerCustomizers.ifAvailable((customizers) -> {
                 customizers.customize(transactionManager);
@@ -197,10 +195,12 @@ public class MultiDataSourceConfig {
         factory.setConfiguration(configuration);
 
         List<Resource> resources = new ArrayList<>();
-        String[] mapperXmls = StringUtils.split(mybatisProperties.getMapperXml(), ",");
-        for (String mapperXml : mapperXmls) {
-            resources.addAll(Arrays.asList(new PathMatchingResourcePatternResolver().getResources(mapperXml)));
-        }
+//        String[] mapperXmls = StringUtils.split(mybatisProperties.getMapperXml(), ",");
+//        for (String mapperXml : mapperXmls) {
+//            resources.addAll(Arrays.asList(new PathMatchingResourcePatternResolver().getResources(mapperXml)));
+//        }
+        String mapperXml = mybatisProperties.getMapperXml();
+        resources.addAll(Arrays.asList(new PathMatchingResourcePatternResolver().getResources(mapperXml)));
         factory.setMapperLocations(resources.toArray(new Resource[resources.size()]));
         factory.setTypeAliasesPackage(mybatisProperties.getTypeAliasesPackage());
         Objects.requireNonNull(factory);

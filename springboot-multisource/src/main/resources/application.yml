@@ -8,8 +8,8 @@ spring:
         url: jdbc:mysql://127.0.0.1:3306/master?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF8&useSSL=false
         username: root
         password: 123456
-      common:
-        url: jdbc:mysql://127.0.0.1:3306/common?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF8&useSSL=false
+      slave:
+        url: jdbc:mysql://127.0.0.1:3306/slave?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF8&useSSL=false
         username: root
         password: 123456
       dynamic1:
@@ -25,9 +25,9 @@ mybatis-config:
   master:
     mapperXml: com/hoshino/springboot/multisource/dao/master/mapper/*Mapper.xml
     typeAliasesPackage: classpath:com.hoshino.springboot.multisource.entity.master.**
-  common:
-    mapperXml: com/hoshino/springboot/multisource/dao/common/mapper/*Mapper.xml
-    typeAliasesPackage: classpath:com.hoshino.springboot.multisource.entity.common.**
+  slave:
+    mapperXml: com/hoshino/springboot/multisource/dao/slave/mapper/*Mapper.xml
+    typeAliasesPackage: classpath:com.hoshino.springboot.multisource.entity.slave.**
   dynamic:
     mapperXml: com/hoshino/springboot/multisource/dao/dynamic/mapper/*Mapper.xml
     typeAliasesPackage: classpath:com.hoshino.springboot.multisource.entity.dynamic.**
