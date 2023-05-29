@@ -39,6 +39,7 @@
         <module>springboot-security</module>
         <module>springboot-starter-logback</module>
         <module>springmvc</module>
+        <module>springboot-jdbc</module>
     </modules>
 
     <properties>
