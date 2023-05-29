@@ -5,10 +5,7 @@ import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -36,7 +33,7 @@ public class UserService {
     public void delete(String key, String ...keys) {
         // 删除单个key
         redisTemplate.delete(key);
-        // 删除多个keyv
+        // 删除多个keys
         redisTemplate.delete(keys);
     }
 

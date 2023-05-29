@@ -22,11 +22,6 @@ public class CacheServiceImpl implements CacheService {
 
     private static List<User> userList = Arrays.asList(new User(1, "John", "000111"));
 
-    @PostConstruct
-    public void init() {
-        userList.add(new User(1, "John", "000111"));
-    }
-
     /**
      * 1.注解@Cacheable属性
      *   value(String[]): 缓存名称
