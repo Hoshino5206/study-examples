@@ -23,7 +23,7 @@ public class UserService {
      * redisTemplate.opsForHash();  操作hash
      */
     @Resource
-    private RedisTemplate<Object, Object> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     /**
      * 删除key.
@@ -34,7 +34,7 @@ public class UserService {
         // 删除单个key
         redisTemplate.delete(key);
         // 删除多个keys
-        redisTemplate.delete(keys);
+        redisTemplate.delete(Arrays.asList(keys));
     }
 
     /**
