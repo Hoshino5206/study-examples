@@ -108,9 +108,9 @@
         <log4j.version>1.2.17</log4j.version>
         <log4j2.version>2.15.0</log4j2.version>
         <slf4j.version>1.7.30</slf4j.version>
-        <log4j-slf4j.version>2.15.0</log4j-slf4j.version>
         <!-- test -->
         <junit.version>4.12</junit.version>
+        <junit-jupiter.version>5.6.3</junit-jupiter.version>
     </properties>
 
     <dependencyManagement>
@@ -419,6 +419,7 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>cn.hutool</groupId>
@@ -526,7 +527,6 @@
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct-processor</artifactId>
                 <version>${mapstruct.version}</version>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
@@ -543,6 +543,7 @@
 
             <!-- ==================================================================== -->
             <!-- ============================= logging ============================== -->
+            <!-- logback -->
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-core</artifactId>
@@ -590,6 +591,7 @@
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-slf4j-impl</artifactId>
                 <version>${log4j2.version}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
@@ -620,6 +622,18 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit-jupiter.version}</version>
                 <scope>test</scope>
             </dependency>
 
