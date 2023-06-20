@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @date 2023-05-23
  */
 @Data
-@Document(value = "UserDocument")
+@Document(value = "user_document")
 public class User implements Serializable {
 
     private static final long serialVersionUID = -6330308212250799653L;
@@ -22,5 +22,7 @@ public class User implements Serializable {
     private String username;
 
     private Integer age;
+
+    private Address address;
 
 }

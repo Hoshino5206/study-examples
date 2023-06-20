@@ -1,8 +1,8 @@
 package com.hoshino.springboot.mongodb.controller;
 
+import com.hoshino.springboot.mongodb.entity.Address;
 import com.hoshino.springboot.mongodb.entity.User;
 import com.hoshino.springboot.mongodb.service.UserService;
-import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,14 +27,16 @@ public class UserController {
     @RequestMapping("/save")
     public User save() {
         User user = new User();
+        user.setId(ID);
         user.setUsername(RandomStringUtils.randomAlphabetic(8));
         user.setAge(new Random().nextInt(100));
+        user.setAddress(new Address("cn", "shenzhen", "localhost"));
 
         return userService.save(user);
     }
 
     @RequestMapping("/remove")
-    public DeleteResult remove() {
+    public User remove() {
         return userService.remove(ID);
     }
 
@@ -44,6 +46,7 @@ public class UserController {
         user.setId(ID);
         user.setUsername(RandomStringUtils.randomAlphabetic(8));
         user.setAge(new Random().nextInt(100));
+        user.setAddress(new Address("merican", "New York", "localhost"));
 
         return userService.update(user);
     }

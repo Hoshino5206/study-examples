@@ -1,7 +1,6 @@
 package com.hoshino.springboot.mongodb.service;
 
 import com.hoshino.springboot.mongodb.entity.User;
-import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
 
 /**
@@ -12,7 +11,7 @@ public interface UserService {
 
     User save(User user);
 
-    DeleteResult remove(String id);
+    User remove(String id);
 
     UpdateResult update(User user);
 
