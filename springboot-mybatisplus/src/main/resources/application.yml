@@ -1,0 +1,27 @@
+server:
+  port: 8084
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/example?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF8&useSSL=false
+    username: root
+    password: 123456
+
+mybatis-plus:
+  configuration:
+    cache-enabled: true
+    use-generated-keys: true
+    default-executor-type: REUSE
+    use-actual-param-name: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 关闭驼峰命名映射
+    map-underscore-to-camel-case: false
+  global-config:
+    db-config:
+      # 逻辑删除
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+      # 数据库自增
+      id-type: auto
+  type-aliases-package: com.hoshino.springboot.mybatisplus.entity

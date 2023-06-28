@@ -34,6 +34,7 @@
         <module>springboot-mongodb</module>
         <module>springboot-multisource</module>
         <module>springboot-mybatis</module>
+        <module>springboot-mybatisplus</module>
         <module>springboot-rabbitmq</module>
         <module>springboot-redis</module>
         <module>springboot-rocketmq</module>
