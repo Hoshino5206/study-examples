@@ -20,32 +20,32 @@ public class JdbcServiceTest {
     private JdbcService jdbcService;
 
     @Test
-    public void createTable() {
+    public void createTableTest() {
         jdbcService.createTable();
     }
 
     @Test
-    public void add() {
+    public void addTest() {
         jdbcService.add();
     }
 
     @Test
-    public void batchAdd() {
+    public void batchAddTest() {
         jdbcService.batchAdd();
     }
 
     @Test
-    public void updateById() {
+    public void updateByIdTest() {
         jdbcService.updateById();
     }
 
     @Test
-    public void deleteById() {
+    public void deleteByIdTest() {
         jdbcService.deleteById();
     }
 
     @Test
-    public void selectAll() {
+    public void selectAllTest() {
         jdbcService.selectAll();
     }
 
@@ -53,7 +53,7 @@ public class JdbcServiceTest {
      * 通过id查询账户数据信息
      */
     @Test
-    public void selectById() {
+    public void selectByIdTest() {
         jdbcService.selectById();
     }
 
@@ -61,7 +61,7 @@ public class JdbcServiceTest {
      * 通过id查询账聚合函数的统计
      */
     @Test
-    public void selectByIdCount() {
+    public void selectByIdCountTest() {
         jdbcService.selectByIdCount();
     }
 

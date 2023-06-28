@@ -1,6 +1,7 @@
-package com.hoshino.springboot.cache.service;
+package com.hoshino.springboot.cache.service.impl;
 
 import com.hoshino.springboot.cache.entity.User;
+import com.hoshino.springboot.cache.service.CacheService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -8,7 +9,6 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.Arrays;
 import java.util.List;
 

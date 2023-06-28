@@ -2,7 +2,7 @@ package com.hoshino.springboot.interceptor.controller;
 
 import com.hoshino.springboot.interceptor.common.ResponseResult;
 import com.hoshino.springboot.interceptor.entity.User;
-import com.hoshino.springboot.interceptor.service.UserServiceImpl;
+import com.hoshino.springboot.interceptor.service.impl.UserServiceImpl;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

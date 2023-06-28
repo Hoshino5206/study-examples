@@ -25,8 +25,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) {
-//        mongoTemplate.insert(user);         // 如果主键存在，则会更新数据
-        return mongoTemplate.save(user);    // 如果主键存在，则会抛异常
+        // 如果主键存在，则会更新数据
+        // mongoTemplate.insert(user);
+
+        // 如果主键存在，则会抛异常
+        return mongoTemplate.save(user);
     }
 
     @Override

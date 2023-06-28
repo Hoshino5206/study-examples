@@ -1,6 +1,7 @@
-package com.hoshino.springboot.interceptor.service;
+package com.hoshino.springboot.interceptor.service.impl;
 
 import com.hoshino.springboot.interceptor.entity.User;
+import com.hoshino.springboot.interceptor.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
