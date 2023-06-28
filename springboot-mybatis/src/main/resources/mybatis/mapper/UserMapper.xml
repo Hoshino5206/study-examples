@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoshino.springboot.mybatis.mapper.UserMapper">
+    <!-- 结果集 -->
+    <resultMap type="com.hoshino.springboot.mybatis.entity.User" id="BaseResultMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 基本字段 -->
+    <sql id="Base_Column_List">
+        id, username, password
+    </sql>
+
+    <!-- 通过主键删除 -->
+    <delete id="deleteByPrimaryKey">
+        delete
+        from user
+        where id = #{id}
+    </delete>
+
+    <!-- 根据条件新增数据 -->
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" useGeneratedKeys="true"
+            parameterType="com.hoshino.springboot.mybatis.entity.User">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != ''">
+                id,
+            </if>
+            <if test="username != null and username != ''">
+                username,
+            </if>
+            <if test="password != null and password != ''">
+                password,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != ''">
+                #{id, jdbcType=INTEGER},
+            </if>
+            <if test="username != null and username != ''">
+                #{username, jdbcType=VARCHAR},
+            </if>
+            <if test="password != null and password != ''">
+                #{password, jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 通过主键修改数据 -->
+    <update id="updateByPrimaryKey">
+        update user
+        set username = #{username, jdbcType=VARCHAR},
+            password = #{password, jdbcType=VARCHAR}
+        where id = #{id, jdbcType=INTEGER}
+    </update>
+
+    <!-- 通过主键修改数据 -->
+    <update id="updateByPrimaryKeySelective">
+        update user
+        <set>
+            <if test="username != null and username != ''">
+                username = #{username, jdbcType=VARCHAR},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password, jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id, jdbcType=INTEGER}
+    </update>
+
+    <!-- 查询全部 -->
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+    </select>
+
+    <!-- 通过主键查询 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where id = #{id}
+    </select>
+
+</mapper>
