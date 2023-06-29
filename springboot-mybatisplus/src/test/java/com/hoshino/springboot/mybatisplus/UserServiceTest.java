@@ -18,7 +18,6 @@ import javax.annotation.Resource;
 @RunWith(SpringRunner.class)
 public class UserServiceTest {
 
-
     @Resource
     private UserService userService;
 

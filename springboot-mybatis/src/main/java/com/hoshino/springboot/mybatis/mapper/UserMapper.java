@@ -29,14 +29,6 @@ public interface UserMapper {
      * @return 影响行数
      */
     Integer insertSelective(User user);
-
-    /**
-     * 通过主键修改数据
-     *
-     * @param user 实例对象
-     * @return 影响行数
-     */
-    Integer updateByPrimaryKey(User user);
     
     /**
      * 通过主键选择性修改数据
@@ -45,7 +37,15 @@ public interface UserMapper {
      * @return 影响行数
      */
     Integer updateByPrimaryKeySelective(User user);
-    
+
+    /**
+     * 通过主键修改数据
+     *
+     * @param user 实例对象
+     * @return 影响行数
+     */
+    Integer updateByPrimaryKey(User user);
+
     /**
      * 查询全部
      *

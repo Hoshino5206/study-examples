@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,9 +21,9 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @RequestMapping("/remove")
-    public String remove(Integer id) {
-        return userService.remove(id) ? "success" : "error";
+    @RequestMapping("/delete")
+    public String delete(Integer id) {
+        return userService.remove(id) ? String.valueOf(id) : "error";
     }
 
     @RequestMapping("/save")
@@ -30,7 +31,12 @@ public class UserController {
         User user = new User();
         user.setUsername(RandomStringUtils.randomAlphabetic(8));
         user.setPassword(RandomStringUtils.randomAlphabetic(8));
-        return userService.saveNew(user) ? "success" : "error";
+        user.setCreator("Tom");
+        user.setUpdater("Tom");
+        user.setCreateTime(new Date());
+        user.setUpdateTime(new Date());
+        user.setIsDelete(0);
+        return userService.saveNew(user) ? String.valueOf(user) : "error";
     }
 
     @RequestMapping("/update")
@@ -39,7 +45,9 @@ public class UserController {
         user.setId(id);
         user.setUsername(RandomStringUtils.randomAlphabetic(8));
         user.setPassword(RandomStringUtils.randomAlphabetic(8));
-        return userService.update(user) ? "success" : "error";
+        user.setUpdater("Jack");
+        user.setUpdateTime(new Date());
+        return userService.update(user) ? String.valueOf(user) : "error";
     }
 
     @RequestMapping("/list")

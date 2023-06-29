@@ -4,24 +4,28 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/example?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF8&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/example?serverTimezone=Asia/Shanghai&characterEncoding=UTF8&useSSL=false&useUnicode=true
     username: root
     password: 123456
 
 mybatis-plus:
+  type-aliases-package: com.hoshino.springboot.mybatisplus.entity
+  mapper-locations: classpath:mybatis/mapper/*.xml
   configuration:
     cache-enabled: true
     use-generated-keys: true
-    default-executor-type: REUSE
+    default-executor-type: reuse
     use-actual-param-name: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     # 关闭驼峰命名映射
     map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
-      # 逻辑删除
-      logic-delete-value: 0
-      logic-not-delete-value: 1
+      # 表前缀
+#      tablePrefix: t_
       # 数据库自增
       id-type: auto
-  type-aliases-package: com.hoshino.springboot.mybatisplus.entity
+      # 逻辑删除
+      logicDeleteField: isDelete
+      logic-not-delete-value: 0
+      logic-delete-value: 1

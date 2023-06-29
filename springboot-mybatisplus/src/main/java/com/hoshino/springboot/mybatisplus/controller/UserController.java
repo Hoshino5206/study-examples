@@ -20,9 +20,9 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @RequestMapping("/remove")
-    public String remove(Integer id) {
-        return userService.removeById(id) ? "success" : "error";
+    @RequestMapping("/delete")
+    public String delete(Integer id) {
+        return userService.removeById(id) ? String.valueOf(id) : "error";
     }
 
     @RequestMapping("/save")
@@ -30,7 +30,8 @@ public class UserController {
         User user = new User();
         user.setUsername(RandomStringUtils.randomAlphabetic(8));
         user.setPassword(RandomStringUtils.randomAlphabetic(8));
-        return userService.save(user) ? "success" : "error";
+        user.setIsDelete(0);
+        return userService.save(user) ? String.valueOf(user) : "error";
     }
 
     @RequestMapping("/update")
@@ -39,7 +40,7 @@ public class UserController {
         user.setId(id);
         user.setUsername(RandomStringUtils.randomAlphabetic(8));
         user.setPassword(RandomStringUtils.randomAlphabetic(8));
-        return userService.updateById(user) ? "success" : "error";
+        return userService.updateById(user) ? String.valueOf(user) : "error";
     }
 
     @RequestMapping("/list")
