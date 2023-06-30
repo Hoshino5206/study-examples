@@ -1,5 +1,7 @@
+server:
+  port: 8080
+
 rocketmq:
   producer:
     group: topicConsumer
   name-server: 127.0.0.1:9876
-
