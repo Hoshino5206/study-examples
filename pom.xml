@@ -29,8 +29,10 @@
         <module>springboot-async</module>
         <module>springboot-autoconfigure</module>
         <module>springboot-cache</module>
+        <module>springboot-druid</module>
         <module>springboot-elasticjob</module>
         <module>springboot-interceptor</module>
+        <module>springboot-jdbc</module>
         <module>springboot-mongodb</module>
         <module>springboot-multisource</module>
         <module>springboot-mybatis</module>
@@ -41,7 +43,6 @@
         <module>springboot-security</module>
         <module>springboot-starter-logback</module>
         <module>springmvc</module>
-        <module>springboot-jdbc</module>
     </modules>
 
     <properties>

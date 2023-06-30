@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoshino.springboot.druid.mapper.UserMapper">
+    <!-- 结果集 -->
+    <resultMap type="com.hoshino.springboot.druid.entity.User" id="BaseResultMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="creator" column="creator" jdbcType="VARCHAR"/>
+        <result property="updater" column="updater" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="isDelete" column="is_delete" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <!-- 基本字段 -->
+    <sql id="Base_Column_List">
+        id, username, password, creator, updater, create_time, update_time, is_delete
+    </sql>
+
+    <!-- 通过主键删除 -->
+    <update id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        update t_system_user
+        set is_delete = 1
+        where id = #{id}
+    </update>
+
+    <!-- 根据条件新增数据 -->
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" useGeneratedKeys="true"
+            parameterType="com.hoshino.springboot.druid.entity.User">
+        insert into t_system_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="username != null and username != ''">
+                username,
+            </if>
+            <if test="password != null and password != ''">
+                password,
+            </if>
+            <if test="creator != null and creator != ''">
+                creator,
+            </if>
+            <if test="updater != null and updater != ''">
+                updater,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="isDelete != null">
+                is_delete,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id, jdbcType=INTEGER},
+            </if>
+            <if test="username != null and username != ''">
+                #{username, jdbcType=VARCHAR},
+            </if>
+            <if test="password != null and password != ''">
+                #{password, jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null and creator != ''">
+                #{creator, jdbcType=VARCHAR},
+            </if>
+            <if test="updater != null and updater != ''">
+                #{updater, jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="isDelete != null">
+                #{isDelete, jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 通过主键修改数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.hoshino.springboot.druid.entity.User">
+        update t_system_user
+        <set>
+            <if test="username != null and username != ''">
+                username = #{username, jdbcType=VARCHAR},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password, jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null and creator != ''">
+                creator = #{creator, jdbcType=VARCHAR},
+            </if>
+            <if test="updater != null and updater != ''">
+                updater = #{updater, jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete, jdbcType=TINYINT},
+            </if>
+        </set>
+        where id = #{id, jdbcType=INTEGER}
+    </update>
+
+    <!-- 通过主键修改数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.hoshino.springboot.druid.entity.User">
+        update t_system_user
+        set username    = #{username, jdbcType=VARCHAR},
+            password    = #{password, jdbcType=VARCHAR},
+            creator     = #{creator,jdbcType=VARCHAR},
+            updater     = #{updater,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            is_delete   = #{isDelete,jdbcType=TINYINT}
+        where id = #{id, jdbcType=INTEGER}
+    </update>
+
+    <!-- 查询全部 -->
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_system_user
+        where is_delete = 0
+    </select>
+
+    <!-- 通过主键查询 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_system_user
+        where id = #{id}
+        and is_delete = 0
+    </select>
+
+</mapper>
