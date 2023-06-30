@@ -37,6 +37,7 @@
         <module>springboot-multisource</module>
         <module>springboot-mybatis</module>
         <module>springboot-mybatisplus</module>
+        <module>springboot-pagehelper</module>
         <module>springboot-rabbitmq</module>
         <module>springboot-redis</module>
         <module>springboot-rocketmq</module>
