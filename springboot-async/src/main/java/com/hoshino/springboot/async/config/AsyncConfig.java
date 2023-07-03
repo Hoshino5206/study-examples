@@ -18,7 +18,6 @@ public class AsyncConfig {
     /**
      * 核心线程数
      * 默认的核心线程数为1
-     *
      */
     private static final int CORE_POOL_SIZE = 5;
     /**
@@ -49,12 +48,12 @@ public class AsyncConfig {
     /**
      * 线程池前缀名
      */
-    private static final String THREAD_NAME_PREFIX = "Async-Service-";
+    private static final String THREAD_NAME_PREFIX = "TaskExecutor-";
 
     /**
      * Auto-configuration for TaskExecutor.
      *
-     * @return
+     * @return ThreadPoolTaskExecutor Bean
      */
     @Bean("taskExecutor")
     public ThreadPoolTaskExecutor threadPoolTaskExecutor() {
@@ -67,7 +66,8 @@ public class AsyncConfig {
         executor.setThreadNamePrefix(THREAD_NAME_PREFIX);
         // 线程池对拒绝任务的处理策略
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
-        // 线程池初始化
+        // 实现AsyncConfigurer接口需要调用initialize()线程初始化方法，如果使用Spring Bean管理方式则不需要。
+        // 因为ThreadPoolTaskExecutor extend ExecutorConfigurationSupport implements InitializingBean，afterPropertiesSet()方法中实现了初始化
 //        executor.initialize();
         return executor;
     }
