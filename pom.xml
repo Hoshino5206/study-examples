@@ -41,6 +41,7 @@
         <module>springboot-rabbitmq</module>
         <module>springboot-redis</module>
         <module>springboot-rocketmq</module>
+        <module>springboot-schedule</module>
         <module>springboot-security</module>
         <module>springboot-starter-logback</module>
         <module>springmvc</module>
