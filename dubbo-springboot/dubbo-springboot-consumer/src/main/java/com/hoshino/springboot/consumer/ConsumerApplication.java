@@ -1,6 +1,7 @@
 package com.hoshino.springboot.consumer;
 
 import com.hoshino.dubbo.springboot.DemoService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
@@ -13,22 +14,21 @@ import org.springframework.context.ConfigurableApplicationContext;
  * @date 2023-02-03
  */
 @SpringBootApplication
-@DubboService
 @EnableDubbo
+@DubboService
+@Slf4j
 public class ConsumerApplication {
 
     @DubboReference
     private DemoService demoService;
 
     public static void main(String[] args) {
+        ConfigurableApplicationContext applicationContext = SpringApplication.run(ConsumerApplication.class, args);
+        log.info("dubbo consumer service started......");
 
-        ConfigurableApplicationContext context = SpringApplication.run(ConsumerApplication.class, args);
-        ConsumerApplication application = context.getBean(ConsumerApplication.class);
-        String result = application.doSayHello("world");
-        System.out.println("result: " + result);
+        ConsumerApplication bean = applicationContext.getBean(ConsumerApplication.class);
+        String result = bean.demoService.sayHello("Tomcat");
+        log.info("hello, {}", result);
     }
 
-    public String doSayHello(String name) {
-        return demoService.sayHello(name);
-    }
 }
