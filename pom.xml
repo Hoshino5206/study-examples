@@ -30,6 +30,7 @@
         <module>springboot-autoconfigure</module>
         <module>springboot-cache</module>
         <module>springboot-druid</module>
+        <module>springboot-dubbo</module>
         <module>springboot-elasticjob</module>
         <module>springboot-interceptor</module>
         <module>springboot-jdbc</module>
