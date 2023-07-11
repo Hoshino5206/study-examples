@@ -1,0 +1,58 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/example?serverTimezone=Asia/Shanghai&characterEncoding=UTF8&useSSL=false&useUnicode=true
+      username: root
+      password: 123456
+      # 初始化大小
+      initial-size: 5
+      # 最小连接数
+      min-idle: 10
+      # 最大连接数，maxIdle已被启用，被maxActive代替
+      max-active: 20
+      # 获取连接时的最大等待时间，单位毫秒
+      max-wait: 60000
+  quartz:
+    #相关属性配置
+    properties:
+      org:
+        quartz:
+          scheduler:
+            # 集群名，区分同一系统的不同实例，若使用集群功能，则每一个实例都要使用相同的名字
+            instanceName: SERVICEX-SCHEDULER-INSTANCE
+            # 若是集群下，每个instanceId必须唯一
+            instanceId: AUTO
+          threadPool:
+            #一般使用这个便可
+            class: org.quartz.simpl.SimpleThreadPool
+            #线程数量，不会动态增加
+            threadCount: 20
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+          jobStore:
+            #选择JDBC的存储方式
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+            tablePrefix: QRTZ_
+            useProperties: false
+            isClustered: true
+            clusterCheckinInterval: 15000
+    job-store-type: jdbc
+    # 默认为false， 用于设定是否等待任务执行完毕后容器才会关闭。
+    wait-for-jobs-to-complete-on-shutdown: false
+    # 默认为false， 配置的JOB是否覆盖已经存在的JOB信息
+    overwrite-existing-jobs: false
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  configuration:
+    cache-enabled: true
+    use-generated-keys: true
+    default-executor-type: reuse
+    use-actual-param-name: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

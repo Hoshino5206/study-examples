@@ -13,7 +13,6 @@
         <module>design-pattern</module>
         <module>dubbo-annotation</module>
         <module>dubbo-api</module>
-        <module>dubbo-springboot</module>
         <module>dubbo-xml</module>
         <module>java-basics</module>
         <module>logback-desensitization</module>
@@ -39,6 +38,7 @@
         <module>springboot-mybatis</module>
         <module>springboot-mybatisplus</module>
         <module>springboot-pagehelper</module>
+        <module>springboot-quartz</module>
         <module>springboot-rabbitmq</module>
         <module>springboot-redis</module>
         <module>springboot-rocketmq</module>
@@ -303,6 +303,11 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-security</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-quartz</artifactId>
                 <version>${springboot.version}</version>
             </dependency>
             <dependency>
