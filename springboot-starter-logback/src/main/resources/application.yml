@@ -6,3 +6,4 @@ com:
     logging:
       sensitive:
         enable: true
+        filter:

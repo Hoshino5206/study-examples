@@ -21,6 +21,8 @@ public class LoggingSensitiveProperties {
 
     private Map<String, Map<String, LoggingSensitive>> rules;
 
+    private List<String> filter;
+
 }
 
 

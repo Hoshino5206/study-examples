@@ -38,12 +38,15 @@ public class LogbackConfiguration {
 
     private final LoggingDesensitization loggingDesensitization;
 
+    private final LoggingDesensitization emptyMapLoggingDes;
+
     public LogbackConfiguration (LogbackContextProperties contextProperties,
                                  LoggingSensitiveProperties sensitiveProperties) {
         this.contextProperties = contextProperties;
         this.sensitiveProperties = sensitiveProperties;
 
         this.loggingDesensitization = new LoggingDesensitization(sensitiveProperties.getRules());
+        this.emptyMapLoggingDes = new LoggingDesensitization(Collections.emptyMap());
     }
 
     private void init() {
@@ -86,7 +89,6 @@ public class LogbackConfiguration {
     private void initAppender() {
         // console appender
         ConsoleSensitiveAppender consoleAppender = new ConsoleSensitiveAppender();
-        consoleAppender.setLoggingDesensitization(loggingDesensitization);
         consoleAppender.setContext(context);
         consoleAppender.setName(contextProperties.getConsoleAppender().getName());
         consoleAppender.setEncoder(buildLayoutEncoder(consoleAppender));
@@ -96,6 +98,13 @@ public class LogbackConfiguration {
         List<String> loggers = contextProperties.getConsoleAppender().getToLoggers();
         if (!CollectionUtils.isEmpty(loggers)) {
             for (String loggerName : loggers) {
+                List<String> filter = sensitiveProperties.getFilter();
+                // 过滤不需要脱敏的logger
+                if (!CollectionUtils.isEmpty(filter) && filter.contains(loggerName)) {
+                    consoleAppender.setLoggingDesensitization(emptyMapLoggingDes);
+                } else {
+                    consoleAppender.setLoggingDesensitization(loggingDesensitization);
+                }
                 this.context.getLogger(loggerName).addAppender(consoleAppender);
             }
         }
@@ -124,6 +133,12 @@ public class LogbackConfiguration {
             List<String> toLoggers = appenderProperties.getToLoggers();
             if (!CollectionUtils.isEmpty(toLoggers)) {
                 for (String loggerName : toLoggers) {
+                    List<String> filter = sensitiveProperties.getFilter();
+                    if (!CollectionUtils.isEmpty(filter) && filter.contains(loggerName)) {
+                        rollingFileAppender.setLoggingDesensitization(emptyMapLoggingDes);
+                    } else {
+                        rollingFileAppender.setLoggingDesensitization(loggingDesensitization);
+                    }
                     this.context.getLogger(loggerName).addAppender(rollingFileAppender);
                 }
             }

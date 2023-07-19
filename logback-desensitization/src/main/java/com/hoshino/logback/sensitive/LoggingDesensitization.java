@@ -1,6 +1,5 @@
 package com.hoshino.logback.sensitive;
 
-import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.StopWatch;
 import org.slf4j.Logger;
@@ -16,7 +15,6 @@ import java.util.regex.Pattern;
  * logback logging message desensitization core
  * @author huangyuehao
  */
-@Data
 public class LoggingDesensitization {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LoggingDesensitization.class);
@@ -33,12 +31,13 @@ public class LoggingDesensitization {
      * @return
      */
     public String buildMsg(String formattedMessage) {
-        String sensitiveMsg = formattedMessage;
         if (rules == null || rules.isEmpty()) {
             return formattedMessage;
         }
-        StopWatch sw = new StopWatch();
-        sw.start();
+
+        String sensitiveMsg = formattedMessage;
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
         try {
             if (rules.containsKey(LogbackConstants.REGEX)) {
                 Map<String, LoggingSensitive> map = rules.get(LogbackConstants.REGEX);
@@ -54,6 +53,8 @@ public class LoggingDesensitization {
                         continue;
                     }
                     sensitiveMsg = msgSensitive(regex, sensitiveMsg, replacement);
+                    stopWatch.stop();
+                    LOGGER.info("Started logging desensitization in {} micro seconds", stopWatch.getTime(TimeUnit.MICROSECONDS));
                 }
             }
 
@@ -82,14 +83,13 @@ public class LoggingDesensitization {
                         StringBuilder sb = new StringBuilder();
                         replacement = sb.append(key).append(sp).append(replacement).toString();
                         sensitiveMsg = msgSensitive(regex.toString(), sensitiveMsg, replacement);
+                        LOGGER.info("Started logging desensitization in {} micro seconds", stopWatch.getTime(TimeUnit.MICROSECONDS));
                         break;
                     }
                 }
             }
         } catch (Exception e) {
             LOGGER.error("logging desensitization is failure, check out the sensitive field of application properties");
-        } finally {
-            LOGGER.info("Started logging desensitization in {} micro seconds", sw.getTime(TimeUnit.MICROSECONDS));
         }
         return sensitiveMsg;
     }
@@ -105,5 +105,4 @@ public class LoggingDesensitization {
     private String msgSensitive(String regex, String msg, String replacement) {
         return matcher(regex, msg).replaceAll(replacement);
     }
-
 }
