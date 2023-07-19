@@ -21,7 +21,7 @@ public class ConsoleSensitiveAppender extends ConsoleAppender<ILoggingEvent> {
 
     @Override
     protected void subAppend(ILoggingEvent event) {
-        String consoleMsg = loggingDesensitization.buildMsgSensitive(event.getFormattedMessage());
+        String consoleMsg = loggingDesensitization.buildMsg(event.getFormattedMessage());
         try {
             Field message = event.getClass().getDeclaredField(LogbackConstants.MESSAGE);
             Field formattedMessage = event.getClass().getDeclaredField(LogbackConstants.FORMATTED_MESSAGE);

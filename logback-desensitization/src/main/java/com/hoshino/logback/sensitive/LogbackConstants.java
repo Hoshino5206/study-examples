@@ -1,10 +1,14 @@
 package com.hoshino.logback.sensitive;
 
 /**
- * logback日志脱敏类型
+ * logging desensitization constants
  * @author huangyuehao
  */
 public class LogbackConstants {
+
+    private LogbackConstants() {
+
+    }
 
     public static final String REGEX = "regex";
 

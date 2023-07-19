@@ -1,8 +1,8 @@
 server:
   port: 8080
 
-ch:
-  qos:
-    logback:
+com:
+  hoshino:
+    logging:
       sensitive:
-        enable: false
+        enable: true

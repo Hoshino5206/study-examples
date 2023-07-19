@@ -14,11 +14,7 @@ import java.util.Map;
 @ConfigurationProperties(prefix = LogbackContextProperties.PREFIX)
 public class LogbackContextProperties {
 
-    public static final String PREFIX = "ch.qos.logback";
-
-    private String consoleName;
-
-    private String consolePattern;
+    public static final String PREFIX = "com.hoshino.logback.context";
 
     private String fileMaxSize = "200MB";
 
@@ -34,7 +30,19 @@ public class LogbackContextProperties {
 
     private Map<String, Logger> logger;
 
+    private ConsoleAppender consoleAppender;
+
     private Map<String, FileAppender> fileAppender;
+
+    @Data
+    public static class ConsoleAppender {
+
+        private String name;
+
+        private String pattern;
+
+        private List<String> toLoggers;
+    }
 
     @Data
     public static class FileAppender {
@@ -47,7 +55,7 @@ public class LogbackContextProperties {
 
         private String filterLevel;
 
-        private String toLoggers;
+        private List<String> toLoggers;
     }
 
     @Data
@@ -59,5 +67,4 @@ public class LogbackContextProperties {
 
         private Boolean isAdditive = true;
     }
-
 }

@@ -20,19 +20,17 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource(value = "classpath:com/hoshino/springboot/starter/logback/default.properties", encoding = "UTF-8")
 public class LoggingSensitiveAutoConfiguration {
 
-    private final LoggingSensitiveProperties sensitiveProperties;
     private final LogbackContextProperties contextProperties;
+    private final LoggingSensitiveProperties sensitiveProperties;
 
-    public LoggingSensitiveAutoConfiguration (LoggingSensitiveProperties sensitiveProperties,
-                                              LogbackContextProperties contextProperties) {
-        this.sensitiveProperties = sensitiveProperties;
+    public LoggingSensitiveAutoConfiguration (LogbackContextProperties contextProperties, LoggingSensitiveProperties sensitiveProperties) {
         this.contextProperties = contextProperties;
+        this.sensitiveProperties = sensitiveProperties;
     }
 
-    @Bean(initMethod = "base")
+    @Bean(initMethod = "init")
     @ConditionalOnMissingBean
     public LogbackConfiguration logbackConfiguration() {
-        return new LogbackConfiguration(new LoggingDesensitization(sensitiveProperties.getLogs()), contextProperties);
+        return new LogbackConfiguration(contextProperties, sensitiveProperties);
     }
-
 }

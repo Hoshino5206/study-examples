@@ -13,17 +13,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * logback日志信息脱敏.
+ * logback logging message desensitization core
  * @author huangyuehao
  */
 @Data
 public class LoggingDesensitization {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LoggingDesensitization.class);
-    private final Map<String, Map<String, LoggingSensitive>> logs;
 
-    public LoggingDesensitization(Map<String, Map<String, LoggingSensitive>> logs) {
-        this.logs = logs;
+    private final Map<String, Map<String, LoggingSensitive>> rules;
+
+    public LoggingDesensitization(Map<String, Map<String, LoggingSensitive>> rules) {
+        this.rules = rules;
     }
 
     /**
@@ -31,16 +32,16 @@ public class LoggingDesensitization {
      * @param formattedMessage 格式前信息
      * @return
      */
-    public String buildMsgSensitive(String formattedMessage) {
+    public String buildMsg(String formattedMessage) {
         String sensitiveMsg = formattedMessage;
-        if (logs == null || logs.isEmpty()) {
+        if (rules == null || rules.isEmpty()) {
             return formattedMessage;
         }
         StopWatch sw = new StopWatch();
         sw.start();
         try {
-            if (logs.containsKey(LogbackConstants.REGEX)) {
-                Map<String, LoggingSensitive> map = logs.get(LogbackConstants.REGEX);
+            if (rules.containsKey(LogbackConstants.REGEX)) {
+                Map<String, LoggingSensitive> map = rules.get(LogbackConstants.REGEX);
                 Set<String> keys = map.keySet();
                 for (String key : keys) {
                     LoggingSensitive loggingSensitive = map.get(key);
@@ -56,8 +57,8 @@ public class LoggingDesensitization {
                 }
             }
 
-            if (logs.containsKey(LogbackConstants.KV)) {
-                Map<String, LoggingSensitive> map = logs.get(LogbackConstants.KV);
+            if (rules.containsKey(LogbackConstants.KV)) {
+                Map<String, LoggingSensitive> map = rules.get(LogbackConstants.KV);
                 Set<String> keys = map.keySet();
                 for (String key : keys) {
                     LoggingSensitive loggingSensitive = map.get(key);

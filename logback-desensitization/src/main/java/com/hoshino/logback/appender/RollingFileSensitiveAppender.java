@@ -21,7 +21,7 @@ public class RollingFileSensitiveAppender extends RollingFileAppender<ILoggingEv
 
     @Override
     protected void subAppend(ILoggingEvent event) {
-        String buildMsgSensitive = loggingDesensitization.buildMsgSensitive(event.getFormattedMessage());
+        String buildMsgSensitive = loggingDesensitization.buildMsg(event.getFormattedMessage());
         try {
             Field message = event.getClass().getDeclaredField(LogbackConstants.MESSAGE);
             Field formattedMessage = event.getClass().getDeclaredField(LogbackConstants.FORMATTED_MESSAGE);
