@@ -41,6 +41,7 @@
         <module>springboot-quartz</module>
         <module>springboot-rabbitmq</module>
         <module>springboot-redis</module>
+        <module>springboot-resttemplate</module>
         <module>springboot-rocketmq</module>
         <module>springboot-schedule</module>
         <module>springboot-security</module>
