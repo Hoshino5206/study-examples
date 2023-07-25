@@ -28,6 +28,7 @@
         <module>springboot-async</module>
         <module>springboot-autoconfigure</module>
         <module>springboot-cache</module>
+        <module>springboot-config</module>
         <module>springboot-druid</module>
         <module>springboot-dubbo</module>
         <module>springboot-elasticjob</module>
@@ -41,7 +42,6 @@
         <module>springboot-quartz</module>
         <module>springboot-rabbitmq</module>
         <module>springboot-redis</module>
-        <module>springboot-resttemplate</module>
         <module>springboot-rocketmq</module>
         <module>springboot-schedule</module>
         <module>springboot-security</module>
