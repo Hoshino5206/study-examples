@@ -10,6 +10,7 @@
     <version>${dependencies.version}</version>
 
     <modules>
+        <module>algorithm</module>
         <module>design-pattern</module>
         <module>dubbo-annotation</module>
         <module>dubbo-api</module>
