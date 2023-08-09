@@ -1,6 +1,6 @@
 package com.hoshino.basics.juc;
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import com.hoshino.basics.thread.MyThreadPool;
 
 import java.util.concurrent.*;
 
@@ -10,24 +10,10 @@ import java.util.concurrent.*;
  */
 public class MyFuture {
 
-    private static final Integer CORE_POOL_SIZE = 6;
-
-    private static final Integer MAXIMUM_POOL_SIZE = 10;
-
-    private static final Long KEEP_ALIVE_TIME = 10L;
-
-    private static final ArrayBlockingQueue<Runnable> ARRAY_BLOCKING_QUEUE = new ArrayBlockingQueue<>(20, true);
-
-    private static final ThreadFactory THREAD_FACTORY = new ThreadFactoryBuilder().build();
-
-    private static final ThreadPoolExecutor.AbortPolicy ABORT_POLICY = new ThreadPoolExecutor.AbortPolicy();
-
     public static void main(String[] args) {
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
-                CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.MINUTES,
-                ARRAY_BLOCKING_QUEUE, THREAD_FACTORY, ABORT_POLICY);
+        ExecutorService executorService = MyThreadPool.getExecutorService();
 
-        Future<?> submit = threadPoolExecutor.submit(() -> {
+        Future<?> submit = executorService.submit(() -> {
             System.out.println(Thread.currentThread().getName());
         });
         try {
@@ -37,7 +23,7 @@ public class MyFuture {
             e.printStackTrace();
         }
 
-        threadPoolExecutor.shutdown();
+        executorService.shutdown();
     }
 
 }

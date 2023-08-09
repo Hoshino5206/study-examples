@@ -12,21 +12,21 @@ import java.util.Set;
 public class MyLinkedHashMap {
 
     public static void main(String[] args) {
-        LinkedHashMap<String, String> map = new LinkedHashMap<>();
-        map.put("Java", "JavaSE");
-        map.put("Spring", "SpringMVC");
-        map.put("SpringBoot", "SpringCloud");
+        LinkedHashMap<Integer, String> map = new LinkedHashMap<>();
+        map.put(1, "JavaSE");
+        map.put(2, "SpringMVC");
+        map.put(3, "SpringCloud");
 
-        Set<String> keys = map.keySet();
+        Set<Integer> keys = map.keySet();
         System.out.println("keys = " + keys);
 
         Collection<String> values = map.values();
         System.out.println("values = " + values);
 
-        Set<Map.Entry<String, String>> entries = map.entrySet();
+        Set<Map.Entry<Integer, String>> entries = map.entrySet();
         System.out.println("entries = " + entries);
-        for (Map.Entry<String, String> entry : entries) {
-            String key = entry.getKey();
+        for (Map.Entry<Integer, String> entry : entries) {
+            Integer key = entry.getKey();
             String value = entry.getValue();
             System.out.println("key = " + key + ", value = " + value);
         }

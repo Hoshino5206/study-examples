@@ -1,6 +1,7 @@
 package com.hoshino.basics.juc;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import com.hoshino.basics.thread.MyThreadPool;
 
 import java.util.Random;
 import java.util.concurrent.*;
@@ -11,26 +12,12 @@ import java.util.concurrent.*;
  */
 public class MyCountDownLatch {
 
-    private static final Integer CORE_POOL_SIZE = 6;
-
-    private static final Integer MAXIMUM_POOL_SIZE = 10;
-
-    private static final Long KEEP_ALIVE_TIME = 10L;
-
-    private static final ArrayBlockingQueue<Runnable> ARRAY_BLOCKING_QUEUE = new ArrayBlockingQueue<>(20, true);
-
-    private static final ThreadFactory THREAD_FACTORY = new ThreadFactoryBuilder().build();
-
-    private static final ThreadPoolExecutor.AbortPolicy ABORT_POLICY = new ThreadPoolExecutor.AbortPolicy();
-
     private static final Integer COUNT_DOWN_LATCH = 6;
 
     private static CountDownLatch countDownLatch = new CountDownLatch(COUNT_DOWN_LATCH);
 
     public static void main(String[] args) throws InterruptedException {
-        ThreadPoolExecutor executorService = new ThreadPoolExecutor(
-                CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.MINUTES,
-                ARRAY_BLOCKING_QUEUE, THREAD_FACTORY, ABORT_POLICY);
+        ExecutorService executorService = MyThreadPool.getExecutorService();
 
         for (int i = 0; i < COUNT_DOWN_LATCH; i++) {
             executorService.submit(() -> {

@@ -7,7 +7,7 @@ package com.hoshino.basics.dataType;
 public class MyString {
 
     public static void main(String[] args) {
-        String s1 = "Hello World! ";
+        String s1 = "Hello, World!";
 
         // 字符串长度
         int length = s1.length();
@@ -41,7 +41,7 @@ public class MyString {
 
         // 用新字符替换字符串的所有旧字符
         String replace = s1.replace("l", "a");
-        System.out.println(replace);
+        System.out.println("replace: " + replace);
 
         // 字符串转换大小写
         String lowerCase = s1.toLowerCase();
@@ -51,12 +51,12 @@ public class MyString {
 
         // string转char
         char[] chars = s1.toCharArray();
-        System.out.println(chars[6]);
+        System.out.println("chars[5]: " + chars[5]);
 
         // char转string
         char[] chars1 = new char[]{'1','2','a','b','c'};
         String charString = new String(chars1);
-        System.out.println(charString);
+        System.out.println("charString: " + charString);
     }
 
 }
