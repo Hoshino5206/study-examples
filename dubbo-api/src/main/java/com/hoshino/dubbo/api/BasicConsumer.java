@@ -39,7 +39,7 @@ public class BasicConsumer {
         // 和本地bean一样使用demoService
         // 注意：此代理对象内部封装了所有通讯细节，对象较重，请缓存复用
         DemoService demoService = reference.get();
-        String message = demoService.sayHello("Dubbo");
+        String message = demoService.sayHello("dubbo");
         System.out.println("Receive result ======> " + message);
 
         // 挂起等待(防止进程退出）

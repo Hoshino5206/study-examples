@@ -76,7 +76,8 @@
         <elasticjob-starter.version>3.0.0</elasticjob-starter.version>
         <shiro-starter.version>1.8.0</shiro-starter.version>
         <swagger-starter.version>3.0.0</swagger-starter.version>
-        <dubbo-starter.version>2.7.8</dubbo-starter.version>
+        <dubbo-apache-starter.version>2.7.8</dubbo-apache-starter.version>
+        <dubbo-alibaba-starter.version>0.2.0</dubbo-alibaba-starter.version>
         <!-- assembly -->
         <servlet-api.version>4.0.1</servlet-api.version>
         <mysql-connector-java.version>8.0.25</mysql-connector-java.version>
@@ -98,7 +99,8 @@
         <curator.version>4.0.1</curator.version>
         <xxl-job.version>2.3.1</xxl-job.version>
         <apollo-client.version>1.7.0</apollo-client.version>
-        <dubbo.version>2.7.8</dubbo.version>
+        <dubbo-alibaba.version>2.6.8</dubbo-alibaba.version>
+        <dubbo-apache.version>2.7.8</dubbo-apache.version>
         <!-- utils -->
         <lombok.version>1.18.24</lombok.version>
         <hutool.version>5.7.5</hutool.version>
@@ -378,9 +380,14 @@
                 <version>${swagger-starter.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.alibaba.boot</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo-alibaba-starter.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo-spring-boot-starter</artifactId>
-                <version>${dubbo-starter.version}</version>
+                <version>${dubbo-apache-starter.version}</version>
             </dependency>
 
 
@@ -503,14 +510,19 @@
                 <version>${apollo-client.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo-alibaba.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo</artifactId>
-                <version>${dubbo.version}</version>
+                <version>${dubbo-apache.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo-registry-zookeeper</artifactId>
-                <version>${dubbo.version}</version>
+                <version>${dubbo-apache.version}</version>
             </dependency>
 
 
