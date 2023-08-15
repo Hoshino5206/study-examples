@@ -3,14 +3,33 @@ server:
 
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/example?serverTimezone=Asia/Shanghai&characterEncoding=UTF8&useSSL=false&useUnicode=true
-    username: root
-    password: 123456
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/example?serverTimezone=Asia/Shanghai&characterEncoding=UTF8&useSSL=false&useUnicode=true
+#    username: root
+#    password: 123456
+    dynamic:
+      # 设置默认的数据源或者数据源组,默认值即为master
+      primary: master
+      # 严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
+      strict: false
+      datasource:
+        master:
+          url: jdbc:mysql://127.0.0.1:3306/example?serverTimezone=Asia/Shanghai&characterEncoding=UTF8&useSSL=false&useUnicode=true
+          username: root
+          password: 123456
+          # 3.2.0开始支持SPI可省略此配置
+          driver-class-name: com.mysql.cj.jdbc.Driver
+        vm:
+          url: jdbc:mysql://192.168.88.130:3306/example?serverTimezone=Asia/Shanghai&characterEncoding=UTF8&useSSL=false&useUnicode=true
+          username: root
+          password:
+          driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis-plus:
   type-aliases-package: com.hoshino.springboot.mybatisplus.entity
   mapper-locations: classpath:mybatis/mapper/*.xml
+  #  通用枚举 https://baomidou.com/pages/8390a4/
+  type-enums-package:
   configuration:
     cache-enabled: true
     use-generated-keys: true
@@ -22,7 +41,7 @@ mybatis-plus:
   global-config:
     db-config:
       # 表前缀
-#      tablePrefix: t_
+      tablePrefix: t_
       # 数据库自增
       id-type: auto
       # 逻辑删除

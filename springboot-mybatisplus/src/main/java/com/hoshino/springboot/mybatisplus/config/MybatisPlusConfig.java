@@ -1,9 +1,12 @@
 package com.hoshino.springboot.mybatisplus.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.core.incrementer.IdentifierGenerator;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.BlockAttackInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import com.hoshino.springboot.mybatisplus.incrementer.CustomIdGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -35,6 +38,17 @@ public class MybatisPlusConfig {
         OptimisticLockerInnerInterceptor optimisticLockerInnerInterceptor = new OptimisticLockerInnerInterceptor();
         interceptor.addInnerInterceptor(optimisticLockerInnerInterceptor);
 
+        // 针对 update 和 delete 语句 作用: 阻止恶意的全表更新删除
+        interceptor.addInnerInterceptor(new BlockAttackInnerInterceptor());
+
         return interceptor;
+    }
+
+    /**
+     * 自定义ID生成器
+     */
+    @Bean
+    public IdentifierGenerator idGenerator() {
+        return new CustomIdGenerator();
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -53,4 +54,43 @@ public class UserController {
         return userService.getById(id);
     }
 
+    @RequestMapping("/queryWrapper")
+    public List<User> queryWrapper() {
+        User user = new User();
+        user.setId(1);
+        user.setUsername("t");
+        user.setCreateTime(new Date("2023/01/01"));
+        user.setUpdateTime(new Date());
+        user.setIsDelete(0);
+        return userService.queryWrapper(user);
+    }
+
+    @RequestMapping("/updateWrapper")
+    public User updateWrapper() {
+        User user = new User();
+        user.setId(5);
+        user.setUsername(RandomStringUtils.randomAlphabetic(8));
+        user.setPassword(RandomStringUtils.randomAlphabetic(8));
+        user.setIsDelete(0);
+        return userService.updateWrapper(user) ? user : null;
+    }
+
+    @RequestMapping("/lambdaQueryWrapper")
+    public List<User> lambdaQueryWrapper() {
+        User user = new User();
+        user.setId(1);
+        user.setUsername("t");
+        user.setIsDelete(0);
+        return userService.lambdaQueryWrapper(user);
+    }
+
+    @RequestMapping("/lambdaUpdateWrapper")
+    public User lambdaUpdateWrapper() {
+        User user = new User();
+        user.setId(5);
+        user.setUsername(RandomStringUtils.randomAlphabetic(8));
+        user.setPassword(RandomStringUtils.randomAlphabetic(8));
+        user.setIsDelete(0);
+        return userService.lambdaUpdateWrapper(user) ? user : null;
+    }
 }
