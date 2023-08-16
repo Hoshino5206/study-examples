@@ -10,14 +10,51 @@ dubbo:
     name: ${spring.application.name}
   protocol:
     name: dubbo
+    # dubbo协议缺省端口为20880，rmi协议缺省端口为1099，http和hessian协议缺省端口为80
+    # 如果没有配置port，则自动采用默认端口，如果配置为-1，则会分配一个没有被占用的端口
     port: -1
   registry:
     id: zk-registry
     address: zookeeper://127.0.0.1:2181
-    timeout: 5000
+    timeout: 10000
+    # 开启注册中心启动时检查
+    check: true
   config-center:
     address: zookeeper://127.0.0.1:2181
-    timeout: 5000
+    timeout: 10000
+    check: true
   metadata-report:
     address: zookeeper://127.0.0.1:2181
-    timeout: 5000
+    timeout: 10000
+  provider:
+    # 延迟注册服务时间(毫秒)，设为-1时，表示延迟到Spring容器初始化完成时暴露服务
+    delay: -1
+    # 服务提供者最大可接受连接数
+    accepts: 10
+    # 远程服务调用超时时间(毫秒)，默认1000
+    timeout: 10000
+    # 负载均衡策略，可选值：random随机/roundrobin轮询/leastactive最少活跃调用/consistenthash哈希一致 (2.1.0以上版本)/shortestresponse最短响应 (2.7.7以上版本)
+    loadbalance: roundrobin
+    # 集群方式，可选：failover/failfast/failsafe/failback/forking，默认failover
+    cluster: failback
+    # 远程服务调用重试次数，不包括第一次调用，不需要重试请设为0，默认为2。仅在cluster为failback/failover时有效
+    # 重试一般适用于只读服务，或者具有幂等性保证的写服务。
+    retries: 3
+    # 服务版本，建议使用两位数字版本，如：1.0
+    version: 1.0
+    # 令牌验证，为空表示不开启，如果为true，表示随机生成动态令牌
+    token: true
+  consumer:
+    # 远程服务调用超时时间(毫秒)，默认1000
+    timeout: 10000
+    # 负载均衡策略，可选值：random随机/roundrobin轮询/leastactive最少活跃调用/consistenthash哈希一致 (2.1.0以上版本)/shortestresponse最短响应 (2.7.7以上版本)
+    loadbalance: roundrobin
+    # 集群方式，可选：failover/failfast/failsafe/failback/forking，默认failover
+    cluster: failback
+    # 远程服务调用重试次数，不包括第一次调用，不需要重试请设为0，默认为2。仅在cluster为failback/failover时有效
+    # 重试一般适用于只读服务，或者具有幂等性保证的写服务。
+    retries: 3
+    # 启动时检查提供者是否存在，true报错，false忽略
+    check: true
+    # 服务版本，建议使用两位数字版本，如：1.0。如不区分版本，使用*
+    version: 1.0
