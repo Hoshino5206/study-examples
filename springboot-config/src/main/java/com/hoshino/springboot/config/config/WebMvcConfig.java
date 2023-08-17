@@ -77,9 +77,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // /images/**是静态映射，file:/root/images/是文件在服务器的路径
+        // addResourceHandler: 静态资源访问映射路径，相当于配置spring.mvc.staticPathPattern
+        // addResourceLocations: 静态资源路径，相当于配置spring.resources.staticLocations
+        // classpath:/META-INF/resources/","classpath:/resources/", "classpath:/static/", "classpath:/public/"
+        // 配置linux或windows中的静态资源路径，使用 file:路径
         registry.addResourceHandler("/data/image/**/**")
-                .addResourceLocations("file:/data/image/");
+                .addResourceLocations("classpath:/static/", "file:/data/image/");
     }
 
     /**
