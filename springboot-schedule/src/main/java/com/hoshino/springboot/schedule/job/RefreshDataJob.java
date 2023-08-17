@@ -1,8 +1,6 @@
 package com.hoshino.springboot.schedule.job;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +13,6 @@ import java.util.Date;
  */
 @Component
 @Slf4j
-@EnableAsync
 public class RefreshDataJob {
 
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -47,7 +44,6 @@ public class RefreshDataJob {
      * fixedDelay 执行时间间隔，在上一次任务完成后等待 5000 毫秒（5 秒）再执行。
      */
     @Scheduled(fixedDelay = 5000)
-    @Async
     public void fixedDelayTask() {
         try {
             Thread.sleep(2000);
