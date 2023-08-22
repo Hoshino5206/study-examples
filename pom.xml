@@ -23,32 +23,32 @@
         <module>redis</module>
         <module>spring</module>
         <module>spring-amqp</module>
-        <module>springboot</module>
-        <module>springboot-annotation</module>
-        <module>springboot-aop</module>
-        <module>springboot-async</module>
-        <module>springboot-autoconfigure</module>
-        <module>springboot-cache</module>
-        <module>springboot-config</module>
-        <module>springboot-druid</module>
-        <module>springboot-dubbo</module>
-        <module>springboot-elasticjob</module>
-        <module>springboot-interceptor</module>
-        <module>springboot-jdbc</module>
-        <module>springboot-mongodb</module>
-        <module>springboot-multisource</module>
-        <module>springboot-mybatis</module>
-        <module>springboot-mybatisplus</module>
-        <module>springboot-pagehelper</module>
-        <module>springboot-quartz</module>
-        <module>springboot-rabbitmq</module>
-        <module>springboot-redis</module>
-        <module>springboot-rocketmq</module>
-        <module>springboot-schedule</module>
-        <module>springboot-security</module>
-        <module>springboot-starter-logback</module>
-        <module>springboot-validator</module>
-        <module>springboot-xxl-job</module>
+        <module>spring-boot</module>
+        <module>spring-boot-annotation</module>
+        <module>spring-boot-aop</module>
+        <module>spring-boot-async</module>
+        <module>spring-boot-autoconfigure</module>
+        <module>spring-boot-cache-caffeine</module>
+        <module>spring-boot-common-config</module>
+        <module>spring-boot-data-mongodb</module>
+        <module>spring-boot-data-redis</module>
+        <module>spring-boot-druid</module>
+        <module>spring-boot-dubbo</module>
+        <module>spring-boot-elasticjob</module>
+        <module>spring-boot-interceptor</module>
+        <module>spring-boot-jdbc</module>
+        <module>spring-boot-mq-rabbitmq</module>
+        <module>spring-boot-mq-rocketmq</module>
+        <module>spring-boot-multisource</module>
+        <module>spring-boot-mybatis</module>
+        <module>spring-boot-mybatis-plus</module>
+        <module>spring-boot-pagehelper</module>
+        <module>spring-boot-quartz</module>
+        <module>spring-boot-schedule</module>
+        <module>spring-boot-security</module>
+        <module>spring-boot-starter-logback</module>
+        <module>spring-boot-validator</module>
+        <module>spring-boot-xxl-job</module>
         <module>springmvc</module>
     </modules>
 
