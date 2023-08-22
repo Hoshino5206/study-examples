@@ -7,7 +7,7 @@
 
     <groupId>com.hoshino.example</groupId>
     <artifactId>study-examples</artifactId>
-    <version>${dependencies.version}</version>
+    <version>${revision}</version>
 
     <modules>
         <module>algorithm</module>
@@ -47,12 +47,13 @@
         <module>springboot-schedule</module>
         <module>springboot-security</module>
         <module>springboot-starter-logback</module>
+        <module>springboot-validator</module>
         <module>springboot-xxl-job</module>
         <module>springmvc</module>
     </modules>
 
     <properties>
-        <dependencies.version>1.0.0-SNAPSHOT</dependencies.version>
+        <revision>1.0.0-SNAPSHOT</revision>
         <java.version>1.8</java.version>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
@@ -77,8 +78,8 @@
         <elasticjob-starter.version>3.0.0</elasticjob-starter.version>
         <shiro-starter.version>1.8.0</shiro-starter.version>
         <swagger-starter.version>3.0.0</swagger-starter.version>
-        <dubbo-apache-starter.version>2.7.8</dubbo-apache-starter.version>
         <dubbo-alibaba-starter.version>0.2.0</dubbo-alibaba-starter.version>
+        <dubbo-apache-starter.version>2.7.8</dubbo-apache-starter.version>
         <!-- assembly -->
         <servlet-api.version>4.0.1</servlet-api.version>
         <mysql-connector-java.version>8.0.25</mysql-connector-java.version>
@@ -253,6 +254,11 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-configuration-processor</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
                 <version>${springboot.version}</version>
             </dependency>
             <dependency>
@@ -764,7 +770,7 @@
             <dependency>
                 <groupId>com.hoshino.example</groupId>
                 <artifactId>logback-desensitization</artifactId>
-                <version>${dependencies.version}</version>
+                <version>${revision}</version>
             </dependency>
 
         </dependencies>
