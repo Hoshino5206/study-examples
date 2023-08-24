@@ -1,17 +1,17 @@
-package com.hoshino.springboot.rocketqm;
+package com.hoshino.springboot.rocketmq.consumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author huangyuehao
- * @date 2023-02-22
+ * @author Akino
+ * @date 2023-08-24
  */
 @SpringBootApplication
-public class RocketMQApplication {
+public class ConsumerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RocketMQApplication.class, args);
+        SpringApplication.run(ConsumerApplication.class, args);
     }
 
 }
