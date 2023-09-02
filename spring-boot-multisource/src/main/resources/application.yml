@@ -23,11 +23,11 @@ spring:
 
 mybatis-config:
   master:
-    mapperXml: com/hoshino/springboot/multisource/dao/master/mapper/*Mapper.xml
+    mapperXml: com.hoshino.springboot.multisource.dao.master.mapper.*Mapper.xml
     typeAliasesPackage: classpath:com.hoshino.springboot.multisource.entity.master.**
   slave:
-    mapperXml: com/hoshino/springboot/multisource/dao/slave/mapper/*Mapper.xml
+    mapperXml: com.hoshino.springboot.multisource.dao.slave.mapper.*Mapper.xml
     typeAliasesPackage: classpath:com.hoshino.springboot.multisource.entity.slave.**
   dynamic:
-    mapperXml: com/hoshino/springboot/multisource/dao/dynamic/mapper/*Mapper.xml
+    mapperXml: com.hoshino.springboot.multisource.dao.dynamic.mapper.*Mapper.xml
     typeAliasesPackage: classpath:com.hoshino.springboot.multisource.entity.dynamic.**

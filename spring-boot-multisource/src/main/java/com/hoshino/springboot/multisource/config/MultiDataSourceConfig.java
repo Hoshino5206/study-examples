@@ -126,7 +126,7 @@ public class MultiDataSourceConfig {
      * 动态数据源，共用一个sqlSessionFactory会话工厂
      */
     @Configuration
-    @MapperScan("com.hoshino.springboot.multisource.dao.dynamic")
+    @MapperScan(value = "com.hoshino.springboot.multisource.dao.dynamic", sqlSessionTemplateRef = "dynamicSqlSessionTemplate")
     @EnableConfigurationProperties({MybatisProperties.class})
     public class DynamicDataSourceConfiguration {
 
